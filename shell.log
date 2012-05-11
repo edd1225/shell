@@ -1,0 +1,94 @@
+INFO 2012-05-02 11:27:25 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:28:27 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:29:36 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:34:02 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:34:47 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:42:09 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:43:57 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:44:11 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:44:35 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:44:53 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:50:29 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:53:27 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:56:03 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-02 11:56:09 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 17:44:19 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 17:46:46 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 17:50:06 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 17:50:21 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 17:51:42 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 17:55:02 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 18:14:48 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 18:17:50 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 18:19:07 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 18:19:45 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 21:23:54 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 21:55:33 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 22:01:17 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 22:02:02 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-03 22:08:19 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 09:37:11 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 09:42:49 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 09:53:16 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 10:10:05 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 10:45:02 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 10:55:24 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:01:42 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:02:28 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:03:39 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:09:19 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:11:05 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:12:34 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:13:59 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:20:48 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:23:35 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 11:43:17 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 13:00:07 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-04 13:01:15 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 14:42:36 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 18:52:52 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 18:53:09 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 18:53:56 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 18:55:29 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 18:55:41 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 18:56:29 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 20:49:04 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-05 21:16:34 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+INFO 2012-05-06 11:37:41 [shell.framework.authorization.test.AuthorizationTestCase] -Loading context for locations: classpath:applicationContext.xml 
+WARN 2012-05-08 17:15:42 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 17:16:28 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 17:17:44 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 17:17:45 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 17:20:26 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 17:24:37 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:37:09 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:37:16 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:37:41 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:37:43 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:37:53 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:37:54 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:37:57 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:37:57 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:39:15 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:39:16 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:39:16 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:39:17 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:41:37 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:41:39 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 20:43:40 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:48:57 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:49:32 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:49:44 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:49:44 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:49:45 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:49:46 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:49:56 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:49:56 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-08 21:49:57 [shell.framework.authorization.service.LoginService] -NO USER SPECIFIED ! 
+WARN 2012-05-09 06:14:32 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
+WARN 2012-05-09 06:15:36 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
+WARN 2012-05-09 06:24:49 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
+WARN 2012-05-09 06:41:03 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
+WARN 2012-05-10 09:35:52 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
+WARN 2012-05-10 10:32:06 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
+WARN 2012-05-10 11:01:53 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
