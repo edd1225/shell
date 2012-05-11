@@ -92,3 +92,4 @@ WARN 2012-05-09 06:41:03 [shell.framework.authorization.service.LoginService] -N
 WARN 2012-05-10 09:35:52 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
 WARN 2012-05-10 10:32:06 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
 WARN 2012-05-10 11:01:53 [shell.framework.authorization.service.LoginService] -NO USERCODE OR PASSWORD SPECIFIED ! 
+this is a test file log....
