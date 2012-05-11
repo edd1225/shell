@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <!-- 配置本属性，可以使得改动struts配置文件不用重启应用服务器 -->
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.enable.SlashesInActionNames" value="true" />
+    <constant name="struts.devMode" value="false" />
+    <!--<constant name="struts.i18n.encoding" value="GBK" />-->
+    
+    <!-- 没有结合spring来进行管理action，由struts自己来初始化action对象 -->
+    <package name="default" namespace="/" extends="struts-default">
+    	<action name="login" class="shell.framework.authorization.web.LoginAction" >
+    		<result name="success">/web/defaultFrame/mainFrame.jsp</result>
+    		<result name="failure" type="redirect">/index.jsp</result>
+    	</action>
+    </package>
+    
+    
+</struts>
