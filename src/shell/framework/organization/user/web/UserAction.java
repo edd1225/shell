@@ -8,6 +8,8 @@
  */
 package shell.framework.organization.user.web;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 /**

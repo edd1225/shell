@@ -8,7 +8,7 @@
  */
 package shell.framework.authorization.vo;
 
-import shell.framework.model.User;
+import shell.framework.model.TblSysUser;
 
 /**
  * <p> 系统登录用户信息 </p>
@@ -18,7 +18,7 @@ import shell.framework.model.User;
  */
 public class UserInfo {
 	
-	private User user;
+	private TblSysUser user;
 	private String loginIP;
 	private String loginHost;
 	private String loginTime;
@@ -90,13 +90,13 @@ public class UserInfo {
 	/**
 	 * @return the user
 	 */
-	public User getUser() {
+	public TblSysUser getUser() {
 		return user;
 	}
 	/**
 	 * @param user the user to set
 	 */
-	public void setUser(User user) {
+	public void setUser(TblSysUser user) {
 		this.user = user;
 	}
 	

@@ -11,7 +11,7 @@ package shell.framework.authorization.test;
 import junit.framework.Assert;
 import shell.framework.authorization.service.LoginService;
 import shell.framework.dao.test.SpringContextBaseTestCase;
-import shell.framework.model.User;
+import shell.framework.model.TblSysUser;
 
 /**
  * <p> 权限模块测试用例 </p>
@@ -33,7 +33,7 @@ public class AuthorizationTestCase extends SpringContextBaseTestCase {
 	
 	
 	public void testLogin(){
-		User user = new User();
+		TblSysUser user = new TblSysUser();
 		user.setId("3984ufjwoiwuf23");
 		user.setUserCode("9999");
 		user.setPassword("9999");

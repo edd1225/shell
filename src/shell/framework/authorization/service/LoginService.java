@@ -21,7 +21,7 @@ import shell.framework.authorization.support.AuthorizationException;
 import shell.framework.authorization.vo.UserInfo;
 import shell.framework.core.DefaultBeanFactory;
 import shell.framework.dao.impl.JdbcBaseDaoTemplate;
-import shell.framework.model.User;
+import shell.framework.model.TblSysUser;
 import shell.framework.util.PopulateUtil;
 
 /**
@@ -58,7 +58,7 @@ public class LoginService {
 			String message = "userCode or password is mismatching!";
 			return false;
 		}else{
-			User user = (User)resultList.get(0);
+			TblSysUser user = (TblSysUser)resultList.get(0);
 			this.updateSession(user, request);
 			return true;
 		}
@@ -87,7 +87,7 @@ public class LoginService {
 			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
 			 */
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-				User user = new User();
+				TblSysUser user = new TblSysUser();
 				
 				Map<String,String> propertyMap = new HashMap<String,String>();
 				propertyMap.put("createdTime" , "CREATE_TIME");
@@ -107,7 +107,7 @@ public class LoginService {
 	 * @param user 当前登录用户
 	 * @param request
 	 */
-	public void updateSession(User user , HttpServletRequest request){
+	public void updateSession(TblSysUser user , HttpServletRequest request){
 		if(request==null){
 			logger.warn("THE REQUEST IS NOT COME FROM HTTP!");
 			return;
