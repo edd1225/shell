@@ -1,9 +1,6 @@
 package shell.framework.dao.impl;
 
-import java.lang.reflect.Field;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +8,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -43,7 +39,7 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 		try{
 			JdbcTemplate jt = this.getJdbcTemplate();
 			if(extractor == null){
-				//缺省结果集抽取器
+				//缺省结果集抽取器ListExtractor4Map
 				return (List)jt.query(sql, new ListExtractor4Map());
 			}else{
 				return (List)jt.query(sql, extractor);
@@ -62,7 +58,7 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 		try{
 			JdbcTemplate jt = this.getJdbcTemplate();
 			if(extractor == null){
-				//缺省结果集抽取器
+				//缺省结果集抽取器ListExtractor4Map
 				return (List<?>)jt.query(sql, params, new ListExtractor4Map());
 			}else{
 				return (List<?>)jt.query(sql, params, extractor);
@@ -82,7 +78,7 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 		try{
 			JdbcTemplate jt = this.getJdbcTemplate();
 			if(extractor==null){
-				//缺省结果集抽取器
+				//缺省结果集抽取器ListExtractor4Bean
 				return (List)jt.query(sql, new ListExtractor4Bean(beanClazz));
 			}else{
 				return (List)jt.query(sql, extractor);
@@ -102,7 +98,7 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 		try{
 			JdbcTemplate jt = this.getJdbcTemplate();
 			if(extractor==null){
-				//缺省的结果集抽取器实现
+				//缺省的结果集抽取器实现ListExtractor4Bean
 				return (List)jt.query(sql, params , new ListExtractor4Bean(beanClazz));
 			}else{
 				return (List)jt.query(sql, params, extractor);
@@ -137,93 +133,109 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 	}
 	
 	
+	
 	/* (non-Javadoc)
 	 * @see shell.framework.dao.IJdbcBaseDao#query(java.lang.String, java.lang.Class)
 	 */
 	public List<?> query(String sql, final Class<?> beanClazz) throws DaoException {
-		JdbcTemplate jt = this.getJdbcTemplate();
-		if(beanClazz==null){
-			logger.error("class of the bean can not be null!");
-			throw new DaoException("class of the bean can not be null!");
-		}
-		return jt.query(sql, new RowMapper<Object>(){
-			
-			
-			/* (non-Javadoc)
-			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
-			 */
-			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-//				if(logger.isDebugEnabled()){
-					long startMillis = 0;
-					startMillis = System.currentTimeMillis();
-//				}
-				
-				try {
-					Object bean = beanClazz.newInstance();
-					Field[] fields  = beanClazz.getDeclaredFields();
-					for(Field field : fields){
-						field.getName().toLowerCase();
-						
-						
-						//TODO 字符串序列的比较算法....
-						
-					}
-					
-					ResultSetMetaData rsdm = rs.getMetaData();
-					int columnCount = rsdm.getColumnCount();
-					for(int i=1;i<=columnCount;i++){
-						String columnName = JdbcUtils.lookupColumnName(rsdm, i);
-						columnName.toLowerCase();
-						Object columnValue = JdbcUtils.getResultSetValue(rs, i);
-						
-						
-					}
-					
-					
-					
-//					if(logger.isDebugEnabled()){
-						long endMillis = 0;
-						endMillis = System.currentTimeMillis();
-						long spendMillis = endMillis - startMillis;
-						System.out.println("**********The time of converting single row [ " 
-								+ rowNum + "] to javaBean is " + spendMillis + " millis");
-//					}	
-					
-				return bean;
-
-				} catch (InstantiationException e) {
-					logger.error(e.getMessage() + "| bean instance failure!");
-					throw new DaoException(e);
-				} catch (IllegalAccessException e) {
-					logger.error(e.getMessage() + "| bean instance failure!");
-					throw new DaoException(e);
-				}
-			}
-		});
+		return query(sql, beanClazz, null);
 	}
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.dao.IJdbcBaseDao#query(java.lang.String, java.lang.Class)
+	 */
+//	public List<?> query(String sql, final Class<?> beanClazz) throws DaoException {
+//		JdbcTemplate jt = this.getJdbcTemplate();
+//		if(beanClazz==null){
+//			logger.error("class of the bean can not be null!");
+//			throw new DaoException("class of the bean can not be null!");
+//		}
+//		return jt.query(sql, new RowMapper<Object>(){
+//			
+//			
+//			/* (non-Javadoc)
+//			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+//			 */
+//			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+//					
+//				long startMillis = 0;
+//				startMillis = System.currentTimeMillis();
+//				
+//				try {
+//					Object bean = beanClazz.newInstance();
+//					Field[] fields  = beanClazz.getDeclaredFields();
+//					for(Field field : fields){
+//						field.getName().toLowerCase();
+//						
+//						// TODO 字符串序列的比较算法....
+//					}
+//					
+//					ResultSetMetaData rsdm = rs.getMetaData();
+//					int columnCount = rsdm.getColumnCount();
+//					for(int i=1;i<=columnCount;i++){
+//						String columnName = JdbcUtils.lookupColumnName(rsdm, i);
+//						columnName.toLowerCase();
+//						Object columnValue = JdbcUtils.getResultSetValue(rs, i);
+//						
+//						
+//					}
+//					
+//					
+//					
+//					long endMillis = 0;
+//					endMillis = System.currentTimeMillis();
+//					long spendMillis = endMillis - startMillis;
+//					System.out.println("**********The time of converting single row [ " + rowNum + "] to javaBean is " + spendMillis + " millis");
+//					
+//				return bean;
+//
+//				} catch (InstantiationException e) {
+//					logger.error(e.getMessage() + "| bean instance failure!");
+//					throw new DaoException(e);
+//				} catch (IllegalAccessException e) {
+//					logger.error(e.getMessage() + "| bean instance failure!");
+//					throw new DaoException(e);
+//				}
+//			}
+//		});
+//	}
+	
 	
 	
 	/* (non-Javadoc)
 	 * @see shell.framework.dao.IJdbcBaseDao#query(java.lang.String, java.lang.Object[], java.lang.Class)
 	 */
-	public List<?> query(String sql, Object[] values, Class<?> beanClazz) throws DaoException {
-		JdbcTemplate jt = this.getJdbcTemplate();
-		if(beanClazz==null){
-			logger.error("class of the bean can not be null!");
-			throw new DaoException("class of the bean can not be null!");
-		}
-		
-		return jt.query(sql, values, new RowMapper<Object>(){
-			
-			/* (non-Javadoc)
-			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
-			 */
-			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-				// TODO 记录到javabean的自动映射
-				return null;
-			}
-		});
+	public List<?> query(String sql, Object[] params,final Class<?> beanClazz) throws DaoException {
+		return query(sql, params, beanClazz,null);
 	}
+	
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.dao.IJdbcBaseDao#query(java.lang.String, java.lang.Object[], java.lang.Class)
+	 */
+//	public List<?> query(String sql, Object[] params,final Class<?> beanClazz) throws DaoException {
+//		JdbcTemplate jt = this.getJdbcTemplate();
+//		if(beanClazz==null){
+//			logger.error("class of the bean can not be null!");
+//			throw new DaoException("class of the bean can not be null!");
+//		}
+//		
+//		return jt.query(sql, params, new RowMapper<Object>(){
+//			
+//			/* (non-Javadoc)
+//			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+//			 */
+//			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+//				// TODO 结果集记录到javabean的自动映射，可以考虑使用PopulateUtil工具
+//				// TODO  也考虑使用上面的方法来实现bean属性和结果集记录字段的映射
+//				return null;
+//			}
+//		});
+//	}
 	
 	
 	/* (non-Javadoc)
@@ -310,7 +322,7 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 			logger.error("SQL is spelling error!" + sql);
 			throw new DaoException("SQL is spelling error!");
 		}
-		String pageSQL = "select count(1) " + sql.substring(index).toLowerCase();
+		String pageSQL = "select count(1) " + sql.substring(index);
 		
 		logger.info("Executing SQL count [" + pageSQL + "]");
 		
