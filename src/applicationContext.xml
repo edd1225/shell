@@ -12,7 +12,7 @@
 	<import resource="applicationContext-dataSource.xml"/>
 	<import resource="applicationContext-cacheService.xml"/>
 	<import resource="applicationContext-authorizationService.xml"/>
-
+	<import resource="applicationContext-organizationService.xml"/>
 	
 
 

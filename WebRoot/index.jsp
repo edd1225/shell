@@ -76,13 +76,13 @@ function checkUser(){
 				  <TD class=a1 colSpan=2 height=15>&nbsp;</TD>
 				</TR>
 				<TR>
-				  <TD class=a1 width="37%" height="1" nowrap><FONT color=#55728a>用户名称：</FONT></TD>
+				  <TD class=a1 width="37%" height="1" nowrap><FONT color=#55728a>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;ID：</FONT></TD>
 				  <TD width="63%">
 					<input type="text" name="userCode" size="15" maxlength="15" style="WIDTH: 100%" />
 				  </TD>
 				</TR>
 				<TR>
-				  <TD nowrap height="1"><font color="#55728a">用户密码：</font></TD>
+				  <TD nowrap height="1"><font color="#55728a">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</font></TD>
 				  <TD>
 					<input type="password" name="password" maxlength="16" style="WIDTH: 100%" />
 				  </TD>

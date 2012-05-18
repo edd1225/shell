@@ -37,14 +37,13 @@ public class PopulateUtil {
 	/**
 	 * 从单条结果集中注入数据到javabean，要求属性名称和列名称相同，不区分大小写
 	 * 不同名称但意义相同的属性名和列名可以通过synonymousPropertyMap参数指定对应关系
-	 * 进行自动转换 synonymousPropertyMap<目标javabean属性，源结果集列名称>
-	 * 指针对简单的javabean属性与单条记录的映射，不支持javabean属性类型有array list map等
+	 * 形如：userName <----> USER_NAME 
+	 * 格式：synonymousPropertyMap<目标javabean属性，源结果集列名称>
+	 * 只针对简单的javabean属性与单条记录的映射，不支持javabean属性为array list map等复杂类型
 	 * @param destObj 目标javabean
 	 * @param originRS 源结果集
-	 * @param destClazz 
 	 * @param synonymousPropertyMap 同义属性关系对照map <目标javabean属性，源结果集列名称>
 	 * @return 布尔值
-	 * @throws SQLException
 	 */
 	public static boolean populate(Object destObj,java.sql.ResultSet originRS, Map<String, String> synonymousPropertyMap) {
 		
@@ -138,7 +137,7 @@ public class PopulateUtil {
 			if(beanPropertyMap.containsKey(name.toUpperCase())){
 				name = beanPropertyMap.get(name.toUpperCase());
 			}else{
-				//记录的列名在bean中没有对应的属性，忽略掉
+				//结果集记录的列名在bean中没有对应的属性，忽略掉
 				continue;
 			}
 			
