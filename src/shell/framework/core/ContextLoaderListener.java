@@ -33,7 +33,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 			this.contextLoader = this;
 		}
 		System.out.println("\n\nLoading Default Web Application Context ...\n");
-		//初始化web应用上下文-这种方式要求web.xml中已经配置好spring配置文件
+		//初始化web应用上下文-这种方式要求web.xml中已经配置好spring配置文件[classpath:applicationContext.xml]
 		wac = this.contextLoader.initWebApplicationContext(event.getServletContext());
 		//通过这里给DefaultBeanFactory注入bean的IOC容器（beanfactory）
 		DefaultBeanFactory.getInstance(wac, event.getServletContext());

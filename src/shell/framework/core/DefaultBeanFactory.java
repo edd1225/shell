@@ -18,7 +18,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 @SuppressWarnings("unused")
 public class DefaultBeanFactory {
 	
-	//spring资源配置文件路径-暂时不起作用
+	//spring资源配置文件路径
 	private static final String CONTEXT_CONFIG_LOCATION = "classpath:applicationContext.xml";
 	
 	private static BeanFactory beanFactory = null;
@@ -53,16 +53,18 @@ public class DefaultBeanFactory {
 	 * @return the beanFactory
 	 */
 	private static BeanFactory getBeanFactory() {
-		if(beanFactory==null && sc!=null){
-			//从当前web应用的servletContext中获取applicationContext（beanFactory）--ROOT
-			beanFactory = WebApplicationContextUtils.getWebApplicationContext(sc);
-		}else{
-			//如果获取失败，就手动创建applicationContext，并在servletContext中进行注册
-			beanFactory = new ClassPathXmlApplicationContext(CONTEXT_CONFIG_LOCATION);
-			//TODO 将applicationContext注册到servletContext中，此处会失败-类型转换错误
-			//WebApplicationContextUtils.registerEnvironmentBeans((ConfigurableListableBeanFactory)beanFactory, sc);
+		if(beanFactory==null){
+			//当前servlet容器已经启动成功，servletContext不为空
+			if(sc!=null){
+				//从当前web应用的servletContext中获取applicationContext（beanFactory）--ROOT
+				beanFactory = WebApplicationContextUtils.getWebApplicationContext(sc);
+			}else{
+				//servlet容器启动失败，就手动创建applicationContext，并在servletContext中进行注册
+				beanFactory = new ClassPathXmlApplicationContext(CONTEXT_CONFIG_LOCATION);
+			}
 		}
-			
+		// 如果beanFactory不是web类型的applicationContext，就将其注册到servletContext中，此处会失败-类型转换错误
+		//WebApplicationContextUtils.registerEnvironmentBeans((ConfigurableListableBeanFactory)beanFactory, sc);
 		
 		return DefaultBeanFactory.beanFactory;
 	}
