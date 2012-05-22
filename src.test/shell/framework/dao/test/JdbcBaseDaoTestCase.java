@@ -24,7 +24,6 @@ import org.springframework.jdbc.support.JdbcUtils;
 
 import shell.framework.dao.impl.JdbcBaseDaoTemplate;
 import shell.framework.dao.support.VOResult;
-import shell.framework.model.Page;
 
 /**
  * <p>  </p>
@@ -120,43 +119,44 @@ public class JdbcBaseDaoTestCase extends SpringContextBaseTestCase {
 	
 	public void testBatchUpdate(){
 		String sql = "insert into pages values(?,?,?,?,?,?)";
-		final List<Page> pages = new ArrayList<Page>();
+//		final List<Page> pages = new ArrayList<Page>();
 		for(int i=20;i<30;i++){
-			Page page = new Page();
-			page.setTitle(i+"_title");
-			page.setPermalink(i + "_permalink");
-			page.setBody(i + "_body");
-			page.setCreatedTime(null);
-			page.setUpdatedTime(null);
-			page.setId(i);
-			pages.add(page);
+//			Page page = new Page();
+//			page.setTitle(i+"_title");
+//			page.setPermalink(i + "_permalink");
+//			page.setBody(i + "_body");
+//			page.setCreatedTime(null);
+//			page.setUpdatedTime(null);
+//			page.setId(i);
+//			pages.add(page);
 		}
 		
 		
-		int[] rowNums  =  jdbcBaseDao.batchUpdate(sql, pages , new BatchPreparedStatementSetter(){
+//		int[] rowNums  =  jdbcBaseDao.batchUpdate(sql, pages , new BatchPreparedStatementSetter(){
 			
 			/* (non-Javadoc)
 			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#getBatchSize()
 			 */
-			public int getBatchSize() {
-				return pages.size();
-			}
+//			public void getBatchSize() {
+//				return null;
+//				return pages.size();
+//			}
 			
 			/* (non-Javadoc)
 			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#setValues(java.sql.PreparedStatement, int)
 			 */
-			public void setValues(PreparedStatement ps, int index)	throws SQLException {
-				Page page = pages.get(index);
-				ps.setInt(1, page.getId());
-				ps.setString(2,page.getTitle());
-				ps.setString(3, page.getPermalink());
-				ps.setString(4, page.getBody());
-				ps.setDate(5, null);
-				ps.setDate(6, null);
-			}
-		});
+//			public void setValues(PreparedStatement ps, int index)	throws SQLException {
+//				Page page = pages.get(index);
+//				ps.setInt(1, page.getId());
+//				ps.setString(2,page.getTitle());
+//				ps.setString(3, page.getPermalink());
+//				ps.setString(4, page.getBody());
+//				ps.setDate(5, null);
+//				ps.setDate(6, null);
+//			}
+//		);
 		
-		System.out.println("Batch updated rows is :" + rowNums.length);
+//		System.out.println("Batch updated rows is :" + rowNums.length);
 		
 	}
 	

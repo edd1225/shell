@@ -50,11 +50,8 @@
 		    margin-top: 9px;
 		    margin-left: 0px;
 		    margin-bottom: 9px;
-
-		    
-		    
 		}
-		
+		/* @SHELL用户身份面板头像 */
 		.shell_user_identity_img {
 		    border: medium none;
 		    border-radius: 0 0 0 0;
@@ -62,7 +59,7 @@
 		    width: 48px;
 		    height: 48px;
 		}
-		
+		/* @SHELL用户身份面板文字介绍 */
 		.shell_user_identity_intro {
 		    font-size: 13px;
 		    overflow: hidden;
@@ -70,7 +67,7 @@
 		    width: 68px;
 		    word-wrap: break-word;
 		}
-	
+		/* @SHELL用户身份面板鼠标划过效果 */
 		.shell_user_identity:HOVER {
 			color: #333;
 			cursor:pointer;
@@ -80,33 +77,39 @@
 		}
 		
 		
-		/* @SHELL工具按钮 */
+		/* @SHELL工具栏按钮 */
 		.shell_tool_btn {
-			border:solid #aaaaaa 1px;
-			border-bottom:solid #888888 1px;
-			padding:4px 15px 4px 15px;
-			text-align:center;
-			background-color:#f3f3f3;
-			text-align:center;
-			color:#333333;
-			font-weight:bold;
-			font-size:11px;
-			background: -webkit-gradient(linear,0% 40%,0% 70%,from(#F5F5F5),to(#e1e1e1));
-			background: -moz-linear-gradient(linear,0% 40%,0% 70%,from(#000000),to(#F1F1F1));
+			background-image:url(../../../images/facebook.png);
+			background-repeat: no-repeat;
+			background-position: -352px -348px;
+			background-color: #EEE;
+			border: 1px solid #999;
+			border-bottom-color: #888;
+			-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+			border-image: initial;
+			display: inline-block;
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 13px;
+			padding: 5px 9px;
+			text-align: center;
+			text-decoration: none;
+			vertical-align: top;
+			white-space: nowrap;
+			color: #666;
+			
 		}
-		/* 鼠标划过@SHELL工具按钮 */
+		/* 鼠标划过@SHELL工具栏按钮 */
 		.shell_tool_btn:HOVER {
-			color: #333;
 		    border-color: #999;
 		    -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);
 		    -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2) ;
 		    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 			cursor:pointer;
 		}
-		/* 鼠标激活@SHELL工具按钮 */
+		/* 鼠标激活@SHELL工具栏按钮 */
 		.shell_tool_btn:ACTIVE {
-			background: #5c75a9;
-			color:#f3f3f3;
+			background-image: none;
 		}	
 		
 	</style>
@@ -295,101 +298,6 @@
 						%>
 						
 					</div>
-					
-					
-					<div class="nW sD oz-sg-elements" style="height: 78px; ">
-						
-						<%
-							if(resultList!=null){
-								for(int i=0;i<resultList.size();i++){
-									TblSysUser user = (TblSysUser)resultList.get(i);									
-										//user.getFullName();
-						%>					
-							
-							
-						<div class="shell_user_identity shell_inline_block" hc="off" email="" oid="111555290829831625120" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img" src="//lh4.googleusercontent.com/-fPvPn34LOVM/AAAAAAAAAAI/AAAAAAAAD5U/zO60w70ymd8/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro"><%=user.getFullName() %></div>
-						</div>
-							
-							
-						<%			
-								}
-							}
-						%>
-						
-					</div>
-
-					<div class="nW sD oz-sg-elements" style="height: 78px; ">
-						
-						<%
-							if(resultList!=null){
-								for(int i=0;i<resultList.size();i++){
-									TblSysUser user = (TblSysUser)resultList.get(i);									
-										//user.getFullName();
-						%>					
-							
-							
-						<div class="shell_user_identity shell_inline_block" hc="off" email="" oid="111555290829831625120" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img" src="//lh4.googleusercontent.com/-fPvPn34LOVM/AAAAAAAAAAI/AAAAAAAAD5U/zO60w70ymd8/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro"><%=user.getFullName() %></div>
-						</div>
-							
-							
-						<%			
-								}
-							}
-						%>
-						
-					</div>
-					
-					<div class="nW sD oz-sg-elements" style="height: 78px; ">
-						
-						<%
-							if(resultList!=null){
-								for(int i=0;i<resultList.size();i++){
-									TblSysUser user = (TblSysUser)resultList.get(i);									
-										//user.getFullName();
-						%>					
-							
-							
-						<div class="shell_user_identity shell_inline_block" hc="off" email="" oid="111555290829831625120" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img" src="//lh4.googleusercontent.com/-fPvPn34LOVM/AAAAAAAAAAI/AAAAAAAAD5U/zO60w70ymd8/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro"><%=user.getFullName() %></div>
-						</div>
-							
-							
-						<%			
-								}
-							}
-						%>
-						
-					</div>
-					
-					<div class="nW sD oz-sg-elements" style="height: 78px; ">
-						
-						<%
-							if(resultList!=null){
-								for(int i=0;i<resultList.size();i++){
-									TblSysUser user = (TblSysUser)resultList.get(i);									
-										//user.getFullName();
-						%>					
-							
-							
-						<div class="shell_user_identity shell_inline_block" hc="off" email="" oid="111555290829831625120" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img" src="//lh4.googleusercontent.com/-fPvPn34LOVM/AAAAAAAAAAI/AAAAAAAAD5U/zO60w70ymd8/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro"><%=user.getFullName() %></div>
-						</div>
-							
-							
-						<%			
-								}
-							}
-						%>
-						
-					</div>
-
-
 
 				</div>
 				<div class="clear"></div>

@@ -5,7 +5,7 @@ import java.util.List;
 
 import shell.framework.dao.impl.HibernateBaseDaoTemplate;
 import shell.framework.dao.support.VOResult;
-import shell.framework.model.Page;
+//import shell.framework.model.Page;
 import junit.framework.Assert;
 
 /**
@@ -35,29 +35,29 @@ public class HibernateBaseDaoTestCase extends SpringContextBaseTestCase {
 	}
 	
 	public void testSave(){
-		Page page = new Page();
-		page.setBody("body");
-		page.setId(44);
-		page.setPermalink("permalink");
-		page.setTitle("title");
-		page.setCreatedTime(new Date());
-		page.setUpdatedTime(new Date());
-		hibernateBaseDao.save(page);
+//		Page page = new Page();
+//		page.setBody("body");
+//		page.setId(44);
+//		page.setPermalink("permalink");
+//		page.setTitle("title");
+//		page.setCreatedTime(new Date());
+//		page.setUpdatedTime(new Date());
+//		hibernateBaseDao.save(page);
 	}
 	
 	public void testDelete(){
-		Page page = new Page();
-		page.setBody("body");
-		page.setId(44);
-		page.setPermalink("permalink");
-		page.setTitle("title");
-		page.setCreatedTime(new Date());
-		page.setUpdatedTime(new Date());
-		hibernateBaseDao.delete(page);
+//		Page page = new Page();
+//		page.setBody("body");
+//		page.setId(44);
+//		page.setPermalink("permalink");
+//		page.setTitle("title");
+//		page.setCreatedTime(new Date());
+//		page.setUpdatedTime(new Date());
+//		hibernateBaseDao.delete(page);
 	}
 	
 	public void testDeleteByClazz(){
-		hibernateBaseDao.delete(Page.class, 7);
+//		hibernateBaseDao.delete(Page.class, 7);
 	}
 	
 	
@@ -91,8 +91,8 @@ public class HibernateBaseDaoTestCase extends SpringContextBaseTestCase {
 	
 	
 	public void testLoad(){
-		Object obj = hibernateBaseDao.load(18, Page.class);
-		System.out.println(obj==null?null:((Page)obj).getTitle());
+//		Object obj = hibernateBaseDao.load(18, Page.class);
+//		System.out.println(obj==null?null:((Page)obj).getTitle());
 	}
 	
 	
