@@ -2,6 +2,8 @@
 <%@page import="shell.framework.organization.user.service.TblSysUserService"%>
 <%@page import="shell.framework.dao.support.VOResult"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="shell_services" uri="http://taglib.shell/shell-services.tld" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
@@ -24,13 +26,12 @@
 		}
 
 		/* @SHELL工具栏 */
-		.toolBar{
+		.shell_toolBar{
 			background: none repeat scroll 0 0 white;
     		border-bottom: 1px solid #DDDDDD;
     		margin-bottom: 10px;
     		padding-bottom: 35px;	
     		padding-top: 0;
-		
 		}
 
 		/* @SHELL用户身份面板 */
@@ -99,7 +100,7 @@
 			color: #666;
 			
 		}
-		/* 鼠标划过@SHELL工具栏按钮 */
+		/* 鼠标划过@SHELL工具栏按钮,突起效果 */
 		.shell_tool_btn:HOVER {
 		    border-color: #999;
 		    -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);
@@ -114,14 +115,77 @@
 		
 	</style>
 
+	<style type="text/css">
+		.shell_pagination_navi{
+		    border-top: 1px solid #CCCCCC;
+		    margin: 10px 0px 0;
+		    padding: 10px 0px 0;
+		}
+		 
+		 /* 有部分css冲突 必须加上 .devsitePage .body */
+		.devsitePage .body .shell_pagination_navi ul {  
+			margin: 0;
+			padding-left:0;   
+			text-align: right;
+		}
+		 
+		.shell_pagination_navi li{
+			list-style-type: none;
+			display: inline;
+			padding-bottom: 1px;
+			text-align: center;
+		}
+		 
+		.shell_pagination_navi a, .shell_pagination_navi a:visited{
+			padding: 2px 6px;
+			border: 1px solid #9aafe5;
+			text-decoration: none;
+			color: #2e6ab1;
+			
+		}
+		 
+		.shell_pagination_navi a:hover, .shell_pagination_navi a:active{
+			border: 1px solid #2b66a5;
+			color: #000;
+			text-decoration:none;
+			background-color: lightyellow;
+		}
+		 
+		.shell_pagination_navi li.currentpage{
+			font-weight: bold;
+			padding: 2px 6px;
+			border: 1px solid navy;
+			background-color: #2e6ab1;
+			color: #FFF;
+		}
+		 
+		.shell_pagination_navi li.disablepage{
+			padding: 2px 6px;
+			border: 1px solid #929292;
+			color: #929292;
+		}
+		 
+		.shell_pagination_navi li.nextpage{
+		}
+		
+		
+	    
+	</style>
+	
+
+
 	
 	<%
 		Object obj = request.getAttribute("voResult");
 		VOResult voResult = null;
 		java.util.List resultList = null;
+		int totalPages = 0;
+		int totalRaws = 0;
 		if(obj != null){
 			voResult = (VOResult)obj;
 			resultList = voResult.getResultList();
+			totalPages = voResult.getTotalPages();
+			totalRaws = voResult.getTotalRows();
 			//out.println("size=" + resultList.size());			
 		}else{
 			out.println("obj=NULL" );
@@ -188,7 +252,7 @@
 				<div id="bodyMenu" class="bodyMenu">
 					<div class="toplevelnav">
 						<ul>
-							<li><a class="selected" href="<%=request.getContextPath() %>/web/organization/user/index.action">
+							<li><a class="selected" href="<%=request.getContextPath() %>/web/organization/user/index.action?currentPage=1">
 									<div class="navSectionTitle">人员管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/department/index.action">
 									<div class="navSectionTitle">组织管理</div> </a></li>
@@ -208,8 +272,8 @@
 			<div class="content">
 				<div id="bodyText" class="bodyText">
 					
-					<div class="toolBar">
-						<div class="shell_tool_btn shell_inline_block" style="float:left;">全部用户[<font color="red">500</font>]</div>
+					<div class="shell_toolBar">
+						<div class="shell_tool_btn shell_inline_block" style="float:left;">全部用户[<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>]</div>
 						<div style="float: right;">
 							<div class="shell_tool_btn shell_inline_block">Q&nbsp;查询</div>
 							<div class="shell_tool_btn shell_inline_block">+&nbsp;增加</div>
@@ -218,87 +282,48 @@
 						</div>
 					</div>
 					
-					 <div class="nW sD oz-sg-elements" style="height: 78px; ">
-						
-						<div class="shell_user_identity shell_inline_block" hc="off" email="" oid="111555290829831625120" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img" src="//lh6.googleusercontent.com/-3uDUPJuV6kM/AAAAAAAAAAI/AAAAAAAAIrc/ZbZyaG7iLkA/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro">萍明蕊</div>
-						</div>
-						
-						<div class="shell_user_identity shell_inline_block" hc="off" email="" oid="107953151459945545823" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img"  src="//lh4.googleusercontent.com/-fPvPn34LOVM/AAAAAAAAAAI/AAAAAAAAD5U/zO60w70ymd8/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro">周星星</div>
-						</div>
-						
-						<div class="shell_user_identity shell_inline_block " hc="off" email="" oid="115520253246151112657" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img"  src="//lh4.googleusercontent.com/-x4cAWUGz05w/AAAAAAAAAAI/AAAAAAAAABM/VUeeF0XpmpU/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro">嘿嘿嘿</div>
-						</div>
-						
-						<div class="shell_user_identity shell_inline_block " hc="off" email="jackychi@gmail.com" oid="114852792723220419539" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img"  src="//lh6.googleusercontent.com/-8YMruLgDWpA/AAAAAAAAAAI/AAAAAAAAANU/Xuw-lAgXiLU/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro">Jianqiang Chi</div>
-						</div>
-						
-						<div class="shell_user_identity  shell_inline_block" hc="off" email="" oid="102225227289672438488" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img"  src="//lh5.googleusercontent.com/-SdX4Ak0hq00/AAAAAAAAAAI/AAAAAAAA_8w/nc5uCCNxDRw/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro">Robin Yew</div>
-						</div>
-						
-						<div class="shell_user_identity  shell_inline_block" hc="off" email="" oid="108323473136128442646" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img"  src="//lh6.googleusercontent.com/-fWc2OXsKTrc/AAAAAAAAAAI/AAAAAAAAADY/u1sh-2WG1AI/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro">Xiao Hui</div>
-						</div>
-						
-					</div>
-					
-					<div class="nW sD oz-sg-elements" style="height: 78px; ">
+				
+			 		
+					<div>
 						
 						<%
 							if(resultList!=null){
-								for(int i=0;i<resultList.size();i++){
-									TblSysUser user = (TblSysUser)resultList.get(i);									
+								//行数
+								int rowNums = (voResult.getPageSize()/6) + ((voResult.getPageSize()%6)==0?0:1);
+										
+								for(int i=0;i<rowNums;i++){
+						%>			
+								<div>
+									
+						<% 			
+									for(int j=0;j<6;j++){
+										int indexNum = i*6+j;
+										if(indexNum>=voResult.getResultList().size()) break;
+										TblSysUser user = (TblSysUser)resultList.get(indexNum);									
+										
+										//out.println(request.getAttribute("preRequestURL"));
 										//user.getFullName();
 						%>					
-							
 							
 						<div class="shell_user_identity shell_inline_block" hc="off" email="" oid="111555290829831625120" tabindex="0" role="link"  >
 							<img class="shell_user_identity_img" src="//lh4.googleusercontent.com/-fPvPn34LOVM/AAAAAAAAAAI/AAAAAAAAD5U/zO60w70ymd8/s48-c-k/photo.jpg"  >
 							<div class="shell_user_identity_intro"><%=user.getFullName() %></div>
 						</div>
 							
-							
-						<%			
-								}
-							}
+						<%			}
 						%>
-						
-					</div>
-					
-					
-					<div class="nW sD oz-sg-elements" style="height: 78px; ">
-						
+							 	</div>		
 						<%
-							if(resultList!=null){
-								for(int i=0;i<resultList.size();i++){
-									TblSysUser user = (TblSysUser)resultList.get(i);									
-										//user.getFullName();
-						%>					
-							
-							
-						<div class="shell_user_identity shell_inline_block" hc="off" email="" oid="111555290829831625120" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img" src="//lh4.googleusercontent.com/-fPvPn34LOVM/AAAAAAAAAAI/AAAAAAAAD5U/zO60w70ymd8/s48-c-k/photo.jpg"  >
-							<div class="shell_user_identity_intro"><%=user.getFullName() %></div>
-						</div>
-							
-							
-						<%			
 								}
 							}
 						%>
 						
 					</div>
-
+					
+					<!-- 翻页 -->
+					<shell_services:pagination totalPages="<%=(voResult==null)?0:voResult.getTotalPages() %>" 
+											   currentPageNO="<%=(voResult==null)?0:voResult.getCurrentPage() %>" />
+			
 				</div>
 				<div class="clear"></div>
 			</div>
@@ -319,6 +344,9 @@
 			</div>
 		</div>
 		<!-- 页脚div 结束 -->
+		
+	</div>
+		
 </body>
 </html>
 

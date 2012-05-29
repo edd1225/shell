@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="description" content="@SHELL 是一个企业级开发的基础平台，集成了SH框架，提供企业级开发的基础功能部分，用户在此基础平台上可以搭建自己的业务平台！">
 
-<title>SHELL</title>
+<title>@SHELL</title>
 
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/cuheXhkBDkh.css">
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/p_e4y6WmY0P.css">
@@ -85,7 +85,7 @@
 				<div id="bodyMenu" class="bodyMenu">
 					<div class="toplevelnav">
 						<ul>
-							<li><a href="<%=request.getContextPath() %>/web/organization/user/index.action">
+							<li><a href="<%=request.getContextPath() %>/web/organization/user/index.action?currentPage=1">
 									<div class="navSectionTitle">人员管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/department/index.action">
 									<div class="navSectionTitle">组织管理</div> </a></li>

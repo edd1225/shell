@@ -7,7 +7,7 @@
 <taglib>
 	<tlibversion>1.0</tlibversion>
 	<jspversion>1.1</jspversion>
-	<shortname>shell-services</shortname>
+	<shortname>shell_services</shortname>
 	<uri>http://taglib.shell/shell-services.tld</uri>
 	
 	<tag>
@@ -20,6 +20,24 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+
+	<tag>
+		<name>pagination</name>
+		<tagclass>shell.framework.taglib.PaginationTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<attribute>
+			<name>currentPageNO</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>totalPages</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	
 
 </taglib>	
 	

@@ -28,10 +28,26 @@ import shell.framework.organization.user.service.impl.TblSysUserService4JdbcImpl
 @RequestMapping("/web/organization/user/*")
 public class UserController {
 	
+	/**
+	 * 索引所有的系统用户，分页查询
+	 * @param request http请求
+	 * @param currentPage 当前页
+	 * @return 跳转的url
+	 */
 	@RequestMapping(value="index")
-	public String listAll(HttpServletRequest request){
+	public String index(HttpServletRequest request,int currentPage){
 		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
-		VOResult voResult = tblSysUserService.findByPagination(1, 6);
+		
+		if(currentPage<=0){
+			currentPage = 1;
+		}
+		//二维表格方式，每页展现数据较多
+		int pageSize =30;
+		
+		
+		VOResult voResult = tblSysUserService.findByPagination(currentPage, pageSize);
+		//上次调转时的请求url，分页tag中需要使用
+		request.setAttribute("preRequestURL", request.getRequestURL().toString());
 		request.setAttribute("voResult", voResult);
 		return "web/organization/user/index";
 	}
