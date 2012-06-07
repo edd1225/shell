@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import shell.framework.authorization.support.AuthorizationException;
-import shell.framework.authorization.vo.UserInfo;
+import shell.framework.authorization.vo.LoginInfo;
 import shell.framework.core.DefaultBeanFactory;
 import shell.framework.dao.impl.JdbcBaseDaoTemplate;
 import shell.framework.model.TblSysUser;
@@ -112,7 +112,7 @@ public class LoginService {
 			logger.warn("THE REQUEST IS NOT COME FROM HTTP!");
 			return;
 		}
-		UserInfo userInfo = new UserInfo();
+		LoginInfo userInfo = new LoginInfo();
 		userInfo.setUser(user);
 		userInfo.setLoginHost(request.getRemoteHost());
 		userInfo.setLoginIP(request.getRemoteAddr());

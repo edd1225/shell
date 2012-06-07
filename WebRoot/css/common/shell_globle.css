@@ -1,0 +1,213 @@
+/******************************************************
+ * @SHELL Gloable CSS v1.0
+ *
+ * DateTime: 2012.6.6
+ * By changming.Y
+ *
+ *****************************************************/
+
+/* @SHELL全局样式-div可以水平排列 */
+.shell_inline_block{
+	display: inline-block;
+    position: relative;
+}
+
+/* @SHELL工具栏 */
+.shell_toolBar{
+	background: none repeat scroll 0 0 white;
+  		border-bottom: 1px solid #DDDDDD;
+  		margin-bottom: 10px;
+  		padding-bottom: 35px;	
+  		padding-top: 0;
+}
+
+.shell_item_selected{
+	border:1px solid #149525 !important;
+	background-color:#D7F8AC !important;
+	background-image: url(../../images/checked.png) !important;
+	background-repeat:no-repeat;
+	background-position:right bottom;
+}
+
+/* @SHELL用户身份面板 */
+.shell_user_identity {
+    color: #000000;
+    background-color: #F4F4F4;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #F4F4F4);
+    border: 1px solid #DDDDDD;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 1px 0 #AAAAAA;
+    opacity: 1;
+    padding: 4px;
+    vertical-align: top;
+    width: 128px; 
+    height: 48px; 
+    margin-right: 16px;
+    margin-top: 9px;
+    margin-left: 0px;
+    margin-bottom: 9px;
+}
+/* @SHELL用户身份面板头像 */
+.shell_user_identity_img {
+    border: medium none;
+    border-radius: 0 0 0 0;
+    float: left;
+    width: 48px;
+    height: 48px;
+}
+/* @SHELL用户身份面板文字介绍 */
+.shell_user_identity_intro {
+    font-size: 13px;
+    overflow: hidden;
+    padding: 8px 4px 4px;
+    width: 68px;
+    word-wrap: break-word;
+}
+/* @SHELL用户身份面板鼠标划过效果 */
+.shell_user_identity:HOVER {
+	color: #333;
+	cursor:pointer;
+  		border-color: #999;
+  		-moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2) -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);
+  		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+
+/* @SHELL工具栏按钮 */
+.shell_tool_btn {
+	background-image:url("../../images/facebook.png");
+	background-repeat: no-repeat;
+	background-position: -352px -348px;
+	background-color: #EEE;
+	border: 1px solid #999;
+	border-bottom-color: #888;
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+	border-image: initial;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 13px;
+	padding: 5px 9px;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: top;
+	white-space: nowrap;
+	color: #666;
+	
+}
+/* 鼠标划过@SHELL工具栏按钮,突起效果 */
+.shell_tool_btn:HOVER {
+    border-color: #999;
+    -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2) ;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+	cursor:pointer;
+}
+/* 鼠标激活@SHELL工具栏按钮 */
+.shell_tool_btn:ACTIVE {
+	background-image: none;
+}
+
+
+/* @SHELL工具栏搜索框样式 */
+.shell_tool_search{
+	-moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-style: solid none none;
+    border-width: 1px 0 0;
+    display: inline-block;
+    padding: 1px 0 2px;
+    position: relative;	
+}
+/* @SHELL工具栏搜索文本框样式 */	
+.shell_tool_search input {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color #E5E5E5 -moz-use-text-color -moz-use-text-color;
+    border-style: none solid none none;
+    border-width: 0 1px 0 0;
+    margin: 2px 22px 1px 5px;
+    outline: medium none;
+    padding: 1px 5px 2px 0;
+    width: 130px;
+}
+/* @SHELL工具栏搜索按钮样式 */	
+.shell_tool_search button {
+    background-color: #FFFFFF;
+    background-image: url("../../images/facebook_img.png");
+    background-position: -265px -208px;
+    background-repeat: no-repeat;
+    border: 0 none;
+    cursor: pointer;
+    display: block;
+    height: 19px;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 22px;
+}
+
+/* @shell翻页导航栏 */
+.shell_pagination_navi{
+    border-top: 1px solid #CCCCCC;
+    margin: 10px 0px 0;
+    padding: 10px 0px 0;
+}
+ 
+ /* 有部分css冲突 必须加上 .devsitePage .body | @shell翻页导航栏内部ul样式 */
+.devsitePage .body .shell_pagination_navi ul {  
+	margin: 0;
+	padding-left:0;   
+	text-align: right;
+}
+ 
+/* @shell翻页导航栏 单个页码样式 */ 
+.shell_pagination_navi li{
+	list-style-type: none;
+	display: inline;
+	padding-bottom: 1px;
+	text-align: center;
+}
+ 
+/* @shell翻页导航栏 超链接样式 */ 
+.shell_pagination_navi a, .shell_pagination_navi a:visited{
+	padding: 2px 6px;
+	border: 1px solid #9aafe5;
+	text-decoration: none;
+	color: #2e6ab1;
+	
+}
+ 
+/* @shell翻页导航栏 页码划过和激活样式 */
+.shell_pagination_navi a:hover, .shell_pagination_navi a:active{
+	border: 1px solid #2b66a5;
+	color: #000;
+	text-decoration:none;
+	background-color: lightyellow;
+}
+ 
+/* @shell翻页导航栏 当前页（页码）样式 */ 
+.shell_pagination_navi li.currentpage{
+	font-weight: bold;
+	padding: 2px 6px;
+	border: 1px solid navy;
+	background-color: #2e6ab1;
+	color: #FFF;
+}
+ 
+/* @shell翻页导航栏 失效页码样式 */ 
+.shell_pagination_navi li.disablepage{
+	padding: 2px 6px;
+	border: 1px solid #929292;
+	color: #929292;
+}
+ 
+.shell_pagination_navi li.nextpage{
+}

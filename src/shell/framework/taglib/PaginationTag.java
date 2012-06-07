@@ -10,9 +10,11 @@ package shell.framework.taglib;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
@@ -27,7 +29,14 @@ public class PaginationTag extends TagSupport {
 
 	private int currentPageNO;
 	private int totalPages;
-	private String preRequestURL; 
+	private PageContext pageContext;
+	
+	/**
+	 * 将父类中的pageContext设置到自定义tag中
+	 */
+	public void setPageContext(PageContext pageContext) {
+		this.pageContext = pageContext;
+	}
 	
 	/**
 	 * @return the currentPageNO
@@ -73,18 +82,13 @@ public class PaginationTag extends TagSupport {
 				out.println("NO CURRENTPAGENO SPECIFIED!");
 				return SKIP_BODY;
 			}
-			if(this.totalPages<=0){
+			if(this.totalPages<0){
 				out.println("NO TOTALPAGES SPECIFIED!");
 				return SKIP_BODY;
 			}
-			if(super.pageContext.getAttribute("preRequestURL",PageContext.REQUEST_SCOPE)==null){
-				out.println("NO PREREQUESTURL SPECIFIED IN REQUEST_SCOPE !");
-				return SKIP_BODY;
-			}else{
-				preRequestURL = (String)super.pageContext.getAttribute("preRequestURL",PageContext.REQUEST_SCOPE);
-			}
+
 			if(currentPageNO>totalPages){
-				out.println("THE PAGE NUMBER ERROR!");
+				out.println("");
 				return SKIP_BODY;
 			}
 			
@@ -96,7 +100,7 @@ public class PaginationTag extends TagSupport {
 			if(currentPageNO<=1){
 				out.println("<li class='disablepage'>&lt;&lt;</li>");
 			}else{
-				out.println("<li class='prepage'><a href='"+ preRequestURL +"?currentPage="+ ((currentPageNO-1)<=0?1:currentPageNO-1) +"'>&lt;&lt;</a></li>");
+				out.println("<li class='nextpage'><a href='#' onclick='doSubmit("+ ((currentPageNO-1)<=0?1:currentPageNO-1) +");'>" + "&lt;&lt;</a></li>");
 			}
 			
 			
@@ -114,6 +118,7 @@ public class PaginationTag extends TagSupport {
 						}
 						
 						int tempCurrentPageNO = 1;
+						//TODO 前面页码标签太多，应该控制在4个以内，与后续页码个数相同
 						for(int j=0;j<tempData;j++){
 							tempCurrentPageNO = j*10 + (currentPageNO%10);
 							int tempD = (tempCurrentPageNO==0)? 1 : tempCurrentPageNO;
@@ -164,7 +169,7 @@ public class PaginationTag extends TagSupport {
 			}
 			
 			if(currentPageNO<totalPages){
-				out.println("<li class='nextpage'><a href='"+ preRequestURL +"?currentPage=" + (currentPageNO+1) + "'>&gt;&gt;</a></li>");
+				out.println("<li class='nextpage'><a href='#' onclick='doSubmit("+ (currentPageNO+1) +");'>" + "&gt;&gt;</a></li>");
 			}else{
 				out.println("<li class='disablepage'>&gt;&gt;</li>");
 			}
@@ -209,7 +214,7 @@ public class PaginationTag extends TagSupport {
 				if(currentPageNO==pageNO){
 					out.println("<li class='currentpage'>" + pageNO + "</li>");
 				}else{
-					out.println("<li><a href='" + preRequestURL + "?currentPage="+ pageNO +"'>" + pageNO +"</a></li>");
+					out.println("<li><a href='#' onclick='doSubmit("+ pageNO +");'>" + pageNO +"</a></li>");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
