@@ -35,7 +35,7 @@ function checkUser(){
 </script>
 
 </HEAD>
-<BODY leftMargin=0 background="images/shell_bgimg.gif" topMargin=0 marginheight="0" marginwidth="0" >
+<BODY leftMargin=0 background="<%=request.getContextPath() %>/images/shell_bgimg.gif" topMargin=0 marginheight="0" marginwidth="0" >
 <TABLE height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0">
   <TBODY>
   <TR>
@@ -45,17 +45,18 @@ function checkUser(){
        
 		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
           <tr valign="top">
-            <td background="images/holly-bg.gif" width="35%"><img src="images/holly-logo.gif" height="42" width="386"></td>
-            <td width="63%" background="images/holly-bg.gif" align="right"><img src="images/holly-11-11.gif" width="393" height="42"></td>
-            <td width="2%" background="images/holly-bg.gif">&nbsp;</td>
+            <td background="<%=request.getContextPath() %>/images/holly-bg.gif" width="35%"><img src="<%=request.getContextPath() %>/images/holly-logo.gif" height="42" width="386"></td>
+            <td width="63%" background="<%=request.getContextPath() %>/images/holly-bg.gif" align="right">
+            	<img src="<%=request.getContextPath() %>/images/holly-11-11.gif" width="393" height="42"></td>
+            <td width="2%" background="<%=request.getContextPath() %>/images/holly-bg.gif">&nbsp;</td>
           </tr>
         </table>
 		<table border=0 cellpadding=0 cellspacing=0 width="100%">
           <tbody>
             <tr>
-              <td align=left valign=top width="79%" background="images/holly-11-11c.gif">&nbsp;</td>
-              <td align=right valign=top width="4%"><img src="images/holly-11-11a.gif" width="188" height="39"></td>
-              <td align=right background="images/holly-11-11b.gif" width="17%">&nbsp;</td>
+              <td align=left valign=top width="79%" background="<%=request.getContextPath() %>/images/holly-11-11c.gif">&nbsp;</td>
+              <td align=right valign=top width="4%"><img src="<%=request.getContextPath() %>/images/holly-11-11a.gif" width="188" height="39"></td>
+              <td align=right background="<%=request.getContextPath() %>/images/holly-11-11b.gif" width="17%">&nbsp;</td>
             </tr>
           </tbody>
         </table>
@@ -69,7 +70,7 @@ function checkUser(){
 		<TR>
 		  <TD vAlign=top><FONT size=5><!--<IMG height=286 src="images/new-2.gif">--></FONT></TD></TR>
 		<TR>
-		  <TD height="196" background="images/unicom_login.gif">
+		  <TD height="196" background="<%=request.getContextPath() %>/images/unicom_login.gif">
 			  <TABLE width="212" height="150" border=0 align=center cellPadding=5 cellSpacing=3 class=a1>
 				<TBODY>
 				<TR align="center">

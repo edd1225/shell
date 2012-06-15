@@ -17,23 +17,11 @@
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/p_e4y6WmY0P.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/eExuUYovHyE.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/common/jquery.min.js"></script>
 
-<script type="text/javascript">
-	
-	//用户表单提交
-	function doSubmit(currentPage){
-		if(currentPage!=null && currentPage>0){
-			document.getElementById("currentPage").value = currentPage;
-		}
-		var userForm = document.forms[0];
-		with(userForm){
-			action = "<%=request.getContextPath() %>/web/organization/user/index.action";
-			submit();
-		}
-	}
-	
-</script>
+<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/jquery/jquery.noty.css" />
+<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/jquery/noty_theme_default.css" />
+<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/jquery/jquery.jmodal.css" />
+
 
 	<%
 		Object obj = request.getAttribute("voResult");
@@ -67,13 +55,26 @@
 				<a class="logo" href="<%=request.getContextPath() %>"> 
 					<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17">
 			    </a> 
+			    
 			<div class="content">
-					
 				<a class="l" href="http://developers.facebook.com/docs/">主页</a>
 				<a class="l" href="http://developers.facebook.com/module/">组织机构</a>
 				<a class="l" href="http://developers.facebook.com/blog/">权限管理</a> 
 				<a class="l" href="https://developers.facebook.com/apps">编码设置</a>
 				<a class="l" href="https://developers.facebook.com/apps">设置</a>
+				
+				<!-- 登录个人信息 -->
+				<div align="right" style="padding-top: 7px;padding-right: 5px; font-size: small;font-weight: normal;">
+					<span style="padding-left: 5px;">
+						<%=request.getSession().getAttribute("userCode")!=null ? request.getSession().getAttribute("userCode") : "游客" %>	
+					</span>
+					<span style="padding-left: 5px;">
+						设置
+					</span>
+					<span style="padding-left: 5px;">
+						注销
+					</span>
+				</div>	
 
 				<div class="clear"></div>
 			</div>
@@ -138,9 +139,9 @@
 						<!--  
 							<div class="shell_tool_btn shell_inline_block">Q&nbsp;查询</div>
 						-->	
-							<div class="shell_tool_btn shell_inline_block">+&nbsp;增加</div>
+							<div class="shell_tool_btn shell_inline_block shell_tool_btn_add">+&nbsp;增加</div>
 							<div class="shell_tool_btn shell_inline_block" onclick="doDelete();">-&nbsp;删除</div>
-							<div class="shell_tool_btn shell_inline_block">U&nbsp;更新</div>
+							<div class="shell_tool_btn shell_inline_block shell_tool_btn_update">U&nbsp;更新</div>
 							<div class="shell_tool_btn shell_inline_block">+&nbsp;更多操作</div>
 						</div>
 					</div>
@@ -205,9 +206,27 @@
 			</div>
 		</div>
 		<!-- 页脚div 结束 -->
-		
 	</div>
+
+<!-- js库要按照顺序提前加载，否则后面的js函数失效 -->	
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery.noty.js"></script>	
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery.jmodal.js"></script>
+
+<script type="text/javascript">
 	
+	//用户表单提交
+	function doSubmit(currentPage){
+		if(currentPage!=null && currentPage>0){
+			document.getElementById("currentPage").value = currentPage;
+		}
+		var userForm = document.forms[0];
+		with(userForm){
+			action = "<%=request.getContextPath() %>/web/organization/user/index.action";
+			submit();
+		}
+	}
+</script>	
 	
 <script type="text/javascript">
 
@@ -238,6 +257,7 @@
 	}
 
 	$(document).ready(function(){
+		//选择用户面板
 		$.each($(".shell_user_identity"),function(key,obj){
 			obj=$(obj);
 			obj.click(function(){
@@ -254,13 +274,125 @@
 				$("#shell_view_selected_count").text(parseInt($("#shell_view_selected_count").text(), 10) + 1);
 			}
 		};
+		
+		//测试通知效果 - TODO 该类型赋值时，如果session中存放的是数字就没有问题，如果是字符串，页面显示时出现bug
+		var SYS_MESSAGE_VALUE = <%=session.getAttribute("SYS_MESSAGE_VALUE") %>;
+		
+		//var SYS_MESSAGE_TYPE_shell = <%=session.getAttribute("SYS_MESSAGE_TYPE") %>;
+		//if(SYS_MESSAGE_TYPE_shell==null){
+			//SYS_MESSAGE_TYPE_shell = "information";
+		//}
+		
+		//alert(SYS_MESSAGE_VALUE );
+		
+		var text = '';
+		if(SYS_MESSAGE_VALUE != null){
+			text = SYS_MESSAGE_VALUE + "条记录被更新.";
+			var noty_id = noty({
+				  "text": text,
+				  "layout": "top",
+				  "type": "success",
+				  "animateOpen":{"height":"toggle"},
+				  "animateClose":{"height":"toggle"},
+				  "speed":500,
+				  "timeout":1000,
+				  "closeButton":false,
+				  "closeOnSelfClick":false,
+				  "closeOnSelfOver":false,
+				  "modal":false,
+				  "onClose": function(){
+					  //alert('mmmm');
+					}
+			});
+			
+		}
+				
+		
 	});
-
 
 </script>	
 	
-	
-	
+<!-- 各种CRUD操作 -->	
+<script type="text/javascript">
+        $(document).ready(function() {
+          	var pageWidth = $(document).width();  
+          	var initWidthValue =  2*(pageWidth/3);
+        	//增加用户
+            $('.shell_tool_btn_add').click(function() {
+                $.fn.jmodal({
+                    //data: { innerText: $(this).text() },
+                    //嵌入页面的表单提交
+                    data: { callBack: function(){
+                    	var userAddForm = document.forms["userAddForm"];
+                    	with(userAddForm){
+                    		submit();
+                    	}
+                    } },
+                    title: '增加系统用户',
+                    content: function(e) { 
+                        e.html('加载中...');
+                        e.load('<%=request.getContextPath() %>/web/organization/user/userAdd.jsp');
+                    },
+                    buttonText: { ok: '确定', cancel: '取消' },
+                    initWidth:initWidthValue,
+                    fixed: true,
+                    okEvent: function(obj, args) {
+                    	obj.callBack();
+                    	args.complete();
+                    }
+                    
+                });
+            });
+
+            $('a.absolute').click(function() {
+                $.fn.jmodal({
+                	title: 'Information',
+                    content: 'I am a absolute dialog!',
+                    buttonText: { ok: 'Yes,It is.', cancel: 'No' },
+                    okEvent: function(obj, args) {
+                    	//obj.callBack();
+                        args.complete();
+                    }
+                });
+            });
+			
+            //更新系统用户
+            $('.shell_tool_btn_update').click(function() {
+        		var selectedCount = parseInt($("#shell_view_selected_count").text(),10);
+				if(selectedCount!=1){
+					alert('请选择一位用户！');
+					return false;
+				}
+				//弹出更新用户窗口
+                $.fn.jmodal({
+					data: { callBack: function(){
+                		//alert($(".shell_item_selected").attr("id"));
+                		
+                		var userUpdateForm = document.forms["userUpdateForm"];
+                    	with(userUpdateForm){
+                    		action = "<%=request.getContextPath() %>/web/organization/user/update.action";
+                    		submit();
+                    	}
+					}},
+
+                	title: '更新系统用户',
+                    content: function(e) {
+                        e.html('loading...');
+                        var id = $(".shell_item_selected").attr("id");
+                        e.load('<%=request.getContextPath() %>/web/organization/user/preUpdate.action?id='+id);
+                    },
+                    buttonText: { ok: '更新', cancel: '取消' },
+                    initWidth:initWidthValue,
+                    okEvent: function(obj, args) {
+                    	obj.callBack();
+                    	args.complete();  //隐藏弹出层窗口
+                    }
+                });
+            });
+            
+            
+        });
+</script>	
 		
 </body>
 </html>

@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import shell.framework.dao.IJdbcBaseDao;
@@ -25,6 +26,7 @@ import shell.framework.model.TblSysUser;
 import shell.framework.organization.user.service.TblSysUserService;
 import shell.framework.organization.user.vo.TblSysUserVO;
 import shell.framework.util.PopulateUtil;
+import shell.framework.util.UUIDGenerator;
 
 /**
  * <p> 系统用户管理服务类JDBC实现 </p>
@@ -55,7 +57,7 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 	 */
 	public VOResult findByPagination(int currentPage , int pageSize , TblSysUserVO userVO) {
 		StringBuffer sql = new StringBuffer("select * from TBL_SYS_USER user");
-		//组装查询条件
+		//TODO 组装查询条件,抽出工具类
 		if(userVO!=null){
 			sql.append(" where 1=1");
 			//系统用户全称
@@ -97,7 +99,28 @@ System.out.println(sql.toString());
 	 * @see shell.framework.organization.user.service.TblSysUserService#findUserByID(java.io.Serializable)
 	 */
 	public TblSysUser findUserByID(Serializable id) {
-		return null;
+		String sql = "select * from TBL_SYS_USER user where user.ID = ?";
+		
+		List<?> resultList = jdbcBaseDao.query(sql, new Object[]{id}, new RowMapper<Object>() {
+			
+			/* (non-Javadoc)
+			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+			 */
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				TblSysUser user = new TblSysUser();	
+				Map<String,String> propertyMap = new HashMap<String,String>();
+				propertyMap.put("createdTime" , "CREATE_TIME");
+				propertyMap.put("updatedTime" , "UPDATE_TIME");
+				PopulateUtil.populate(user, rs ,propertyMap);
+				return user;
+			}
+		
+		});
+		
+		if(resultList==null || resultList.size()==0){
+			throw new RuntimeException("NO DATA FROM DATABASE!");
+		}
+		return (TblSysUser)resultList.get(0);
 	}
 
 	
@@ -134,11 +157,29 @@ System.out.println(sql.toString());
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.user.service.TblSysUserService#add(shell.framework.organization.user.vo.TblSysUserVO)
+	 */
+	public int add(TblSysUserVO userVO) {
+		String sql = "insert into TBL_SYS_USER values (?,?,?,?,?,?,?,?,?,?)";
+		return jdbcBaseDao.update(sql, new Object[]{UUIDGenerator.generate(),
+													 userVO.getUserCode(), userVO.getPassword(),
+													 userVO.getFullName(), userVO.getAddress(),
+													 userVO.getSex(), userVO.getTelephone(),
+													 userVO.getBirthday(), null,null 
+													});
+	}
 	
 	
 	
-	
-	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.user.service.TblSysUserService#update(shell.framework.organization.user.vo.TblSysUserVO)
+	 */
+	public int update(TblSysUserVO userVO) {
+		String sql = "update TBL_SYS_USER set USERCODE=?,FULLNAME=?,ADDRESS=?,SEX=?,TELEPHONE=?,BIRTHDAY=? where id=?";
+		return jdbcBaseDao.update(sql, new Object[]{userVO.getUserCode(),userVO.getFullName(),userVO.getAddress(),
+											 userVO.getSex(),userVO.getTelephone(),userVO.getBirthday(),userVO.getId()} );
+	}
 	
 	
 	

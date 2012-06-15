@@ -116,18 +116,15 @@ public class LoginService {
 		userInfo.setUser(user);
 		userInfo.setLoginHost(request.getRemoteHost());
 		userInfo.setLoginIP(request.getRemoteAddr());
-		//需要使用日期工具解析成字符串
+		//TODO 需要使用日期工具解析成时间字符串
 		userInfo.setLoginTime(String.valueOf(System.currentTimeMillis()));
 		userInfo.setSessionID(request.getRequestedSessionId());
 		userInfo.setUrl(request.getRequestURI());
 		
 		HttpSession session = request.getSession(true);
-		if(session.getAttribute(user.getUserCode())!=null){
-			session.removeAttribute(user.getUserCode());
-		}
-		if(session.getAttribute("userCode")!=null){
-			session.removeAttribute("userCode");
-		}
+		session.removeAttribute(user.getUserCode());
+		session.removeAttribute("userCode");
+		
 		session.setAttribute(user.getUserCode(), userInfo);
 		request.getSession().setAttribute("userCode", user.getUserCode());
 	}

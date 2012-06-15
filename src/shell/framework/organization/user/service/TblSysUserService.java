@@ -30,12 +30,34 @@ public interface TblSysUserService {
 	 */
 	public VOResult findByPagination(int currentPage , int pageSize, TblSysUserVO userVO);
 	
+	/**
+	 * 查询单个系统用户记录，根据记录id
+	 * @param id 记录唯一id
+	 * @return 系统用户对象
+	 */
 	public TblSysUser findUserByID(Serializable id);
 	
 	/**
-	 * 根据系统用户ID，支持批量删除
-	 * @param userVO 系统用户值对象
+	 * 根据系统用户ID删除用户，支持批量删除
+	 * @param userVO 系统用户值对象 ，删除时使用id字段值存储所有id值，以“-”分割
+	 * 形如 id1-id2-id3-id4-id5-id6-id7
 	 * @return 受影响记录个数
 	 */
 	public int deleteByID(TblSysUserVO userVO);
+	
+	/**
+	 * 增加系统用户
+	 * @param userVO 系统用户值对象
+	 * @return 受影响记录数
+	 */
+	public int add(TblSysUserVO userVO);
+	
+	/**
+	 * 更新系统用户
+	 * @param userVO 系统用户值对象
+	 * @return 受影响记录数
+	 */
+	public int update(TblSysUserVO userVO);
+	
+	
 }

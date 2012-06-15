@@ -211,3 +211,20 @@
  
 .shell_pagination_navi li.nextpage{
 }
+
+
+
+/* @shell表单样式 */
+.shell_form input {
+	-moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    margin: 0 0 8px 8px;
+    border: 1px solid #bdc7d8;
+    outline: medium none;
+    width: 30%;
+    height: 26px;
+}
+

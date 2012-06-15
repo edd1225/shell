@@ -1292,9 +1292,7 @@ html body {
 }
 
 .devsitePage .bodyMenu li a.private.selected {
-	background-image:
-		url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png),
-		url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/uADs2cgkzVe.png);
+	/*background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png),url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/uADs2cgkzVe.png);*/
 	background-position: 160px center, left center;
 	background-repeat: no-repeat, no-repeat
 }

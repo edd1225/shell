@@ -365,12 +365,17 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 	 * @see shell.framework.dao.IJdbcBaseDao#update(java.lang.String, java.lang.Object[])
 	 */
 	public int update(String sql, Object[] params) throws DaoException {
-		JdbcTemplate jt = this.getJdbcTemplate();
-		logger.info("Executing SQL ["  + sql +"]");
-		if(params==null){
-			return jt.update(sql);
-		}else{
-			return jt.update(sql, params);
+		try{
+			JdbcTemplate jt = this.getJdbcTemplate();
+			logger.info("Executing SQL ["  + sql +"]");
+			if(params==null){
+				return jt.update(sql);
+			}else{
+				return jt.update(sql, params);
+			}
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			throw new DaoException(e);
 		}
 	}
 	
@@ -379,8 +384,13 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 	 * @see shell.framework.dao.IJdbcBaseDao#batchUpdate(java.lang.String, java.util.List)
 	 */
 	public int[] batchUpdate(String sql, final List<?> Objects , BatchPreparedStatementSetter setter) throws DaoException {
-		JdbcTemplate jt = this.getJdbcTemplate();
-		logger.info("Batch Executing SQL ["  + sql +"]");
-		return jt.batchUpdate(sql, setter);
+		try{
+			JdbcTemplate jt = this.getJdbcTemplate();
+			logger.info("Batch Executing SQL ["  + sql +"]");
+			return jt.batchUpdate(sql, setter);
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			throw new DaoException(e);
+		}
 	}
 }
