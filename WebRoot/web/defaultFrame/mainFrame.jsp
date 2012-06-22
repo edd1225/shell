@@ -41,7 +41,7 @@
 			    </a> 
 			<div class="content">
 					
-				<a class="l" href="http://developers.facebook.com/docs/">主页</a>
+				<a class="l" href="<%=request.getContextPath() %>/web/defaultFrame/mainFrame.jsp">主面板</a>
 				<a class="l" href="http://developers.facebook.com/module/">组织机构</a>
 				<a class="l" href="http://developers.facebook.com/blog/">权限管理</a> 
 				<a class="l" href="https://developers.facebook.com/apps">编码设置</a>

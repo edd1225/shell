@@ -57,7 +57,6 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 	 */
 	public VOResult findByPagination(int currentPage , int pageSize , TblSysUserVO userVO) {
 		StringBuffer sql = new StringBuffer("select * from TBL_SYS_USER user");
-		//TODO 组装查询条件,抽出工具类
 		if(userVO!=null){
 			sql.append(" where 1=1");
 			//系统用户全称
@@ -89,8 +88,6 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 			}
 		}, currentPage, pageSize);
 		
-System.out.println(sql.toString());		
-		
 		return voResult;
 	}
 
@@ -100,7 +97,6 @@ System.out.println(sql.toString());
 	 */
 	public TblSysUser findUserByID(Serializable id) {
 		String sql = "select * from TBL_SYS_USER user where user.ID = ?";
-		
 		List<?> resultList = jdbcBaseDao.query(sql, new Object[]{id}, new RowMapper<Object>() {
 			
 			/* (non-Javadoc)

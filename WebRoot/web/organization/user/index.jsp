@@ -57,7 +57,7 @@
 			    </a> 
 			    
 			<div class="content">
-				<a class="l" href="http://developers.facebook.com/docs/">主页</a>
+				<a class="l" href="<%=request.getContextPath() %>/web/defaultFrame/mainFrame.jsp">主面板</a>
 				<a class="l" href="http://developers.facebook.com/module/">组织机构</a>
 				<a class="l" href="http://developers.facebook.com/blog/">权限管理</a> 
 				<a class="l" href="https://developers.facebook.com/apps">编码设置</a>
@@ -214,13 +214,12 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery.jmodal.js"></script>
 
 <script type="text/javascript">
-	
-	//用户表单提交
+	//------------------------用户表单提交----------------------------------------------------------------------------------
 	function doSubmit(currentPage){
 		if(currentPage!=null && currentPage>0){
 			document.getElementById("currentPage").value = currentPage;
 		}
-		var userForm = document.forms[0];
+		var userForm = document.forms["userForm"];
 		with(userForm){
 			action = "<%=request.getContextPath() %>/web/organization/user/index.action";
 			submit();
@@ -230,7 +229,7 @@
 	
 <script type="text/javascript">
 
-	//批量删除用户
+	//----------------------批量删除用户------------------------------------------------------------------------------------
 	function doDelete(){
 		var selectedCount = parseInt($("#shell_view_selected_count").text(),10);
 		if(selectedCount<=0){
@@ -241,13 +240,13 @@
 				//循环取出选择对象id值，以“-”进行分隔
 				var userIDs = "";
 				$.each($(".shell_item_selected"),function(key,obj){
-					obj=$(obj);
+					obj=$(obj); //需要重新获取对象
 					userIDs = userIDs + obj.attr("id") + "-";
 				});
 				
 				$("#ids").attr("value",userIDs.substring(0,userIDs.length-1));
 				
-				var userForm = document.forms[0];
+				var userForm = document.forms["userForm"];
 				with(userForm){
 					action = "<%=request.getContextPath() %>/web/organization/user/delete.action";
 					submit();
@@ -255,9 +254,10 @@
 			}
 		} 
 	}
-
+	//---------------------------------------------------------------------------------------------------------------
+	
 	$(document).ready(function(){
-		//选择用户面板
+		//---------------------------选择用户面板----------------------------------------------------------------------
 		$.each($(".shell_user_identity"),function(key,obj){
 			obj=$(obj);
 			obj.click(function(){
@@ -266,7 +266,7 @@
 			})
 		});		
 		
-		//已选择对象个数变化函数
+		//-------------------------------已选择对象个数变化函数----------------------------------------------------------
 		var rescumeCount = function(obj){
 			if (obj.hasClass("shell_item_selected")) {
 				$("#shell_view_selected_count").text(parseInt($("#shell_view_selected_count").text(), 10) - 1);
@@ -275,23 +275,21 @@
 			}
 		};
 		
-		//测试通知效果 - TODO 该类型赋值时，如果session中存放的是数字就没有问题，如果是字符串，页面显示时出现bug
-		var SYS_MESSAGE_VALUE = <%=session.getAttribute("SYS_MESSAGE_VALUE") %>;
 		
-		//var SYS_MESSAGE_TYPE_shell = <%=session.getAttribute("SYS_MESSAGE_TYPE") %>;
-		//if(SYS_MESSAGE_TYPE_shell==null){
-			//SYS_MESSAGE_TYPE_shell = "information";
+		//----------测试通知效果 bug-----------------------------------------------------------------------------------
+		var SYS_MESSAGE_TXT = "<%=session.getAttribute("SYS_MESSAGE_VALUE") %>";
+		var SYS_MESSAGE_TYPE = "<%=session.getAttribute("SYS_MESSAGE_TYPE") %>";
+
+		//if(SYS_MESSAGE_TYPE == null){
+			//SYS_MESSAGE_TYPE = "information";
 		//}
+		//alert(SYS_MESSAGE_TYPE);
 		
-		//alert(SYS_MESSAGE_VALUE );
-		
-		var text = '';
-		if(SYS_MESSAGE_VALUE != null){
-			text = SYS_MESSAGE_VALUE + "条记录被更新.";
+		if(SYS_MESSAGE_TXT!=null && SYS_MESSAGE_TXT!=""){
 			var noty_id = noty({
-				  "text": text,
+				  "text": SYS_MESSAGE_TXT,
 				  "layout": "top",
-				  "type": "success",
+				  "type": SYS_MESSAGE_TYPE,
 				  "animateOpen":{"height":"toggle"},
 				  "animateClose":{"height":"toggle"},
 				  "speed":500,
@@ -304,9 +302,8 @@
 					  //alert('mmmm');
 					}
 			});
-			
 		}
-				
+		//----------------------------------------------------------------------------------------------------------
 		
 	});
 
@@ -317,7 +314,7 @@
         $(document).ready(function() {
           	var pageWidth = $(document).width();  
           	var initWidthValue =  2*(pageWidth/3);
-        	//增加用户
+        	//------------------------增加用户-----------------------------------------------------------------------
             $('.shell_tool_btn_add').click(function() {
                 $.fn.jmodal({
                     //data: { innerText: $(this).text() },
@@ -344,19 +341,7 @@
                 });
             });
 
-            $('a.absolute').click(function() {
-                $.fn.jmodal({
-                	title: 'Information',
-                    content: 'I am a absolute dialog!',
-                    buttonText: { ok: 'Yes,It is.', cancel: 'No' },
-                    okEvent: function(obj, args) {
-                    	//obj.callBack();
-                        args.complete();
-                    }
-                });
-            });
-			
-            //更新系统用户
+            //------------------------更新系统用户------------------------------------------------------------------------
             $('.shell_tool_btn_update').click(function() {
         		var selectedCount = parseInt($("#shell_view_selected_count").text(),10);
 				if(selectedCount!=1){
@@ -384,8 +369,8 @@
                     buttonText: { ok: '更新', cancel: '取消' },
                     initWidth:initWidthValue,
                     okEvent: function(obj, args) {
-                    	obj.callBack();
-                    	args.complete();  //隐藏弹出层窗口
+                    	obj.callBack();    //实际的更新函数调用
+                    	args.complete();   //隐藏弹出层窗口
                     }
                 });
             });

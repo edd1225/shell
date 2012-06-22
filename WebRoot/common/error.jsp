@@ -9,6 +9,16 @@
   </head>
   
   <body>
-    This is my error page. <br>
+    
+    <div align="center">
+    	
+    	<h1><font color="red">出错了！</font></h1>
+    	<hr/>
+    </div>
+    
+   	<div>
+   		${exception.message }
+   	</div>
+    
   </body>
 </html>
