@@ -15,7 +15,7 @@
 /* @SHELL工具栏 */
 .shell_toolBar{
 	background: none repeat scroll 0 0 white;
-  		border-bottom: 1px solid #DDDDDD;
+  		border-bottom: 0px solid #DDDDDD;
   		margin-bottom: 10px;
   		padding-bottom: 35px;	
   		padding-top: 0;
@@ -156,7 +156,7 @@
 
 /* @shell翻页导航栏 */
 .shell_pagination_navi{
-    border-top: 1px solid #CCCCCC;
+    border-top: 0px solid #CCCCCC;
     margin: 10px 0px 0;
     padding: 10px 0px 0;
 }

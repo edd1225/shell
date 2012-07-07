@@ -17,5 +17,14 @@ package shell.framework.core;
 public interface SystemParam {
 
 	//分页查询，每页显示记录个数
-	public static int PAGE_SIZE = 30;
+	public static int PAGE_SIZE = 10;
+	//记录是否有效
+	public static String IS_VALID = "T";  // 有效
+	public static String IN_VALID = "F";  // 无效
+	
+	
+	
+	
+	
+	
 }

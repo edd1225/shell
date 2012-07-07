@@ -110,7 +110,6 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 				PopulateUtil.populate(user, rs ,propertyMap);
 				return user;
 			}
-		
 		});
 		
 		if(resultList==null || resultList.size()==0){
@@ -172,7 +171,7 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 	 * @see shell.framework.organization.user.service.TblSysUserService#update(shell.framework.organization.user.vo.TblSysUserVO)
 	 */
 	public int update(TblSysUserVO userVO) {
-		String sql = "update TBL_SYS_USER set USERCODE=?,FULLNAME=?,ADDRESS=?,SEX=?,TELEPHONE=?,BIRTHDAY=? where id=?";
+		String sql = "update TBL_SYS_USER set USERCODE=?,FULLNAME=?,ADDRESS=?,SEX=?,TELEPHONE=?,BIRTHDAY=? where ID=?";
 		return jdbcBaseDao.update(sql, new Object[]{userVO.getUserCode(),userVO.getFullName(),userVO.getAddress(),
 											 userVO.getSex(),userVO.getTelephone(),userVO.getBirthday(),userVO.getId()} );
 	}

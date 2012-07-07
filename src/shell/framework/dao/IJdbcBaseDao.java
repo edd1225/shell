@@ -97,7 +97,7 @@ public interface IJdbcBaseDao {
 	 * @param sql 静态sql
 	 * @param rowMapper 自定义的rowmapper实现类,示例代码如下：
 	 * 
-	 * List<?> resultList = jbdt.query(sql, new Object[]{userCode,password}, new RowMapper<Object>(){
+	 * List<?> resultList = jbdt.query(sql, new RowMapper<Object>(){
 	 *	public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 	 *			TblSysUser user = new TblSysUser();
 	 *

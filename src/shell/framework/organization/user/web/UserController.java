@@ -84,6 +84,12 @@ public class UserController implements SystemParam {
 	}
 	
 	
+	/**
+	 * 加载更新页面
+	 * @param request
+	 * @param userVO
+	 * @return
+	 */
 	@RequestMapping(value="preUpdate",method=RequestMethod.GET)
 	public ModelAndView preUpdate(HttpServletRequest request , TblSysUserVO userVO){
 		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
@@ -95,6 +101,12 @@ public class UserController implements SystemParam {
 	}
 	
 	
+	/**
+	 * 更新系统用户
+	 * @param request
+	 * @param userVO
+	 * @return
+	 */
 	@RequestMapping(value="update")
 	public ModelAndView update(HttpServletRequest request , TblSysUserVO userVO){
 		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");

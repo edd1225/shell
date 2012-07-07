@@ -12,8 +12,12 @@
 		</property>
 	</bean>
 	
-	
-	
+	<!-- 系统部门服务 -->
+	<bean id="tblSysDepartmentService" class="shell.framework.organization.department.service.impl.TblSysDepartmentServiceI4JdbcImpl">
+		<property name="jdbcBaseDao">
+			<ref bean="baseDaoTemplate.Jdbc"/>
+		</property>
+	</bean>
 	
 	
 </beans>

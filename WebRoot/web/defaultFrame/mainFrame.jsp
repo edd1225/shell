@@ -85,18 +85,16 @@
 				<div id="bodyMenu" class="bodyMenu">
 					<div class="toplevelnav">
 						<ul>
-							<li><a href="<%=request.getContextPath() %>/web/organization/user/index.action?currentPage=1">
+							<li><a href="<%=request.getContextPath() %>/web/organization/user/index.action">
 									<div class="navSectionTitle">人员管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/department/index.action">
-									<div class="navSectionTitle">组织管理</div> </a></li>
+									<div class="navSectionTitle">部门管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/agentCode/index.action">
 									<div class="navSectionTitle">工号管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/skill/index.action">
-									<div class="navSectionTitle">技能管理</div> </a></li>
+							<li><a href="<%=request.getContextPath() %>/web/organization/position/index.action">
+									<div class="navSectionTitle">岗位管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/role/index.action">
 									<div class="navSectionTitle">角色管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/group/index.action">
-									<div class="navSectionTitle">工作组管理</div> </a></li>				
 						</ul>
 					</div>
 				</div>

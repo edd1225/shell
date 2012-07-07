@@ -90,15 +90,13 @@
 							<li><a class="selected" href="<%=request.getContextPath() %>/web/organization/user/index.action">
 									<div class="navSectionTitle">人员管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/department/index.action">
-									<div class="navSectionTitle">组织管理</div> </a></li>
+									<div class="navSectionTitle">部门管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/agentCode/index.action">
 									<div class="navSectionTitle">工号管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/skill/index.action">
-									<div class="navSectionTitle">技能管理</div> </a></li>
+							<li><a href="<%=request.getContextPath() %>/web/organization/position/index.action">
+									<div class="navSectionTitle">岗位管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/role/index.action">
 									<div class="navSectionTitle">角色管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/group/index.action">
-									<div class="navSectionTitle">工作组管理</div> </a></li>				
 						</ul>
 					</div>
 				</div>
@@ -135,10 +133,6 @@
 							</div>
 							<!-- 搜索div结束 -->
 								
-								
-						<!--  
-							<div class="shell_tool_btn shell_inline_block">Q&nbsp;查询</div>
-						-->	
 							<div class="shell_tool_btn shell_inline_block shell_tool_btn_add">+&nbsp;增加</div>
 							<div class="shell_tool_btn shell_inline_block" onclick="doDelete();">-&nbsp;删除</div>
 							<div class="shell_tool_btn shell_inline_block shell_tool_btn_update">U&nbsp;更新</div>
@@ -284,7 +278,7 @@
 			//SYS_MESSAGE_TYPE = "information";
 		//}
 		//alert(SYS_MESSAGE_TYPE);
-		
+		//有bug
 		if(SYS_MESSAGE_TXT!=null && SYS_MESSAGE_TXT!=""){
 			var noty_id = noty({
 				  "text": SYS_MESSAGE_TXT,

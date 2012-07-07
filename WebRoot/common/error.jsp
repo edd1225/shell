@@ -2,7 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>My JSP 'ok.jsp' starting page</title>
+    <title>error page</title>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -17,7 +17,7 @@
     </div>
     
    	<div>
-   		${exception.message }
+   		${exception}
    	</div>
     
   </body>

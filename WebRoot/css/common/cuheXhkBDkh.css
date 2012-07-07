@@ -163,7 +163,7 @@ html body {
 }
 
 .devsitePage a:hover {
-	text-decoration: underline
+	/*text-decoration: underline*/
 }
 
 .devsitePage a.uiButton:hover,.devsitePage a.itemAnchor:hover {
@@ -712,7 +712,7 @@ html body {
 
 .devsitePage .body ol,.devsitePage .body ul {
 	list-style-type: disc;
-	padding-left: 3em
+	/* padding-left: 3em */
 }
 
 .devsitePage .body .uiSelector ul,.devsitePage .body ul.uiList {
@@ -755,7 +755,7 @@ html body {
 .devsitePage .body dl,.devsitePage .body table,.devsitePage .body pre,.devsitePage .body ul,.devsitePage .body ol,.devsitePage .body p
 	{
 	margin: 0;
-	margin-bottom: 1em
+	/* margin-bottom: 1em */
 }
 
 .devsitePage .body pre,.devsitePage .body code,.devsitePage .body table.params td.name
