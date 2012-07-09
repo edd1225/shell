@@ -6,21 +6,13 @@
  *
  *****************************************************/
 
-/* @SHELL全局样式-div可以水平排列 */
+/* @SHELL全局样式-div可以水平排列 对IE失效 */
 .shell_inline_block{
 	display: inline-block;
     position: relative;
 }
 
-/* @SHELL工具栏 */
-.shell_toolBar{
-	background: none repeat scroll 0 0 white;
-  		border-bottom: 0px solid #DDDDDD;
-  		margin-bottom: 10px;
-  		padding-bottom: 35px;	
-  		padding-top: 0;
-}
-
+/* @SHELL用户身份面板 被选择样式 */
 .shell_item_selected{
 	border:1px solid #149525 !important;
 	background-color:#D7F8AC !important;
@@ -47,7 +39,7 @@
     margin-left: 0px;
     margin-bottom: 9px;
 }
-/* @SHELL用户身份面板头像 */
+/* @SHELL用户身份面板 头像 */
 .shell_user_identity_img {
     border: medium none;
     border-radius: 0 0 0 0;
@@ -55,7 +47,7 @@
     width: 48px;
     height: 48px;
 }
-/* @SHELL用户身份面板文字介绍 */
+/* @SHELL用户身份面板 文字介绍 */
 .shell_user_identity_intro {
     font-size: 13px;
     overflow: hidden;
@@ -63,7 +55,7 @@
     width: 68px;
     word-wrap: break-word;
 }
-/* @SHELL用户身份面板鼠标划过效果 */
+/* @SHELL用户身份面板 鼠标划过效果 */
 .shell_user_identity:HOVER {
 	color: #333;
 	cursor:pointer;
@@ -73,7 +65,15 @@
 }
 
 
-/* @SHELL工具栏按钮 */
+/* @SHELL工具栏 */
+.shell_toolBar{
+	background: none repeat scroll 0 0 white;
+  		border-bottom: 0px solid #DDDDDD;
+  		margin-bottom: 10px;
+  		padding-bottom: 35px;	
+  		padding-top: 0;
+}
+/* @SHELL工具栏 按钮 */
 .shell_tool_btn {
 	background-image:url("../../images/facebook.png");
 	background-repeat: no-repeat;
@@ -154,6 +154,7 @@
     width: 22px;
 }
 
+
 /* @shell翻页导航栏 */
 .shell_pagination_navi{
     border-top: 0px solid #CCCCCC;
@@ -228,3 +229,59 @@
     height: 26px;
 }
 
+
+
+/* @shell tab导航样式 */
+ul.shell_tab_container_nav {
+    background: url("../../images/pixel.gif") repeat-x scroll left bottom transparent;
+    float: left;
+    list-style-type: none;
+    width: 100%;
+}
+ul.shell_tab_container_nav li {
+    float: left;
+    margin: 0 2px 0 0;
+    list-style: none;
+}
+ul.shell_tab_container_nav a {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-color: #CCCCCC #CCCCCC -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    color: #666666;
+    display: block;
+    float: left;
+    font-weight: bold;
+    padding: 4px 8px;
+    text-decoration: none;
+}
+ul.shell_tab_container_nav a:hover {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+ul.shell_tab_container_nav a.active {
+    background: none repeat scroll 0 0 #FFFFFF;
+    /*color: #0000FF;*/
+    cursor: default;
+    padding-bottom: 5px;
+}
+/* @shell tab内容样式 */
+.shell_tabs_container {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    clear: left;
+    padding: 20px 8px 0;
+    height: 80%;
+    overflow: auto;
+}
