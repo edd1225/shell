@@ -375,6 +375,7 @@ public class JdbcBaseDaoTemplate extends JdbcDaoSupport implements IJdbcBaseDao 
 			}
 		}catch(Exception e){
 			logger.error(e.getMessage());
+			e.printStackTrace();
 			throw new DaoException(e);
 		}
 	}

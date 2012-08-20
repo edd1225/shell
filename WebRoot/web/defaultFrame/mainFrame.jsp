@@ -10,19 +10,7 @@
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/cuheXhkBDkh.css">
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/p_e4y6WmY0P.css">
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/eExuUYovHyE.css">
-
-<!-- 
-<script type="text/javascript" src="../../js/common/fNWwCkXLvOv.js"></script>
-<script type="text/javascript" async="" src="../../js/common/ga.js"></script>
-
-<script src="./Facebook_resources/Yd1AJTC7arz.js" type="text/javascript" async=""></script>
-<script src="./Facebook_resources/fLiM0DKnx2t.js" type="text/javascript" async=""></script>
-<script src="./Facebook_resources/Te7Lb1diu8z.js" type="text/javascript" async=""></script>
-<script src="./Facebook_resources/-KRncDz6Y2j.js" type="text/javascript" async=""></script>
-<script src="./Facebook_resources/XtE6Qg0z0vd.js" type="text/javascript" async=""></script>
-<script src="./Facebook_resources/D8FCGc6HZSS.js" type="text/javascript" async=""></script>
-<script src="./Facebook_resources/xrEeXUiCo9E.js" type="text/javascript" async=""></script>
--->
+<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
 
 </head>
 

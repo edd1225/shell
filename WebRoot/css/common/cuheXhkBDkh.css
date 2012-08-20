@@ -143,11 +143,6 @@ table.developerAppTestAccountTable .odd td {
 	padding-top: 1px
 }
 
-html body {
-	/*background: #e7e7e7*/
-	background: url(../../images/shell_bgimg.gif)
-}
-
 .devsitePage {
 	font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
 	font-size: 12px;
@@ -175,10 +170,12 @@ html body {
 }
 
 .devsitePage table {
+	/*
 	border: 0;
 	margin: 0;
 	border-collapse: collapse;
 	border-spacing: 0
+	*/
 }
 
 .devsitePage table td,.devsitePage table th {
@@ -215,10 +212,13 @@ html body {
 	max-width: 1040px
 }
 
+
+/*
 .devsitePage .header,.devsitePage .body,.devsitePage .body p,.devsitePage .body ul,.devsitePage .body ol,.devsitePage .body li,.devsitePage .body th,.devsitePage .body th,.devsitePage .body td
 	{
 	font-size: 13px
 }
+*/
 
 .devsitePage .body pre,.devsitePage .body p,.devsitePage .body li,.devsitePage .body dt,.devsitePage .body dd,.devsitePage .refindex .page,.devsitePage .body textarea,.devsitePage .body td
 	{
@@ -700,7 +700,7 @@ html body {
 	border: 1px solid #d9d9d9;
 	border-top: 0;
 	-webkit-box-shadow: #ddd 0 1px 1px;
-	padding: 60px 20px 20px
+	padding: 50px 20px 5px
 }
 
 /*--- 导航栏背景图片 ---*/
@@ -780,19 +780,25 @@ html body {
 	overflow: auto
 }
 
-.devsitePage .body table {
+/* 
+table {
+.devsitePage .body table { 
 	margin-bottom: 1em
 }
+*/
 
-.devsitePage .body table td,.devsitePage .body table th {
-	border: 1px solid #ddd;
+/* 
+table td,table th {	
+.devsitePage .body table td,.devsitePage .body table th {  
+	border: 1px solid #bbb;
 	text-align: left;
 	padding: 6px;
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 5px;
 	vertical-align: top
 }
+*/
 
 .devsitePage .body table.noborder td {
 	border: 0
@@ -1359,7 +1365,7 @@ html body {
 	color: #333;
 	font-weight: bold;
 	background:
-		url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png)
+	/*	url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png) */
 		no-repeat right center
 }
 
@@ -1416,7 +1422,7 @@ html body {
 
 .devsitePage .bodyMenu .toplevelnav li a:hover {
 	background:
-		url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png)
+	/*	url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png) */
 		no-repeat right center;
 	color: #333;
 	text-decoration: none

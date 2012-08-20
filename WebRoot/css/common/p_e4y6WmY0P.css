@@ -86,7 +86,9 @@ body {
 	font-size: 12px;
 	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
 	color: #333;
+	/*
 	line-height: 1.28;
+	*/
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -143,7 +145,8 @@ dt {
 ul {
 	list-style-type: none;
 	margin: 0;
-	padding: 0
+	padding: 0;
+	/* text-align: right; */
 }
 
 abbr {
@@ -233,7 +236,9 @@ hr {
 }
 
 body {
-	overflow-y: scroll
+	/*
+		overflow-y: scroll
+	*/
 }
 
 .mini_iframe,.serverfbml_iframe {

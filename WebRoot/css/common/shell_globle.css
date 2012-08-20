@@ -6,6 +6,13 @@
  *
  *****************************************************/
 
+
+html body {
+	/*background: #e7e7e7*/
+	background: url(../../images/shell_bgimg.gif)
+}
+
+
 /* @SHELL全局样式-div可以水平排列 对IE失效 */
 .shell_inline_block{
 	display: inline-block;
@@ -59,35 +66,41 @@
 .shell_user_identity:HOVER {
 	color: #333;
 	cursor:pointer;
-  		border-color: #999;
-  		-moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2) -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);
-  		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+	border-color: #999;
+	-moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2) -webkit-box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 
 /* @SHELL工具栏 */
 .shell_toolBar{
-	background: none repeat scroll 0 0 white;
-  		border-bottom: 0px solid #DDDDDD;
-  		margin-bottom: 10px;
-  		padding-bottom: 35px;	
-  		padding-top: 0;
+	background: none repeat scroll 0 0 #eee;
+	/*margin-bottom: 10px;*/
+	padding-bottom: 1px;	
+	padding-top:1px;
+	border:1px solid;
+	border-color: #999999 #999999 #888888;
+	border-bottom: 0px solid #DDDDDD;
+  		
 }
 /* @SHELL工具栏 按钮 */
 .shell_tool_btn {
+	/*
 	background-image:url("../../images/facebook.png");
+	border: 1px solid #999;
+	line-height: 13px;
+	*/
 	background-repeat: no-repeat;
 	background-position: -352px -348px;
 	background-color: #EEE;
-	border: 1px solid #999;
 	border-bottom-color: #888;
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
 	border-image: initial;
 	display: inline-block;
 	font-size: 12px;
 	font-weight: bold;
-	line-height: 13px;
 	padding: 5px 9px;
+	margin-left:3px;
 	text-align: center;
 	text-decoration: none;
 	vertical-align: top;
@@ -102,6 +115,9 @@
     -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2) ;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 	cursor:pointer;
+	
+	background-image:url("../../images/facebook.png");
+	border: 1px solid #999;
 }
 /* 鼠标激活@SHELL工具栏按钮 */
 .shell_tool_btn:ACTIVE {
@@ -158,8 +174,8 @@
 /* @shell翻页导航栏 */
 .shell_pagination_navi{
     border-top: 0px solid #CCCCCC;
-    margin: 10px 0px 0;
-    padding: 10px 0px 0;
+    margin: 0px 0px 0;
+    padding: 5px 0px 5px;
 }
  
  /* 有部分css冲突 必须加上 .devsitePage .body | @shell翻页导航栏内部ul样式 */
@@ -226,7 +242,7 @@
     border: 1px solid #bdc7d8;
     outline: medium none;
     width: 30%;
-    height: 26px;
+    height: 20px;
 }
 
 
@@ -281,7 +297,71 @@ ul.shell_tab_container_nav a.active {
     border-style: none solid solid;
     border-width: 0 1px 1px;
     clear: left;
-    padding: 20px 8px 0;
-    height: 80%;
+    padding: 10px 8px 0;
     overflow: auto;
 }
+
+
+/* @SHELL 确定 取消 按钮样式 */
+.shell_btn_okcancle {
+	background-color: #EEEEEE;
+    border-top: 1px solid #CCCCCC;
+    padding-top:5px;
+    padding-bottom:15px;
+    text-align: right;
+}
+.shell_btn_okcancle input{
+	background-color: #627AAD;
+    border-color: #B8D4E8 #124680 #124680 #B8D4E8;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 5px;
+    padding: 2px 10px;
+    text-align: center;
+	opacity: 1;
+}
+
+
+
+/* @SHELL 数据表格 */
+.shell_grid table {
+	border-collapse: collapse;
+	width: 100%;
+	border-spacing: 0;
+	border-left: solid 1px #bbb;
+	margin: 0;
+}
+
+.shell_grid table tr{
+}
+
+.shell_grid table th{
+	background-image:url("../../images/facebook.png");
+	background-repeat: repeat;
+	background-position: -352px -348px;
+	background-color: #EEE;
+	border-bottom-color: #888;
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+	border-image: initial;
+    font-weight: bold;
+}
+
+.shell_grid table td,.shell_grid table th {
+	border: 1px solid #bbb;
+	color: #666666;
+    font-size: 12px;
+	text-align: left;
+    text-decoration: none;
+	padding-left: 6px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-right: 5px;
+	vertical-align: middle;
+    /*white-space: nowrap;*/
+}
+
+
+

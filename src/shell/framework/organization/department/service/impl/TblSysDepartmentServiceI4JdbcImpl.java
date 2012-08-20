@@ -137,7 +137,9 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 		final List<String> idList = new ArrayList<String>();
 		String ids[] = departmentVO.getId().split("-");
 		for(String id : ids){
-			idList.add(id);
+			if(!hasSysUser(id) && !hasSysPosition(id)){
+				idList.add(id);
+			}
 		}
 		
 		int[] deleteNumbers = jdbcBaseDao.batchUpdate(sql, idList, new BatchPreparedStatementSetter(){
@@ -250,14 +252,126 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 		return deleteNumbers.length;
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#assignSysUser(java.lang.String, java.lang.String[])
+	 */
+	public int assignSysUser(TblSysDepartmentVO departmentVO) {
+		String sql = "insert into TBL_SYS_USER_DEPARTMENT values (?,?)";
+		
+		final String departmentID =  departmentVO.getId();
+		
+		String sysUserIds[] = departmentVO.getUser().getId().split("-");
+		final List<String> idList = new ArrayList<String>();
+		for(String id : sysUserIds){
+			idList.add(id);
+		}
+		
+		int[] deleteNumbers = jdbcBaseDao.batchUpdate(sql, idList, new BatchPreparedStatementSetter() {
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#setValues(java.sql.PreparedStatement, int)
+			 */
+			public void setValues(PreparedStatement ps, int index) throws SQLException {
+				String sysUser_id = idList.get(index);
+				ps.setString(1, sysUser_id);
+				ps.setString(2, departmentID);
+			}
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#getBatchSize()
+			 */
+			public int getBatchSize() {
+				return idList.size();
+			}
+		});
+		return deleteNumbers.length;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#removeSysUser(java.lang.String, java.lang.String[])
+	 */
+	public int unassignSysUser(final String departmentId, String[] sysUserIds) {
+		String sql = "delete user_department from TBL_SYS_USER_DEPARTMENT user_department where user_department.USER_ID=? and user_department.DEPARTMENT_ID=?";
+		final List<String> idList = new ArrayList<String>();
+		for(String id : sysUserIds){
+			idList.add(id);
+		}
+		
+		int[] deleteNumbers = jdbcBaseDao.batchUpdate(sql, idList, new BatchPreparedStatementSetter() {
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#setValues(java.sql.PreparedStatement, int)
+			 */
+			public void setValues(PreparedStatement ps, int index) throws SQLException {
+				String sysUser_id = idList.get(index);
+				ps.setString(1, sysUser_id);
+				ps.setString(2, departmentId);
+			}
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#getBatchSize()
+			 */
+			public int getBatchSize() {
+				return idList.size();
+			}
+		});
+		return deleteNumbers.length;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#removePosition(java.lang.String, java.lang.String[])
+	 */
+	public int unassignPosition(final String departmentId, String[] positionIds) {
+		String sql = "delete from TBL_SYS_DEPARTMENT_POSITION department_position where department_position.DEPARTMENT_ID=? and department_position.POSITION_ID=?";
+		final List<String> idList = new ArrayList<String>();
+		for(String id : positionIds){
+			idList.add(id);
+		}
+		
+		int[] deleteNumbers = jdbcBaseDao.batchUpdate(sql, idList, new BatchPreparedStatementSetter() {
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#setValues(java.sql.PreparedStatement, int)
+			 */
+			public void setValues(PreparedStatement ps, int index) throws SQLException {
+				String position_id = idList.get(index);
+				ps.setString(1, departmentId);
+				ps.setString(2, position_id);
+			}
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#getBatchSize()
+			 */
+			public int getBatchSize() {
+				return idList.size();
+			}
+		});
+		return deleteNumbers.length;
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see shell.framework.organization.department.service.TblSysDepartmentService#findUserByPagination(int, int, java.io.Serializable)
 	 */
-	public VOResult findUserByPagination(int currentPage, int pageSize,	Serializable departmentId) {
-		String sql = "select * from TBL_SYS_USER user , TBL_SYS_USER_DEPARTMENT user_department where user.ID=user_department.USER_ID and " +
-				" user_department.DEPARTMENT_ID='" + departmentId + "' and user.IS_VALID= 'T' ";
+	public VOResult findUserByPagination(int currentPage, int pageSize,	TblSysDepartmentVO departmentVO) {
+		StringBuffer sql = new StringBuffer("select * from TBL_SYS_USER user , TBL_SYS_USER_DEPARTMENT user_department where user.ID=user_department.USER_ID and " +
+				" user_department.DEPARTMENT_ID='" + departmentVO.getId().trim() + "' and user.IS_VALID= 'T' ");
 		
-		VOResult voResult = jdbcBaseDao.query(sql, new RowMapper<Object>(){
+		if(departmentVO.getUser()!=null && departmentVO.getUser().getFullName()!=null && !"".equals(departmentVO.getUser().getFullName().trim())){
+			sql.append(" and user.FULLNAME like '%" + departmentVO.getUser().getFullName().trim() + "%'");
+		}
+		
+		
+		VOResult voResult = jdbcBaseDao.query(sql.toString(), new RowMapper<Object>(){
 			
 			/* (non-Javadoc)
 			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
@@ -272,10 +386,42 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 			}
 			
 		}, currentPage, pageSize);
-		
 		return voResult;
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#findUserByUnbindDepartment(int, int, java.io.Serializable)
+	 */
+	public VOResult findUserByUnbindDepartment(int currentPage, int pageSize, TblSysDepartmentVO departmentVO) {
+		//只能分配未被分配给任何部门的用户，不能实现同一用户分配多个不同部门的情况
+		StringBuffer sql = new StringBuffer("select * from TBL_SYS_USER user where user.ID not in (select USER_ID from TBL_SYS_USER_DEPARTMENT) " +
+				"and user.IS_VALID= 'T' ");
+		
+		if(departmentVO.getUser()!=null && departmentVO.getUser().getFullName()!=null && !"".equals(departmentVO.getUser().getFullName().trim())){
+			sql.append(" and user.FULLNAME like '%" + departmentVO.getUser().getFullName().trim() + "%'");
+		}
+		
+		VOResult voResult = jdbcBaseDao.query(sql.toString(), new RowMapper<Object>(){
+			
+			/* (non-Javadoc)
+			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+			 */
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				TblSysUser user = new TblSysUser();	
+				Map<String,String> propertyMap = new HashMap<String,String>();
+				propertyMap.put("createdTime" , "CREATE_TIME");
+				propertyMap.put("updatedTime" , "UPDATE_TIME");
+				PopulateUtil.populate(user, rs ,propertyMap);
+				return user;
+			}
+			
+		}, currentPage, pageSize);
+		return voResult;
+	}
+	
+	
+	
 	/* (non-Javadoc)
 	 * @see shell.framework.organization.department.service.TblSysDepartmentService#reOrder(java.lang.String[])
 	 */
@@ -289,5 +435,39 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 		
 		
 	}
-
+	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#hasSysUser(java.lang.String)
+	 */
+	@SuppressWarnings("unchecked")
+	public boolean hasSysUser(String departmentID) {
+		String sql = "select count(*) COUNT from TBL_SYS_USER_DEPARTMENT user_department where user_department.DEPARTMENT_ID='" + departmentID +"'";
+		List<?> resultList = jdbcBaseDao.query(sql);
+		if(resultList==null || resultList.size()==0){
+			throw new RuntimeException("NO DATA FROM DATABASE.");
+		}
+		Map<String,Object> valueMap = (Map<String,Object>)resultList.get(0);
+		int count = ((Long)valueMap.get("COUNT")).intValue();
+		return count==0 ? false : true  ;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#hasSysPosition(java.lang.String)
+	 */
+	@SuppressWarnings("unchecked")
+	public boolean hasSysPosition(String departmentID) {
+		String sql = "select count(*) COUNT from TBL_SYS_DEPARTMENT_POSITION department_position where department_position.DEPARTMENT_ID='" + departmentID +"'";
+		List<?> resultList = jdbcBaseDao.query(sql);
+		if(resultList==null || resultList.size()==0){
+			throw new RuntimeException("NO DATA FROM DATABASE.");
+		}
+		Map<String,Object> valueMap = (Map<String,Object>)resultList.get(0);
+		int count = ((Long)valueMap.get("COUNT")).intValue();
+		return count==0 ? false : true  ;
+	}
+	
+	
+	
 }

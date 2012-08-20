@@ -20,6 +20,8 @@ import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
+
+import shell.framework.core.SystemParam;
 import shell.framework.dao.IJdbcBaseDao;
 import shell.framework.dao.support.VOResult;
 import shell.framework.model.TblSysUser;
@@ -130,6 +132,8 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 			idList.add(id);
 		}
 		
+		//TODO 删除时 是假删除 同时不能删除已经被关联的用户，比如已经和部门关联，和工号关联，或者同时解除他们的关联关系
+		
 		int[] deleteNumbers = jdbcBaseDao.batchUpdate(sql, idList, new BatchPreparedStatementSetter(){
 			
 			/* (non-Javadoc)
@@ -156,12 +160,14 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 	 * @see shell.framework.organization.user.service.TblSysUserService#add(shell.framework.organization.user.vo.TblSysUserVO)
 	 */
 	public int add(TblSysUserVO userVO) {
-		String sql = "insert into TBL_SYS_USER values (?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into TBL_SYS_USER values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		return jdbcBaseDao.update(sql, new Object[]{UUIDGenerator.generate(),
-													 userVO.getUserCode(), userVO.getPassword(),
-													 userVO.getFullName(), userVO.getAddress(),
-													 userVO.getSex(), userVO.getTelephone(),
-													 userVO.getBirthday(), null,null 
+													 userVO.getUserCode(), userVO.getPassword(),userVO.getPasswordDuration(),
+													 userVO.getFullName(), userVO.getAddress(),userVO.getSex(),
+													 userVO.getTelephone(),userVO.getMobile(),userVO.getEducation(),
+													 userVO.getEmail(),userVO.getPostCode(),userVO.getPhoto(),
+													 null,userVO.getStatus(),SystemParam.IS_VALID,userVO.getHireDate(),
+													 userVO.getBirthday(),userVO.getRemark(), null,null,null
 													});
 	}
 	
@@ -171,9 +177,13 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 	 * @see shell.framework.organization.user.service.TblSysUserService#update(shell.framework.organization.user.vo.TblSysUserVO)
 	 */
 	public int update(TblSysUserVO userVO) {
-		String sql = "update TBL_SYS_USER set USERCODE=?,FULLNAME=?,ADDRESS=?,SEX=?,TELEPHONE=?,BIRTHDAY=? where ID=?";
-		return jdbcBaseDao.update(sql, new Object[]{userVO.getUserCode(),userVO.getFullName(),userVO.getAddress(),
-											 userVO.getSex(),userVO.getTelephone(),userVO.getBirthday(),userVO.getId()} );
+		String sql = "update TBL_SYS_USER set USERCODE=?,PASSWORD=?,PASSWORDDURATION=?,FULLNAME=?,ADDRESS=?,SEX=?," +
+					 "TELEPHONE=?,MOBILE=?,EDUCATION=?,EMAIL=?,POSTCODE=?,PHOTO=?,STATUS=?,HIREDATE=?,BIRTHDAY=?,REMARK=? where ID=?";
+		return jdbcBaseDao.update(sql, new Object[]{userVO.getUserCode(),userVO.getPassword(),userVO.getPasswordDuration(),
+													userVO.getFullName(),userVO.getAddress(), userVO.getSex(),userVO.getTelephone(),
+													userVO.getMobile(),userVO.getEducation(),userVO.getEmail(),userVO.getPostCode(),
+													userVO.getPhoto(),userVO.getStatus(),userVO.getHireDate(),userVO.getBirthday(),
+													userVO.getRemark(),userVO.getId()} );
 	}
 	
 	

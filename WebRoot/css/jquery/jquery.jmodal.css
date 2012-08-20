@@ -21,6 +21,7 @@
 .jmodal-main table
 {
 	width:100%;
+	height:100%;
 	margin:0;
 	padding:0;
 	}
@@ -38,7 +39,11 @@
 {	
     height: auto;
     background-color: #F5FFFA;
+    
+    /*
     padding: 20px 10px;
+    */
+    
 	}
 .jmodal-main td .jmodal-bottom
 {

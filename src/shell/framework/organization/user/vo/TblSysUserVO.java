@@ -16,23 +16,34 @@ package shell.framework.organization.user.vo;
  */
 public class TblSysUserVO {
 
-	//记录ID
 	private String id;
-	
 	//用户登录ID
 	private String userCode;
-	
 	//密码要进行加密存储
 	private String password;
-	
+	private String passwordDuration;
 	//系统用户全名
 	private String fullName;
 	private String address;
 	private String sex;
 	private String telephone;
+	private String mobile;
+	private String education;
+	private String email;
+	private String postCode;
+	private String photo;
+	private String agentCode_id;
+	private String status;
+	private String isValid;
+	private String hireDate;
 	private String birthday;
+	private String remark;
 	private String createdTime;
 	private String updatedTime;
+	private String creator;
+	
+	
+	
 	/**
 	 * @return the id
 	 */
@@ -152,6 +163,150 @@ public class TblSysUserVO {
 	 */
 	public void setUpdatedTime(String updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+	/**
+	 * @return the passwordDuration
+	 */
+	public String getPasswordDuration() {
+		return passwordDuration;
+	}
+	/**
+	 * @param passwordDuration the passwordDuration to set
+	 */
+	public void setPasswordDuration(String passwordDuration) {
+		this.passwordDuration = passwordDuration;
+	}
+	/**
+	 * @return the mobile
+	 */
+	public String getMobile() {
+		return mobile;
+	}
+	/**
+	 * @param mobile the mobile to set
+	 */
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	/**
+	 * @return the education
+	 */
+	public String getEducation() {
+		return education;
+	}
+	/**
+	 * @param education the education to set
+	 */
+	public void setEducation(String education) {
+		this.education = education;
+	}
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	/**
+	 * @return the postCode
+	 */
+	public String getPostCode() {
+		return postCode;
+	}
+	/**
+	 * @param postCode the postCode to set
+	 */
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+	/**
+	 * @return the photo
+	 */
+	public String getPhoto() {
+		return photo;
+	}
+	/**
+	 * @param photo the photo to set
+	 */
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	/**
+	 * @return the agentCode_id
+	 */
+	public String getAgentCode_id() {
+		return agentCode_id;
+	}
+	/**
+	 * @param agentCode_id the agentCode_id to set
+	 */
+	public void setAgentCode_id(String agentCode_id) {
+		this.agentCode_id = agentCode_id;
+	}
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	/**
+	 * @return the isValid
+	 */
+	public String getIsValid() {
+		return isValid;
+	}
+	/**
+	 * @param isValid the isValid to set
+	 */
+	public void setIsValid(String isValid) {
+		this.isValid = isValid;
+	}
+	/**
+	 * @return the hireDate
+	 */
+	public String getHireDate() {
+		return hireDate;
+	}
+	/**
+	 * @param hireDate the hireDate to set
+	 */
+	public void setHireDate(String hireDate) {
+		this.hireDate = hireDate;
+	}
+	/**
+	 * @return the remark
+	 */
+	public String getRemark() {
+		return remark;
+	}
+	/**
+	 * @param remark the remark to set
+	 */
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	/**
+	 * @return the creator
+	 */
+	public String getCreator() {
+		return creator;
+	}
+	/**
+	 * @param creator the creator to set
+	 */
+	public void setCreator(String creator) {
+		this.creator = creator;
 	}
 	
 	

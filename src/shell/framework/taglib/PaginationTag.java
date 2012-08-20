@@ -100,7 +100,7 @@ public class PaginationTag extends TagSupport {
 			if(currentPageNO<=1){
 				out.println("<li class='disablepage'>&lt;&lt;</li>");
 			}else{
-				out.println("<li class='nextpage'><a href='#' onclick='doSubmit("+ ((currentPageNO-1)<=0?1:currentPageNO-1) +");'>" + "&lt;&lt;</a></li>");
+				out.println("<li class='nextpage'><a href='javascript:void(0);' onclick='doPaging("+ ((currentPageNO-1)<=0?1:currentPageNO-1) +");'>" + "&lt;&lt;</a></li>");
 			}
 			
 			
@@ -169,7 +169,7 @@ public class PaginationTag extends TagSupport {
 			}
 			
 			if(currentPageNO<totalPages){
-				out.println("<li class='nextpage'><a href='#' onclick='doSubmit("+ (currentPageNO+1) +");'>" + "&gt;&gt;</a></li>");
+				out.println("<li class='nextpage'><a href='javascript:void(0);' onclick='doPaging("+ (currentPageNO+1) +");'>" + "&gt;&gt;</a></li>");
 			}else{
 				out.println("<li class='disablepage'>&gt;&gt;</li>");
 			}
@@ -214,7 +214,7 @@ public class PaginationTag extends TagSupport {
 				if(currentPageNO==pageNO){
 					out.println("<li class='currentpage'>" + pageNO + "</li>");
 				}else{
-					out.println("<li><a href='#' onclick='doSubmit("+ pageNO +");'>" + pageNO +"</a></li>");
+					out.println("<li><a href='javascript:void(0);' onclick='doPaging("+ pageNO +");'>" + pageNO +"</a></li>");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

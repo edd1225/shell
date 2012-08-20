@@ -13,6 +13,7 @@ import java.io.Serializable;
 import shell.framework.dao.support.VOResult;
 import shell.framework.model.TblSysDepartment;
 import shell.framework.organization.department.vo.TblSysDepartmentVO;
+import shell.framework.organization.user.vo.TblSysUserVO;
 
 /**
  * <p> 系统部门服务类接口定义 </p>
@@ -39,7 +40,7 @@ public interface TblSysDepartmentService {
 	public TblSysDepartment findDepartmentByID(Serializable id);
 	
 	/**
-	 * 根据系统部门ID删除部门，支持批量删除
+	 * 根据系统部门ID删除部门，支持批量删除，部门下存在用户和岗位的默认不删除，也不提示
 	 * @param departmentVO 系统部门值对象 ，删除时使用id字段值存储所有id值，以“-”分割
 	 * 形如 id1-id2-id3-id4-id5-id6-id7
 	 * @return 受影响记录个数
@@ -70,11 +71,36 @@ public interface TblSysDepartmentService {
 	public VOResult findPositionByPagination(int currentPage , int pageSize, Serializable departmentId);
 	
 	/**
-	 * 给部门设立岗位，批量设置
+	 * 给部门设立岗位，支持批量设置
 	 * @param departmentId 部门ID
 	 * @param positionIds 岗位id-数组
 	 */
 	public int assignPosition(final String departmentId , String[] positionIds);
+	
+	/**
+	 * 给部门分配系统用户，支持批量设置
+	 * @param departmentId 部门id
+	 * @param sysUserIds 用户id组 - 数组
+	 * @return
+	 */
+	public int assignSysUser(TblSysDepartmentVO departmentVO);
+	
+	/**
+	 * 回收指定部门下系统用户
+	 * @param departmentId 部门id
+	 * @param sysUserIds 用户id数组
+	 * @return
+	 */
+	public int unassignSysUser(final String departmentId , String[] sysUserIds);
+	
+	/**
+	 * 回收指定部门下岗位
+	 * @param departmentId 部门id
+	 * @param positionIds 岗位id数组
+	 * @return
+	 */
+	public int unassignPosition(final String departmentId , String[] positionIds);
+	
 	
 	/**
 	 * 分页查询部门人员
@@ -83,12 +109,35 @@ public interface TblSysDepartmentService {
 	 * @param departmentId 部门id
 	 * @return 分页对象-人员
 	 */
-	public VOResult findUserByPagination(int currentPage , int pageSize, Serializable departmentId);
+	public VOResult findUserByPagination(int currentPage , int pageSize, TblSysDepartmentVO departmentVO);
+	
+	/**
+	 * 查询未分配给部门的系统用户
+	 * @param currentPage
+	 * @param pageSize
+	 * @param departmentId 部门id
+	 * @return 分页对象-人员
+	 */
+	public VOResult findUserByUnbindDepartment(int currentPage , int pageSize, TblSysDepartmentVO departmentVO);
 	
 	/**
 	 * 按照数组次序重新给部门进行排序
 	 * @param departmentIds 部门id数组
 	 */
 	public void reOrder(String[] departmentIds);
+	
+	/**
+	 * 部门下是否存在用户
+	 * @param departmentID
+	 * @return
+	 */
+	public boolean hasSysUser(String departmentID);
+	
+	/**
+	 * 部门下是否存在岗位
+	 * @param departmentID
+	 * @return
+	 */
+	public boolean hasSysPosition(String departmentID);
 	
 }

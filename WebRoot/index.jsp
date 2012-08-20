@@ -12,8 +12,18 @@
 </STYLE>
 <link href="css/common/bj.css" rel="stylesheet" type="text/css">
 
-<script language="javascript" src="js/common/tools.js"></script>
+<script language="javascript" src="js/common/shell_util.js"></script>
+<script language="javascript" src="js/common/alert.js"></script>
+
 <script language='javascript'>
+
+//alert(yesOrNoConfirm("发"));
+
+function testPop(obj){
+	
+	testMessageBox(obj);
+	
+}
 
 //登录验证
 function checkUser(){
@@ -58,7 +68,7 @@ function checkUser(){
               <td align=right valign=top width="4%"><img src="<%=request.getContextPath() %>/images/holly-11-11a.gif" width="188" height="39"></td>
               <td align=right background="<%=request.getContextPath() %>/images/holly-11-11b.gif" width="17%">&nbsp;</td>
             </tr>
-          </tbody>
+          </tbody>		
         </table>
 		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -101,6 +111,10 @@ function checkUser(){
 				
 				<TD align=middle valign="middle"><input style="WIDTH: 70px; HEIGHT: 30px" type="button" value='登录' onclick="checkUser()"></TD>
 				<TD align=middle valign="middle"><input style="WIDTH: 70px; HEIGHT: 30px" type='reset' value='重置'></TD>
+				
+				<TD align=middle valign="middle">
+					<input style="WIDTH: 70px; HEIGHT: 30px" type='reset' value='pop' onclick="testPop(this);">
+				</TD>
 				</TR>
 				
 				</TBODY>
@@ -111,13 +125,6 @@ function checkUser(){
 		  </TBODY></TABLE>
 		  </form>
 
-<!-- 
-				<tr>
-					<td>
-						<shell-services:test key="ss" />
-					</td>
-				</tr>
- -->
  		  
 </TD>
   </TR></TBODY></TABLE>

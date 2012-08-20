@@ -8,6 +8,9 @@
  */
 package shell.framework.organization.department.vo;
 
+import shell.framework.model.TblSysUser;
+import shell.framework.organization.user.vo.TblSysUserVO;
+
 /**
  * <p> 系统部门值对象 </p>
  *
@@ -34,6 +37,8 @@ public class TblSysDepartmentVO {
 	private String updateTime;
 	private String creator;
 	
+	//部门下系统用户
+	private TblSysUserVO user;
 	
 	/**
 	 * @return the id
@@ -180,4 +185,17 @@ public class TblSysDepartmentVO {
 		this.creator = creator;
 	}
 	
+	/**
+	 * @return the user
+	 */
+	public TblSysUserVO getUser() {
+		return user;
+	}
+	
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(TblSysUserVO user) {
+		this.user = user;
+	}
 }

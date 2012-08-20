@@ -30,6 +30,7 @@ public interface TblSysUserService {
 	 */
 	public VOResult findByPagination(int currentPage , int pageSize, TblSysUserVO userVO);
 	
+	
 	/**
 	 * 查询单个系统用户记录，根据记录id
 	 * @param id 记录唯一id
