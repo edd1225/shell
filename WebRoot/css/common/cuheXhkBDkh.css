@@ -1,133 +1,134 @@
-/*1312919445,169776318*/
-.devsitePage .developerAppDetailsRight {
+/*
+.shellPage .developerAppDetailsRight {
 	background-color: #f2f2f2;
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc
 }
 
-.devsitePage .developerAppDetailsRight .developerAppDetailsSectionHeader
+.shellPage .developerAppDetailsRight .developerAppDetailsSectionHeader
 	{
 	background-color: #e7e7e7;
 	border-top: 1px solid #d0d0d0;
 	margin-bottom: 10px
 } 
 
-.devsitePage #developerAppHeader {
+.shellPage #developerAppHeader {
 	font-size: 19px;
 	font-weight: bold;
 	padding: 0 0 10px 0
 }
 
-.devsitePage #developerAppHeader a {
+.shellPage #developerAppHeader a {
 	color: #333
 }
 
-.devsitePage .developerAppDetailsRight .developerAppDetailsFormFooter {
+.shellPage .developerAppDetailsRight .developerAppDetailsFormFooter {
 	border-top: 1px solid #d9d9d9;
 	padding: 5px 0 0 0
 }
 
-.devsitePage .developerAppDetailsRight .headerColumn {
+.shellPage .developerAppDetailsRight .headerColumn {
 	color: #666;
 	padding: 8px 10px 0 0;
 	text-align: right
 }
 
-.devsitePage .developerAppDetailsRight .headerColumn .noTooltip {
+.shellPage .developerAppDetailsRight .headerColumn .noTooltip {
 	padding: 0 17px 0 0
 }
 
-.devsitePage .developerAppDetailsRight .contentPane {
+.shellPage .developerAppDetailsRight .contentPane {
 	padding: 4px 10px 4px 10px
 }
 
-.devsitePage .developerAppDetailsRight .immutableRow {
+.shellPage .developerAppDetailsRight .immutableRow {
 	padding: 4px 0 4px 10px
 }
 
-.devsitePage .developerAppDetailsRight select {
+.shellPage .developerAppDetailsRight select {
 	height: 22px
 }
 
-.devsitePage .developerAppDetailsRight
+.shellPage .developerAppDetailsRight
 .developerAppDetailsFormFooter .developerAppDetailsFormGrid {
 	margin: 0
 }
 
-.devsitePage #developerAppDashboardContainer {
+.shellPage #developerAppDashboardContainer {
 	border-top: 1px solid #d9d9d9;
 	padding: 10px 0
 }
 
-.devsitePage #developerAppDetailsContent
+.shellPage #developerAppDetailsContent
 .developerAppPermissionsRoleTypeahead .inputtext {
 	width: 220px
 }
 
-.devsitePage .developerAppDetailsRadioRow {
+.shellPage .developerAppDetailsRadioRow {
 	padding: 3px
 }
 
-.devsitePage .fbFeedbackContent li,.devsitePage .fbFeedbackContent .fbFeedbackContentHeader
+
+.shellPage .fbFeedbackContent li,.shellPage .fbFeedbackContent .fbFeedbackContentHeader
 	{
 	padding: 10px 10px 10px 10px
 }
 
-.devsitePage .fbFeedbackContent .fbModeratorQueueActionBar {
+.shellPage .fbFeedbackContent .fbModeratorQueueActionBar {
 	padding: 8px 10px 1px 10px
 }
 
-.devsitePage .fbCommentModeration .commentContent {
+.shellPage .fbCommentModeration .commentContent {
 	border-top: 1px solid #d9d9d9;
 	padding: 0;
 	width: 100%
 }
 
-.devsitePage .fbFeedbackContent .fbFeedbackPostsContainer {
+.shellPage .fbFeedbackContent .fbFeedbackPostsContainer {
 	min-height: 150px;
 	max-height: none;
 	overflow-y: hidden
 }
 
-.devsitePage a.uiTooltip:hover {
+.shellPage a.uiTooltip:hover {
 	cursor: default
 }
 
-.devsitePage a.uiTooltip:hover,.devsitePage a.fbGlossaryTip:hover {
+.shellPage a.uiTooltip:hover,.shellPage a.fbGlossaryTip:hover {
 	text-decoration: none
 }
 
-.devsitePage .body .developerAppSectionBanner table {
+.shellPage .body .developerAppSectionBanner table {
 	margin: 0
 }
 
-.devsitePage .developerAppDetailsLeft .toplevelnav li a {
+.shellPage .developerAppDetailsLeft .toplevelnav li a {
 	font-size: 13px;
 	padding: 4px 4px 4px 10px
 }
 
-.devsitePage .developerAppDetailsLeft .toplevelnav ul.subsections li a {
+.shellPage .developerAppDetailsLeft .toplevelnav ul.subsections li a {
 	font-size: 12px;
 	padding: 1px 6px
 }
 
-.devsitePage .developerAppRoleRemoveNotification {
+.shellPage .developerAppRoleRemoveNotification {
 	height: 24px;
 	padding: 16px 4px 8px 4px;
 	width: 210px
 }
 
-.devsitePage .body table.developerAppTestAccountTable td,th .columnLabel
+.shellPage .body table.developerAppTestAccountTable td,th .columnLabel
 	{
 	font-size: 12px;
 	vertical-align: middle
 }
 
-.devsitePage table.uiDataTable thead tr th {
+.shellPage table.uiDataTable thead tr th {
 	padding: 0
 }
 
-.devsitePage table.uiDataTable tr td.firstRow,.devsitePage table.uiDataTable tr td.lastRow
+.shellPage table.uiDataTable tr td.firstRow,.shellPage table.uiDataTable tr td.lastRow
 	{
 	padding: 4px;
 	text-align: center
@@ -137,39 +138,40 @@ table.developerAppTestAccountTable .odd td {
 	background-color: #e4e4e4
 }
 
-.devsitePage .dialogInfoTableCheckbox {
+.shellPage .dialogInfoTableCheckbox {
 	height: 10px;
 	margin-left: -3px;
 	padding-top: 1px
 }
 
-.devsitePage {
+.shellPage {
 	font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
-	font-size: 12px;
 	color: #333;
 	margin: 0;
 	min-width: 1024px;
 	font-size: 12px
 }
 
-.devsitePage a {
+.shellPage a {
 	color: #3b5998;
 	text-decoration: none
 }
+*/
 
-.devsitePage a:hover {
+.shellPage a:hover {
 	/*text-decoration: underline*/
 }
 
-.devsitePage a.uiButton:hover,.devsitePage a.itemAnchor:hover {
+/*
+.shellPage a.uiButton:hover,.shellPage a.itemAnchor:hover {
 	text-decoration: none
 }
-
-.devsitePage img {
+.shellPage img {
 	border: 0
 }
+*/
 
-.devsitePage table {
+.shellPage table {
 	/*
 	border: 0;
 	margin: 0;
@@ -178,29 +180,31 @@ table.developerAppTestAccountTable .odd td {
 	*/
 }
 
-.devsitePage table td,.devsitePage table th {
+/*
+.shellPage table td,.shellPage table th {
 	border: 0;
 	padding: 0;
 	text-align: left;
 	vertical-align: top
 }
 
-.devsitePage table th {
+.shellPage table th {
 	font-weight: bold
 }
 
-.devsitePage h1,.devsitePage h2,.devsitePage h3,.devsitePage h4 {
+.shellPage h1,.shellPage h2,.shellPage h3,.shellPage h4 {
 	margin: 0;
 	padding: 0;
 	border: 0
 }
+*/
 
-.devsitePage .clear {
+.shellPage .clear {
 	clear: both
 }
 
 /*--- 设置主内容区域样式  ---*/
-.devsitePage .body .content {
+.shellPage .body .content {
 	margin-top: 0px;
 	margin-left: 200px;
 	/*
@@ -214,34 +218,34 @@ table.developerAppTestAccountTable .odd td {
 
 
 /*
-.devsitePage .header,.devsitePage .body,.devsitePage .body p,.devsitePage .body ul,.devsitePage .body ol,.devsitePage .body li,.devsitePage .body th,.devsitePage .body th,.devsitePage .body td
+.shellPage .header,.shellPage .body,.shellPage .body p,.shellPage .body ul,.shellPage .body ol,.shellPage .body li,.shellPage .body th,.shellPage .body th,.shellPage .body td
 	{
 	font-size: 13px
 }
 */
 
-.devsitePage .body pre,.devsitePage .body p,.devsitePage .body li,.devsitePage .body dt,.devsitePage .body dd,.devsitePage .refindex .page,.devsitePage .body textarea,.devsitePage .body td
+.shellPage .body pre,.shellPage .body p,.shellPage .body li,.shellPage .body dt,.shellPage .body dd,.shellPage .refindex .page,.shellPage .body textarea,.shellPage .body td
 	{
 	line-height: 18px
 }
 
-.devsitePage dl,.devsitePage dt,.devsitePage dd {
+.shellPage dl,.shellPage dt,.shellPage dd {
 	margin: 0
 }
 
-.devsitePage dd,.devsitePage .refindex .page {
+.shellPage dd,.shellPage .refindex .page {
 	margin-bottom: 10px
 }
 
-.devsitePage dd p,.devsitePage .refindex .page .snippet p {
+.shellPage dd p,.shellPage .refindex .page .snippet p {
 	margin: 0
 }
 
-.devsitePage dt,.devsitePage .refindex .page .title {
+.shellPage dt,.shellPage .refindex .page .title {
 	font-weight: bold
 }
 
-.devsitePage dt a.private,.devsitePage .refindex .page .title a.private,.devsitePage .bodyMenu li a.private
+.shellPage dt a.private,.shellPage .refindex .page .title a.private,.shellPage .bodyMenu li a.private
 	{
 	/*
 	background:
@@ -251,14 +255,14 @@ table.developerAppTestAccountTable .odd td {
 	padding-left: 13px
 }
 
-.devsitePage .metanotice {
+.shellPage .metanotice {
 	background: #fff9d7;
 	border: 1px solid #e2c822;
 	padding: 1em;
 	margin: 1em
 }
 
-.devsitePage textarea {
+.shellPage textarea {
 	resize: none
 }
 
@@ -277,75 +281,75 @@ table.developerAppTestAccountTable .odd td {
 	zoom: 1
 }
 
-.devsitePage #DeveloperAppBody>.content {
+.shellPage #DeveloperAppBody>.content {
 	padding-top: 60px
 }
 
-.devsitePage .devAppTitle {
+.shellPage .devAppTitle {
 	font-size: 19px
 }
 
-.devsitePage #developerAppNav ul {
+.shellPage #developerAppNav ul {
 	padding-left: 0
 }
 
-.devsitePage .developerAppDashLeft {
+.shellPage .developerAppDashLeft {
 	border-top: 1px solid #ccc;
 	width: 20%;
 	float: left
 }
 
-.devsitePage .developerAppDashRight {
+.shellPage .developerAppDashRight {
 	width: 80%;
 	float: right
 }
 
-.devsitePage .developerAppDetailsLeft {
+.shellPage .developerAppDetailsLeft {
 	width: 20%;
 	float: left
 }
 
-.devsitePage .developerAppDetailsRight {
+.shellPage .developerAppDetailsRight {
 	width: 80%;
 	float: right
 }
 
-.devsitePage #DeveloperAppDashHeader {
+.shellPage #DeveloperAppDashHeader {
 	margin: -8px 0 6px -4px
 }
 
-.devsitePage #developerAppHeader {
+.shellPage #developerAppHeader {
 	margin: -8px 0 -8px 0
 }
 
-.devsitePage #DeveloperAppDashHeader {
+.shellPage #DeveloperAppDashHeader {
 	min-height: 32px !important
 }
 
-.devsitePage .dashboardHeader .dashboardTitle {
+.shellPage .dashboardHeader .dashboardTitle {
 	font-size: 19px;
 	font-weight: bold
 }
 
-.devsitePage .dashboardHeader .dashboardTitle a {
+.shellPage .dashboardHeader .dashboardTitle a {
 	color: #000
 }
 
-.devsitePage .dashboardHeader .appTypeahead {
+.shellPage .dashboardHeader .appTypeahead {
 	display: inline-block;
 	margin: 0 5px 0 0
 }
 
-.devsitePage .uiTypeahead ul {
+.shellPage .uiTypeahead ul {
 	margin: 2px 0;
 	padding: 0
 }
 
-.devsitePage .developerAppDashLeft .toplevelnav ul li a.aWrap {
+.shellPage .developerAppDashLeft .toplevelnav ul li a.aWrap {
 	background-position: 135px 10px
 }
 
-.devsitePage .developerAppDashLeft .toplevelnav ul li a div.navSectionTitle
+.shellPage .developerAppDashLeft .toplevelnav ul li a div.navSectionTitle
 	{
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -353,210 +357,216 @@ table.developerAppTestAccountTable .odd td {
 	width: 123px
 }
 
-.devsitePage .developerAppDashLeft .bodyMenu li {
+.shellPage .developerAppDashLeft .bodyMenu li {
 	padding-bottom: 3px
 }
 
-.devsitePage .developerAppDashLeft .bodyMenu li a,.devsitePage .developerAppDashLeft .bodyMenu li a.selected
+.shellPage .developerAppDashLeft .bodyMenu li a,.shellPage .developerAppDashLeft .bodyMenu li a.selected
 	{
 	padding: 5px 6px 0 10px
 }
 
-.devsitePage .developerAppDashLeft .bodyMenu ul li img.imgWrap {
+.shellPage .developerAppDashLeft .bodyMenu ul li img.imgWrap {
 	float: left;
 	height: 16px;
 	margin: 4x 0 0 5px;
 	width: 16px
 }
 
-.devsitePage .directoryStatus,.devsitePage span.dirPending,.devaitePage span.dirUnsubmitted
+.shellPage .directoryStatus,.shellPage span.dirPending,.devaitePage span.dirUnsubmitted
 	{
 	color: #666
 }
 
-.devsitePage .appNameTitleBar {
+.shellPage .appNameTitleBar {
 	font-size: 19px
 }
 
-.devsitePage img.appLogo {
+.shellPage img.appLogo {
 	max-height: 40px;
 	width: 40px
 }
 
-.devsitePage span.dirApproved {
+.shellPage span.dirApproved {
 	color: #008000
 }
 
-.devsitePage span.dirDenied {
+.shellPage span.dirDenied {
 	color: #a00
 }
 
-.devsitePage .body h3.uiHeaderTitle,.devsitePage .body #developerAppDetailsContent p
+.shellPage .body h3.uiHeaderTitle,.shellPage .body #developerAppDetailsContent p
 	{
 	font-size: 12px;
 	margin: 0
 }
 
-.devsitePage #developerAppDashContent td,.devsitePage #developerAppDetailsContent td,.devsitePage #developerAppDetailsContent div
+.shellPage #developerAppDashContent td,.shellPage #developerAppDetailsContent td,.shellPage #developerAppDetailsContent div
 	{
 	line-height: normal;
 	font-size: 12px
 }
 
-.devsitePage td.overviewHeaderColumn {
+.shellPage td.overviewHeaderColumn {
 	width: 100px
 }
 
-.devsitePage td.headerColumn {
+.shellPage td.headerColumn {
 	width: 220px
 }
 
-.devsitePage #developerAppDashContent td.contentColumn div {
+.shellPage #developerAppDashContent td.contentColumn div {
 	width: 250px
 }
 
-.devsitePage #developerAppDashContent td.contentPane {
+.shellPage #developerAppDashContent td.contentPane {
 	padding: 0
 }
 
-.devsitePage #developerAppDashContent #test_accounts {
+.shellPage #developerAppDashContent #test_accounts {
 	padding: 5px
 }
 
-.devsitePage .uiFacepile ul {
+.shellPage .uiFacepile ul {
 	padding: 0
 }
 
-.devsitePage div.content_loading {
+.shellPage div.content_loading {
+	/*
 	background:
 		url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/jKEcVPZFk-2.gif)
 		center no-repeat;
+	*/	
 	height: 400px;
 	min-width: 250px;
 	overflow: hidden
 }
 
-.devsitePage .noApps {
+.shellPage .noApps {
 	font-size: 13px;
 	font-weight: bold;
 	padding: 20px 0;
 	text-align: center
 }
 
-.devsitePage #developerAppDetailsContent td.contentPane,.devsitePage #developerAppDetailsContent .inputtext
+.shellPage #developerAppDetailsContent td.contentPane,.shellPage #developerAppDetailsContent .inputtext
 	{
 	width: 400px
 }
 
-.devsitePage #developerAppDetailsContent .textfield_array_input_text {
+.shellPage #developerAppDetailsContent .textfield_array_input_text {
 	width: 80%
 }
 
-.devsitePage #developerAppDetailsContent .shortinput .inputtext {
+.shellPage #developerAppDetailsContent .shortinput .inputtext {
 	width: 140px
 }
 
-.devsitePage #developerAppDashContent .devAppInsights .fbInsightsTinyStatistic
+.shellPage #developerAppDashContent .devAppInsights .fbInsightsTinyStatistic
 	{
 	float: right
 }
 
-.devsitePage #developerAppDashContent .editSettings {
+.shellPage #developerAppDashContent .editSettings {
 	text-align: center
 }
 
-.devsitePage #contentCol {
+.shellPage #contentCol {
 	background: none;
 	padding-top: 8px
 }
 
-.devsitePage .developerAppDashLeft .toplevelnav a,.devsitePage .developerAppDashLeft .toplevelnav a:hover,.devsitePage .uiTypeahead li
+.shellPage .developerAppDashLeft .toplevelnav a,.shellPage .developerAppDashLeft .toplevelnav a:hover,.shellPage .uiTypeahead li
 	{
 	font-size: 12px
 }
 
-.devsitePage .throbber {
+.shellPage .throbber {
 	text-align: center;
 	vertical-align: middle
 }
 
-.devsitePage img.throbber {
+.shellPage img.throbber {
 	display: inline-block;
 	padding-bottom: 8px;
 	visibility: hidden
 }
 
-.devsitePage .async_saving img.throbber {
+.shellPage .async_saving img.throbber {
 	visibility: visible
 }
 
-.devsitePage .developerAppDashLeft .seeAllApps {
+.shellPage .developerAppDashLeft .seeAllApps {
 	margin: 10px 0;
 	text-align: center
 }
 
-.devsitePage .developerAppDashLeft .newAppButton {
+.shellPage .developerAppDashLeft .newAppButton {
 	width: 162px
 }
 
-.devsitePage .developerAppAccessToken {
+.shellPage .developerAppAccessToken {
 	display: inline
 }
 
-.devsitePage .developerAppDashRight .name,.devsitePage .developerAppDashRight .desc
+.shellPage .developerAppDashRight .name,.shellPage .developerAppDashRight .desc
 	{
 	margin-left: 105px
 }
 
-.devsitePage .developerAppDashRight .thumbnail .img {
+.shellPage .developerAppDashRight .thumbnail .img {
 	border: none
 }
 
-.devsitePage .home .header {
+.shellPage .home .header {
+	/*
 	background: #f2f2f2
 		url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/e4jQ5MXLYQ8.png) top
 		center no-repeat;
+	*/	
 	border: 1px solid #ddd;
 	height: 302px;
 	margin-top: -7px
 }
 
-.devsitePage .home .header .content {
+.shellPage .home .header .content {
 	padding: 70px 235px 0 330px;
 	width: 385px
 }
 
-.devsitePage .home .header h1 {
+.shellPage .home .header h1 {
 	font-size: 31px;
 	font-weight: normal
 }
 
-.devsitePage .home .header .subtitle {
+.shellPage .home .header .subtitle {
 	margin: 15px 0;
 	font-size: 15px;
 	color: #808080;
 	line-height: 18px
 }
 
-.devsitePage .home .header a.button {
+.shellPage .home .header a.button {
 	cursor: pointer;
 	text-indent: 0
 }
 
-.devsitePage .home .header a.button span {
+.shellPage .home .header a.button span {
 	display: inline-block;
+	/*
 	background:
 		url(http://static.ak.fbcdn.net/rsrc.php/v1/yA/r/5avmcNdTn0T.png) 7px
 		center no-repeat;
+	*/	
 	padding-left: 20px
 }
 
-.devsitePage .body .section {
+.shellPage .body .section {
 	float: left;
 	width: 300px
 }
 
-.devsitePage .body .section h2 {
+.shellPage .body .section h2 {
 	font-weight: bold;
 	font-size: 14px;
 	border-bottom: 1px solid #d2d2d2;
@@ -564,77 +574,81 @@ table.developerAppTestAccountTable .odd td {
 	margin: 0 0 15px 0
 }
 
-.devsitePage .body .section .caption {
+.shellPage .body .section .caption {
 	font-size: 12px;
 	line-height: 14px;
 	color: #808080
 }
 
-.devsitePage .body .section ul li {
+.shellPage .body .section ul li {
 	margin-bottom: 10px
 }
 
-.devsitePage .body .sectionApps,.devsitePage .body .sectionNew {
+.shellPage .body .sectionApps,.shellPage .body .sectionNew {
 	margin-right: 20px
 }
 
-.devsitePage .body .sectionApps ul {
+.shellPage .body .sectionApps ul {
 	list-style: none;
 	margin: 0;
 	padding: 0
 }
 
-.devsitePage .body .sectionApps ul li {
+.shellPage .body .sectionApps ul li {
 	margin-bottom: 5px
 }
 
-.devsitePage .body .sectionApps ul li .image {
+.shellPage .body .sectionApps ul li .image {
 	float: left;
 	margin-right: 5px
 }
 
-.devsitePage .body .sectionApps ul li .item {
+.shellPage .body .sectionApps ul li .item {
 	padding: 7px 0
 }
 
-.devsitePage .body .sectionApps ul li a {
+.shellPage .body .sectionApps ul li a {
 	font-weight: bold
 }
 
-.devsitePage .body .sectionNew ul {
+.shellPage .body .sectionNew ul {
 	list-style: none;
 	margin: 0;
 	padding: 0
 }
 
-.devsitePage .body .sectionNew ul li {
+.shellPage .body .sectionNew ul li {
+	/*
 	background:
 		url(http://static.ak.fbcdn.net/rsrc.php/v1/yY/r/1gBp2bDGEuh.gif) 0 2px
 		no-repeat;
+	*/
 	padding-left: 22px
 }
 
-.devsitePage .body .sectionNew ul li .title {
+.shellPage .body .sectionNew ul li .title {
 	font-weight: bold
 }
 
-.devsitePage .body .sectionNew ul li.readmore {
+.shellPage .body .sectionNew ul li.readmore {
 	background: none
 }
 
-.devsitePage .body .sectionNew ul li.readmore a {
+.shellPage .body .sectionNew ul li.readmore a {
 	font-weight: bold;
+	/*
 	background:
 		url(http://static.ak.fbcdn.net/rsrc.php/v1/yI/r/llncLdVc0JC.gif)
 		no-repeat right center;
+	*/
 	padding-right: 9px
 }
 
-.devsitePage .body .sectionShowcase .caption {
+.shellPage .body .sectionShowcase .caption {
 	margin-top: 15px
 }
 
-.devsitePage .plugin_form {
+.shellPage .plugin_form {
 	float: left;
 	background: #efefef;
 	margin: 10px 20px 15px 0;
@@ -643,41 +657,41 @@ table.developerAppTestAccountTable .odd td {
 	width: 220px
 }
 
-.devsitePage .plugin_form dt {
+.shellPage .plugin_form dt {
 	color: #666
 }
 
-.devsitePage .plugin_form dt a.uiTooltip {
+.shellPage .plugin_form dt a.uiTooltip {
 	font-weight: normal;
 	font-size: 12px
 }
 
-.devsitePage .plugin_form dd {
+.shellPage .plugin_form dd {
 	padding: 5px 0 10px 0;
 	border-bottom: solid #D0D0D0 1px;
 	margin-bottom: 5px
 }
 
-.devsitePage .plugin_form dd label {
+.shellPage .plugin_form dd label {
 	color: #000;
 	font-weight: normal
 }
 
-.devsitePage .plugin_form .wideinputtext {
+.shellPage .plugin_form .wideinputtext {
 	width: 210px
 }
 
-.devsitePage .plugin_example {
+.shellPage .plugin_example {
 	float: left;
 	width: 420px;
 	padding: 10px
 }
 
-.devsitePage .dark_background {
+.shellPage .dark_background {
 	background-color: #333
 }
 
-.devsitePage .nofloat {
+.shellPage .nofloat {
 	float: none
 }
 
@@ -697,7 +711,7 @@ table.developerAppTestAccountTable .odd td {
 	width: 416px
 }
 
-.devsitePage .body>.content {
+.shellPage .body>.content {
 	background: #fff;
 	border: 1px solid #d9d9d9;
 	border-top: 0;
@@ -706,72 +720,72 @@ table.developerAppTestAccountTable .odd td {
 }
 
 /*--- 导航栏背景图片 ---*/
-.devsitePage .nav>.content {
+.shellPage .nav>.content {
 	background: #fff
 		/* url(http://static.ak.fbcdn.net/rsrc.php/v1/yz/r/coK3kMStN_j.gif) */
 		repeat-y
 }
 
-.devsitePage .body ol,.devsitePage .body ul {
+.shellPage .body ol,.shellPage .body ul {
 	list-style-type: disc;
 	/* padding-left: 3em */
 }
 
-.devsitePage .body .uiSelector ul,.devsitePage .body ul.uiList {
+.shellPage .body .uiSelector ul,.shellPage .body ul.uiList {
 	list-style-type: none;
 	margin: 0;
 	padding-left: 0
 }
 
-.devsitePage .body ol {
+.shellPage .body ol {
 	list-style-type: decimal
 }
 
-.devsitePage .body strong {
+.shellPage .body strong {
 	font-weight: bold
 }
 
-.devsitePage em,.devsitePage .body i {
+.shellPage em,.shellPage .body i {
 	font-style: italic
 }
 
-.devsitePage .body h1 {
+.shellPage .body h1 {
 	font-size: 29px;
 	font-weight: normal;
 	margin: 0;
 	margin-bottom: 8px
 }
 
-.devsitePage .body h2 {
+.shellPage .body h2 {
 	font-size: 21px;
 	font-weight: normal;
 	letter-spacing: -0.03em;
 	margin: 25px 0 15px 0
 }
 
-.devsitePage .body h3 {
+.shellPage .body h3 {
 	font-size: 16px;
 	margin: 15px 0 10px 0
 }
 
-.devsitePage .body dl,.devsitePage .body table,.devsitePage .body pre,.devsitePage .body ul,.devsitePage .body ol,.devsitePage .body p
+.shellPage .body dl,.shellPage .body table,.shellPage .body pre,.shellPage .body ul,.shellPage .body ol,.shellPage .body p
 	{
 	margin: 0;
 	/* margin-bottom: 1em */
 }
 
-.devsitePage .body pre,.devsitePage .body code,.devsitePage .body table.params td.name
+.shellPage .body pre,.shellPage .body code,.shellPage .body table.params td.name
 	{
 	font-family: monospace;
 	color: #006000;
 	font-size: 14px
 }
 
-.devsitePage .body h2 code {
+.shellPage .body h2 code {
 	font-size: inherit
 }
 
-.devsitePage .body pre,.devsitePage .body .pre {
+.shellPage .body pre,.shellPage .body .pre {
 	background: #f2f2f2;
 	border: 1px solid #d8dfea;
 	border-left-width: 3px;
@@ -784,14 +798,14 @@ table.developerAppTestAccountTable .odd td {
 
 /* 
 table {
-.devsitePage .body table { 
+.shellPage .body table { 
 	margin-bottom: 1em
 }
 */
 
 /* 
 table td,table th {	
-.devsitePage .body table td,.devsitePage .body table th {  
+.shellPage .body table td,.shellPage .body table th {  
 	border: 1px solid #bbb;
 	text-align: left;
 	padding: 6px;
@@ -802,28 +816,28 @@ table td,table th {
 }
 */
 
-.devsitePage .body table.noborder td {
+.shellPage .body table.noborder td {
 	border: 0
 }
 
-.devsitePage .body table.bordered td,.devsitePage .body table.bordered th
+.shellPage .body table.bordered td,.shellPage .body table.bordered th
 	{
 	border: 1px solid #ddd
 }
 
-.devsitePage .body table.uiGrid td {
+.shellPage .body table.uiGrid td {
 	border: 0
 }
 
-.devsitePage .body table td p:last-child {
+.shellPage .body table td p:last-child {
 	margin-bottom: 0
 }
 
-.devsitePage .body table.uiInfoTable {
+.shellPage .body table.uiInfoTable {
 	width: auto
 }
 
-.devsitePage .body table.uiInfoTable td,.devsitePage .body table.uiInfoTable th
+.shellPage .body table.uiInfoTable td,.shellPage .body table.uiInfoTable th
 	{
 	border: 0;
 	padding: 6px;
@@ -832,17 +846,17 @@ table td,table th {
 	vertical-align: middle
 }
 
-.devsitePage .body table.uiInfoTable th {
+.shellPage .body table.uiInfoTable th {
 	width: auto
 }
 
-.devsitePage .footer {
+.shellPage .footer {
 	color: #777;
 	padding-bottom: 30px
 }
 
 /* 页脚内容区域 */
-.devsitePage .footer .content {
+.shellPage .footer .content {
 	/*
 		margin: 0 auto;
 		max-width: 980px;
@@ -854,19 +868,19 @@ table td,table th {
     padding-bottom: 10px
 }
 
-.devsitePage .footer .copyright {
+.shellPage .footer .copyright {
 	float: left
 }
 
-.devsitePage .footer .links {
+.shellPage .footer .links {
 	text-align: right
 }
 
-.devsitePage .footer .links a {
+.shellPage .footer .links a {
 	margin-left: 15px
 }
 
-.devsitePage .header {
+.shellPage .header {
 	background: white;
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 20px;
@@ -874,22 +888,22 @@ table td,table th {
 	padding-top: 0
 }
 
-.devsitePage .header h1 {
+.shellPage .header h1 {
 	margin: 0;
 	font-size: 25px;
 	font-weight: normal
 }
 
-.devsitePage .header h1 a {
+.shellPage .header h1 a {
 	color: #333;
 	text-decoration: none
 }
 
-.devsitePage .header .breadcrumbs {
+.shellPage .header .breadcrumbs {
 	margin-top: 4px
 }
 
-.devsitePage div.admin {
+.shellPage div.admin {
 	background: #eee;
 	border: 1px solid #ddd;
 	float: right;
@@ -899,29 +913,29 @@ table td,table th {
 	position: relative
 }
 
-.devsitePage div.admin a {
+.shellPage div.admin a {
 	margin: 0 6px
 }
 
-.devsitePage div.admin a.gatekeeper {
+.shellPage div.admin a.gatekeeper {
 	background:
-		url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/uADs2cgkzVe.png)
+	/*	url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/uADs2cgkzVe.png) */
 		no-repeat left center;
 	padding-left: 12px;
 	font-weight: bold
 }
 
-.devsitePage .body .titleblock {
+.shellPage .body .titleblock {
 	margin: 20px 0
 }
 
-.devsitePage .body .titleblock h1 {
+.shellPage .body .titleblock h1 {
 	font-size: 25px;
 	font-weight: normal;
 	padding: 0
 }
 
-.devsitePage .body .titleblock h3 {
+.shellPage .body .titleblock h3 {
 	color: #797c80;
 	font-size: 17px;
 	font-weight: normal;
@@ -930,57 +944,57 @@ table td,table th {
 	padding: 0
 }
 
-.devsitePage .body .titleblock div.stats {
+.shellPage .body .titleblock div.stats {
 	margin-top: 20px
 }
 
-.devsitePage .body .titleblock .statsbox {
+.shellPage .body .titleblock .statsbox {
 	background: #eee;
 	float: right;
 	padding: 20px 20px 10px 20px;
 	width: 200px
 }
 
-.devsitePage .body .titleblock div.stats .statsbox li {
+.shellPage .body .titleblock div.stats .statsbox li {
 	color: #333;
 	font-size: 12px;
 	line-height: 14px
 }
 
-.devsitePage .body .titleblock div.stats ul {
+.shellPage .body .titleblock div.stats ul {
 	color: #627aad;
 	list-style-type: square;
 	padding: 0 0 0 17px
 }
 
-.devsitePage .body .titleblock div.stats li {
+.shellPage .body .titleblock div.stats li {
 	font-size: 15px;
 	line-height: 22px;
 	margin-bottom: 5px
 }
 
-.devsitePage .body .titleblock div.stats li span {
+.shellPage .body .titleblock div.stats li span {
 	color: #333
 }
 
-.devsitePage .body .titleblock img {
+.shellPage .body .titleblock img {
 	float: left;
 	height: 65px;
 	margin: 0 10px 0 0
 }
 
-.devsitePage .body p.intro {
+.shellPage .body p.intro {
 	color: #797c80;
 	font-size: 15px;
 	line-height: 21px;
 	margin-bottom: 20px
 }
 
-.devsitePage .body p.intro b {
+.shellPage .body p.intro b {
 	color: #444
 }
 
-.devsitePage .body .contentblock {
+.shellPage .body .contentblock {
 	clear: right;
 	float: left;
 	margin: 1.5em 0;
@@ -988,32 +1002,32 @@ table td,table th {
 	width: 100%
 }
 
-.devsitePage .body hr {
+.shellPage .body hr {
 	clear: right;
 	margin: 20px 0
 }
 
-.devsitePage .body h3 {
+.shellPage .body h3 {
 	margin-top: 25px
 }
 
-.devsitePage .body .contentblock h2 {
+.shellPage .body .contentblock h2 {
 	margin: 0 0 15px 0;
 	padding: 0
 }
 
-.devsitePage .body .contentblock h2.mbn {
+.shellPage .body .contentblock h2.mbn {
 	margin: 0
 }
 
-.devsitePage .body .contentblock h3 {
+.shellPage .body .contentblock h3 {
 	color: #999;
 	font-size: 14px;
 	font-weight: normal;
 	margin: 0 0 20px 0
 }
 
-.devsitePage .body .contentblock h4 {
+.shellPage .body .contentblock h4 {
 	color: #000;
 	font-size: 15px;
 	font-weight: bold;
@@ -1021,145 +1035,145 @@ table td,table th {
 	margin-bottom: 4px
 }
 
-.devsitePage .body .contentblock p {
+.shellPage .body .contentblock p {
 	color: #333;
 	font-size: 13px;
 	line-height: 18px;
 	margin-bottom: 18px
 }
 
-.devsitePage .body .contentblock a.more {
-	background: url(/attachment/more.png) no-repeat 100% 3px;
+.shellPage .body .contentblock a.more {
+	background: /*url(/attachment/more.png)*/ no-repeat 100% 3px;
 	padding-right: 10px
 }
 
-.devsitePage .body .contentblock img.right {
+.shellPage .body .contentblock img.right {
 	float: right;
 	margin: 0 0 10px 20px
 }
 
-.devsitePage .body .contentblock img.left {
+.shellPage .body .contentblock img.left {
 	display: table-cell;
 	float: left;
 	margin: 0 20px 10px 0
 }
 
-.devsitePage .body .contentblock img.bleed {
+.shellPage .body .contentblock img.bleed {
 	margin-right: -16px
 }
 
-.devsitePage .body .contentblock img.bordered {
+.shellPage .body .contentblock img.bordered {
 	border: 1px solid #ddd;
 	margin-bottom: 10px;
 	padding: 5px
 }
 
-.devsitePage .body .contentblock ol {
+.shellPage .body .contentblock ol {
 	margin: 10px 0;
 	padding: 0 0 0 23px
 }
 
-.devsitePage .body .contentblock ol li {
+.shellPage .body .contentblock ol li {
 	margin-bottom: 10px
 }
 
-.devsitePage .body .fleft {
+.shellPage .body .fleft {
 	float: left;
 	width: 357px
 }
 
-.devsitePage .body .fright {
+.shellPage .body .fright {
 	float: right;
 	width: 357px
 }
 
-.devsitePage .body .fleft ul,.devsitePage .body .fright ul {
+.shellPage .body .fleft ul,.shellPage .body .fright ul {
 	list-style-type: square;
 	margin: 0;
 	padding: 0 0 0 20px
 }
 
-.devsitePage .body .fleft ul li,.devsitePage .body .fright ul li {
+.shellPage .body .fleft ul li,.shellPage .body .fright ul li {
 	margin: 0 0 10px 0
 }
 
-.devsitePage .body .fcol {
+.shellPage .body .fcol {
 	float: left;
 	width: 231px
 }
 
-.devsitePage .body .poq {
+.shellPage .body .poq {
 	background: #f1f2f9;
 	margin-bottom: 20px;
 	margin-top: -20px;
 	padding: 20px
 }
 
-.devsitePage .body .poq p {
+.shellPage .body .poq p {
 	color: #666
 }
 
-.devsitePage .body .poq p.small {
+.shellPage .body .poq p.small {
 	color: #999;
 	font-size: 12px;
 	margin: 0
 }
 
-.devsitePage .body .poq .credit img.left {
+.shellPage .body .poq .credit img.left {
 	margin-right: 10px
 }
 
-.devsitePage .body .poq.right {
+.shellPage .body .poq.right {
 	float: right;
 	margin-left: 20px;
 	width: 280px
 }
 
-.devsitePage .body .poq.left {
+.shellPage .body .poq.left {
 	float: left;
 	margin-right: 20px;
 	width: 280px
 }
 
-.devsitePage .body .pagebottom {
+.shellPage .body .pagebottom {
 	border-top: 1px solid #ddd;
 	clear: both;
 	height: 25px;
 	padding-top: 20px
 }
 
-.devsitePage .body .pagebottom a.right {
+.shellPage .body .pagebottom a.right {
 	float: right
 }
 
-.devsitePage .body .pagebottom a.left {
+.shellPage .body .pagebottom a.left {
 	float: left
 }
 
-.devsitePage .thumbnail {
+.shellPage .thumbnail {
 	float: left;
 	margin-right: 10px
 }
 
-.devsitePage .thumbnail .img {
+.shellPage .thumbnail .img {
 	border: 1px solid #ccc
 }
 
-.devsitePage .plugin .name,.devsitePage .plugin .desc {
+.shellPage .plugin .name,.shellPage .plugin .desc {
 	margin-left: 143px
 }
 
-.devsitePage .plugin .name {
+.shellPage .plugin .name {
 	font-size: 17px;
 	line-height: 24px
 }
 
-.devsitePage .timestamp {
+.shellPage .timestamp {
 	color: #666;
 	font-size: 12px
 }
 
-.devsitePage .clearcols {
+.shellPage .clearcols {
 	clear: both;
 	display: block;
 	height: 0;
@@ -1168,14 +1182,14 @@ table td,table th {
 	width: 0
 }
 
-.devsitePage .menu {
+.shellPage .menu {
 	background: #3b5998;
 	font-weight: bold;
 	padding-top: 8px
 }
 
 /*--- 设置主导航区域样式-横向导航栏  ---*/
-.devsitePage .menu .content {
+.shellPage .menu .content {
 	background: #627aad;
 	font-size: 15px;
 	border: 1px solid #1a3c6c;
@@ -1190,127 +1204,127 @@ table td,table th {
 	*/
 }
 
-.devsitePage .menu,.devsitePage .menu a {
+.shellPage .menu,.shellPage .menu a {
 	color: #fff
 }
 
-.devsitePage .menu a.logo {
+.shellPage .menu a.logo {
 	margin-right: 0px;
 	padding: 5px 17px 12px;
 	line-height: 0
 }
 
-.devsitePage .menu a.logo img {
+.shellPage .menu a.logo img {
 	width: 166px;
 	height: 17px
 }
 
-.devsitePage .menu a.logo,.devsitePage .menu a.l {
+.shellPage .menu a.logo,.shellPage .menu a.l {
 	display: block;
 	float: left
 }
 
-.devsitePage .menu a.l {
+.shellPage .menu a.l {
 	line-height: 29px;
 	padding: 2px 11px 2px
 }
 
-.devsitePage .menu a.l:hover,.devsitePage .menu a.logo:hover {
+.shellPage .menu a.l:hover,.shellPage .menu a.logo:hover {
 	background: #1a3c6c;
 	text-decoration: none
 }
 
-.devsitePage .menu .search {
+.shellPage .menu .search {
 	float: right;
 	padding: 5px 10px;
 	width: 280px
 }
 
-.devsitePage .menu .uiTypeahead {
+.shellPage .menu .uiTypeahead {
 	border: 0
 }
 
-.devsitePage .menu .uiTypeahead .wrap {
+.shellPage .menu .uiTypeahead .wrap {
 	border: 0
 }
 
-.devsitePage .menu .uiSearchInput {
+.shellPage .menu .uiSearchInput {
 	border: 0
 }
 
-.devsitePage .menu .uiSearchInput input {
+.shellPage .menu .uiSearchInput input {
 	width: 270px
 }
 
-.devsitePage .menu .uiSearchInput span {
+.shellPage .menu .uiSearchInput span {
 	border: 0;
 	padding: 0
 }
 
-.devsitePage .menu .uiSearchInput button {
+.shellPage .menu .uiSearchInput button {
 	top: 1px
 }
 
-.devsitePage .menu .uiTypeaheadView {
+.shellPage .menu .uiTypeaheadView {
 	z-index: 1
 }
 
-.devsitePage .menu .uiTypeaheadView li {
+.shellPage .menu .uiTypeaheadView li {
 	color: #3b5998
 }
 
-.devsitePage .menu .inputtext {
+.shellPage .menu .inputtext {
 	border: 0;
 	padding: 5px 4px
 }
 
-.devsitePage .menu {
+.shellPage .menu {
 	position: fixed;
 	width: 100%;
 	z-index: 100
 }
 
-.devsitePage #navsubsectionpages {
+.shellPage #navsubsectionpages {
 	margin-top: 20px
 }
 
-.devsitePage #navsubsectionpages h5 {
+.shellPage #navsubsectionpages h5 {
 	color: #777;
 	font-size: 12px;
 	margin: 25px 0 10px 10px
 }
 
-.devsitePage #navsubsectionpages ul {
+.shellPage #navsubsectionpages ul {
 	margin-left: 10px
 }
 
-.devsitePage #navsubsectionpages li {
+.shellPage #navsubsectionpages li {
 	border: 0;
 	font-size: 12px;
 	padding: 1px 0
 }
 
-.devsitePage #navsubsectionpages li a {
+.shellPage #navsubsectionpages li a {
 	padding: 0
 }
 
 /* 内容主显示区域 */
-.devsitePage .bodyText {
+.shellPage .bodyText {
 	margin-left: 7px
 }
 
-.devsitePage .bodyMenu li a.private.selected {
+.shellPage .bodyMenu li a.private.selected {
 	/*background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png),url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/uADs2cgkzVe.png);*/
 	background-position: 160px center, left center;
 	background-repeat: no-repeat, no-repeat
 }
 
-.devsitePage .bodyMenu li a.private {
+.shellPage .bodyMenu li a.private {
 	margin-left: 5px
 }
 
 /* 左侧导航栏  */
-.devsitePage .bodyMenu {
+.shellPage .bodyMenu {
 	float: left;
 	overflow: hidden;
 	width: 166px;
@@ -1318,15 +1332,15 @@ table td,table th {
 	margin-left: 35px
 }
 
-.devsitePage .bodyMenu.fixed {
+.shellPage .bodyMenu.fixed {
 	position: fixed
 }
 
-.devsitePage .bodyMenu.fixedScrolling {
+.shellPage .bodyMenu.fixedScrolling {
 	bottom: 0
 }
 
-.devsitePage .bodyMenu .title {
+.shellPage .bodyMenu .title {
 	color: #666;
 	font-size: 25px;
 	font-weight: normal;
@@ -1335,22 +1349,22 @@ table td,table th {
 	padding: 0
 }
 
-.devsitePage .bodyMenu ul {
+.shellPage .bodyMenu ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 	margin-bottom: 0
 }
 
-.devsitePage .bodyMenu li {
+.shellPage .bodyMenu li {
 	margin: 0
 }
 
-.devsitePage .bodyMenu h4,.devsitePage .bodyMenu li a {
+.shellPage .bodyMenu h4,.shellPage .bodyMenu li a {
 	padding: 6px 6px 6px 10px
 }
 
-.devsitePage .bodyMenu h4 {
+.shellPage .bodyMenu h4 {
 	font-size: 17px;
 	font-weight: normal;
 	color: #666;
@@ -1359,11 +1373,11 @@ table td,table th {
 	margin-bottom: 8px
 }
 
-.devsitePage .bodyMenu li a {
+.shellPage .bodyMenu li a {
 	display: block
 }
 
-.devsitePage .bodyMenu li a.selected {
+.shellPage .bodyMenu li a.selected {
 	color: #333;
 	font-weight: bold;
 	background:
@@ -1371,11 +1385,11 @@ table td,table th {
 		no-repeat right center
 }
 
-.devsitePage .bodyMenu li ul.subsections li a.selected {
+.shellPage .bodyMenu li ul.subsections li a.selected {
 	background-image: none
 }
 
-.devsitePage .body.reference hr {
+.shellPage .body.reference hr {
 	border: 0;
 	background-color: #d2d2d2;
 	height: 1px;
@@ -1383,46 +1397,46 @@ table td,table th {
 	margin-top: 40px
 }
 
-.devsitePage .body.reference h2 {
+.shellPage .body.reference h2 {
 	font-weight: normal;
 	color: #666;
 	font-size: 17px;
 	margin-bottom: 16px
 }
 
-.devsitePage .body div.fql_example {
+.shellPage .body div.fql_example {
 	margin-bottom: 1em
 }
 
-.devsitePage .bodyMenu .toplevelnav ul.subsections {
+.shellPage .bodyMenu .toplevelnav ul.subsections {
 	margin: 0;
 	padding: 0
 }
 
-.devsitePage .bodyMenu .toplevelnav li {
+.shellPage .bodyMenu .toplevelnav li {
 	border-bottom: 1px solid #e5e5e5
 }
 
-.devsitePage .bodyMenu .toplevelnav li.active.withsubsections {
+.shellPage .bodyMenu .toplevelnav li.active.withsubsections {
 	padding-bottom: 5px
 }
 
-.devsitePage .bodyMenu .toplevelnav li:first-child {
+.shellPage .bodyMenu .toplevelnav li:first-child {
 	border-top: 1px solid #e5e5e5
 }
 
-.devsitePage .bodyMenu .toplevelnav ul.subsections li {
+.shellPage .bodyMenu .toplevelnav ul.subsections li {
 	border: 0;
 	padding: 0 0 0 25px
 }
 
-.devsitePage .bodyMenu .toplevelnav ul.subsections li a {
+.shellPage .bodyMenu .toplevelnav ul.subsections li a {
 	color: #333;
 	font-size: 13px;
 	padding: 3px 6px
 }
 
-.devsitePage .bodyMenu .toplevelnav li a:hover {
+.shellPage .bodyMenu .toplevelnav li a:hover {
 	/* background: url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png) 
 		no-repeat right center;
 	color: #333;
@@ -1430,20 +1444,17 @@ table td,table th {
 	text-decoration: none
 }
 
-.devsitePage .bodyMenu .toplevelnav li ul.subsections li a:hover {
+.shellPage .bodyMenu .toplevelnav li ul.subsections li a:hover {
 	background-image: none
 }
 
-.devsitePage .bodyMenu .toplevelnav ul li img.imgWrap {
+.shellPage .bodyMenu .toplevelnav ul li img.imgWrap {
 	float: left;
 	margin: 6px 0 0 5px
 }
 
-.devsitePage .bodyMenu .toplevelnav ul li a.aWrap {
+.shellPage .bodyMenu .toplevelnav ul li a.aWrap {
 	display: inline-block;
 	width: 128px
 }
 
-#bootloader_5UlL1 {
-	height: 42px;
-}

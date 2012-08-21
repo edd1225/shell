@@ -7,7 +7,6 @@
 
 <title>@SHELL</title>
 
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/cuheXhkBDkh.css">
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_framework.css">
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
 </head>
@@ -18,7 +17,7 @@
 	<div id="FB_HiddenContainer" style="position:absolute; top:-10000px; width:0px; height:0px;"></div>
 -->	
 
-	<div class="devsitePage">
+	<div class="shellPage">
 		<!-- 顶行菜单导航开始 -->
 		<div class="menu">
 				<a class="logo" href="<%=request.getContextPath() %>"> 
@@ -92,5 +91,7 @@
 			</div>
 		</div>
 		<!-- 页脚div 结束 -->
+		
+		</div>
 </body>
 </html>

@@ -12,8 +12,6 @@
 <meta name="description" content="@SHELL 是一个企业级开发的基础平台，集成SPIRNG、HIBERNATE框架，提供企业级开发的基础功能部分，用户在此基础平台上可以搭建自己的业务平台！">
 
 <title>@SHELL</title>
-
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/cuheXhkBDkh.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_framework.css">
 
@@ -48,7 +46,7 @@
 
 <body class="safari4 Locale_zh_CN" >
 
-	<div class="devsitePage">
+	<div class="shellPage">
 		<!-- 顶行菜单导航开始 -->
 		<div class="menu">
 				<a class="logo" href="<%=request.getContextPath() %>"> 
