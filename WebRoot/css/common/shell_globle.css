@@ -7,12 +7,6 @@
  *****************************************************/
 
 
-html body {
-	/*background: #e7e7e7*/
-	background: url(../../images/shell_bgimg.gif)
-}
-
-
 /* @SHELL全局样式-div可以水平排列 对IE失效 */
 .shell_inline_block{
 	display: inline-block;
@@ -321,7 +315,7 @@ ul.shell_tab_container_nav a.active {
     margin-right: 5px;
     padding: 2px 10px;
     text-align: center;
-	opacity: 1;
+	opacity: 1
 }
 
 
@@ -363,5 +357,35 @@ ul.shell_tab_container_nav a.active {
     /*white-space: nowrap;*/
 }
 
+
+/* @SHELL 搜索框  */
+.uiTypeahead {
+	background: #fff;
+	border: solid #bdc7d8;
+	border-width: 1px 0;
+	cursor: default;
+	position: relative
+}
+
+.uiTypeahead .wrap {
+	border: solid #bdc7d8;
+	border-width: 0 1px
+}
+
+.uiTypeahead .innerWrap {
+	overflow: hidden;
+	zoom: 1
+}
+
+.uiTypeahead .textInput {
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+	width: 100%
+}
+
+.uiTypeahead .selected {
+	background-color: #e2e8f6
+}
 
 

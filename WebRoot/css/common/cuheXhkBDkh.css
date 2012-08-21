@@ -243,9 +243,11 @@ table.developerAppTestAccountTable .odd td {
 
 .devsitePage dt a.private,.devsitePage .refindex .page .title a.private,.devsitePage .bodyMenu li a.private
 	{
+	/*
 	background:
 		url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/uADs2cgkzVe.png)
 		no-repeat left center;
+	*/
 	padding-left: 13px
 }
 
@@ -1421,10 +1423,10 @@ table td,table th {
 }
 
 .devsitePage .bodyMenu .toplevelnav li a:hover {
-	background:
-	/*	url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png) */
+	/* background: url(http://static.ak.fbcdn.net/rsrc.php/v1/yE/r/JQgQHls27pw.png) 
 		no-repeat right center;
 	color: #333;
+	*/
 	text-decoration: none
 }
 

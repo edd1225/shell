@@ -9,11 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>增加人员</title>
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/cuheXhkBDkh.css" />
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/p_e4y6WmY0P.css" />
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/eExuUYovHyE.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
-
+<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_framework.css">
 
 <%
 		Object obj = request.getAttribute("voResult");
@@ -36,7 +33,7 @@
 
 
 </head>
-<body  style="background: url('');">
+<body>
 	
 	<div style="margin-top: 8px;margin-left:10px;margin-right:10px;">
 	<!-- 工具栏 -->

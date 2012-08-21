@@ -8,15 +8,12 @@
 <title>@SHELL</title>
 
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/cuheXhkBDkh.css">
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/p_e4y6WmY0P.css">
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/eExuUYovHyE.css">
+<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_framework.css">
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
-
 </head>
 
 <!-- 文档body部分开始 -->
-
-<body class="safari4 Locale_zh_CN" >
+<body>
 <!--
 	<div id="FB_HiddenContainer" style="position:absolute; top:-10000px; width:0px; height:0px;"></div>
 -->	
@@ -36,32 +33,9 @@
 				<a class="l" href="https://developers.facebook.com/apps">设置</a>
 
 				<!-- 搜索div开始 -->
-				<div class="search">
-					<form method="get" action="/shell/login.action">
-						<div class="uiTypeahead" id="u362713_2">
-							<div class="wrap">
-								<input type="hidden" autocomplete="off" class="hiddenInput" name="path" value="">
-								<div class="innerWrap">
-									<span class="uiSearchInput textInput"> <span>
-										 <input	type="text" class="inputtext DOMControl_placeholder"
-											name="selection" placeholder="Search for documentation"
-											autocomplete="off" spellcheck="false" value="Search for documentation..."
-											title="Search for documentation">
-
-											<button type="submit" title="Search for documentation">
-												<!--
-												<span class="hidden_elem">Search for documentation</span>
-												-->
-											</button> 
-											
-										</span></span>
-								</div>
-							</div>
-							<div class="uiTypeaheadView" id="u362713_1"></div>
-						</div>
-					</form>
-				</div>
+				
 				<!-- 搜索div结束 -->
+				
 				<div class="clear"></div>
 			</div>
 		</div>

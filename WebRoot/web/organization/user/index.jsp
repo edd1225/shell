@@ -14,9 +14,8 @@
 <title>@SHELL</title>
 
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/cuheXhkBDkh.css" />
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/p_e4y6WmY0P.css" />
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/eExuUYovHyE.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
+<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_framework.css">
 
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/jquery/jquery.noty.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/jquery/noty_theme_default.css" />
@@ -116,7 +115,7 @@
 						<form name="userForm" method="post" action="">
 							<input type="hidden" id="currentPage" name="currentPage" value="1" />
 							<input type="hidden" id="ids" name="id" value="fuck you." />
-								<div class="uiTypeahead" id="u362713_2">
+								<div class="uiTypeahead">
 									<div class="wrap">
 										<div class="innerWrap">
 											<span class="shell_tool_search textInput"> 
@@ -131,7 +130,7 @@
 								</div>
 						</form>
 						</div>
-							<!-- 搜索div结束 -->
+						<!-- 搜索div结束 -->
 								
 							<div class="shell_tool_btn shell_inline_block" onclick="javascript:doAddUser();">+&nbsp;增加</div>
 							<div class="shell_tool_btn shell_inline_block" onclick="javascript:doBatchDelete();">-&nbsp;删除</div>
@@ -299,7 +298,8 @@
 		//}
 		//alert(SYS_MESSAGE_TYPE);
 		//有bug
-		if(SYS_MESSAGE_TXT!=null && SYS_MESSAGE_TXT!=""){
+		//if(SYS_MESSAGE_TXT!=null && SYS_MESSAGE_TXT!=""){
+			if(true==false){
 			var noty_id = noty({
 				  "text": SYS_MESSAGE_TXT,
 				  "layout": "top",

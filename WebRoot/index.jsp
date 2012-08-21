@@ -5,24 +5,28 @@
 <HEAD>
 <TITLE>SHELL</TITLE>
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
-<STYLE type="text/css">
-<!--
-.a1 {	FONT-SIZE: 9pt; LINE-HEIGHT: 16px; TEXT-DECORATION: none}
+
+<style type="text/css">
+	
+	.shell_btn{
+		WIDTH: 70px; 
+		HEIGHT: 30px
+	}
+
+</style>
+
+<!--  
 -->
-</STYLE>
-<link href="css/common/bj.css" rel="stylesheet" type="text/css">
+<link href="css/common/shell_framework.css" rel="stylesheet" type="text/css">
 
 <script language="javascript" src="js/common/shell_util.js"></script>
 <script language="javascript" src="js/common/alert.js"></script>
-
 <script language='javascript'>
 
 //alert(yesOrNoConfirm("发"));
 
 function testPop(obj){
-	
 	testMessageBox(obj);
-	
 }
 
 //登录验证
@@ -45,8 +49,9 @@ function checkUser(){
 </script>
 
 </HEAD>
-<BODY leftMargin=0 background="<%=request.getContextPath() %>/images/shell_bgimg.gif" topMargin=0 marginheight="0" marginwidth="0" >
-<TABLE height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0">
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"  >
+
+<TABLE height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0" >
   <TBODY>
   <TR>
 	<TD align=middle valign="top">
@@ -87,13 +92,17 @@ function checkUser(){
 				  <TD class=a1 colSpan=2 height=15>&nbsp;</TD>
 				</TR>
 				<TR>
-				  <TD class=a1 width="37%" height="1" nowrap><FONT color=#55728a>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;ID：</FONT></TD>
+				  <TD class=a1 width="37%" height="1" nowrap>
+				  	<FONT color=#55728a>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;ID：</FONT>
+				  </TD>
 				  <TD width="63%">
 					<input type="text" name="userCode" size="15" maxlength="15" style="WIDTH: 100%" />
 				  </TD>
 				</TR>
 				<TR>
-				  <TD nowrap height="1"><font color="#55728a">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</font></TD>
+				  <TD nowrap height="1" class="a3">
+				  	<font color="#55728a">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</font>
+				  </TD>
 				  <TD>
 					<input type="password" name="password" maxlength="16" style="WIDTH: 100%" />
 				  </TD>
@@ -109,11 +118,13 @@ function checkUser(){
 				</TD>
 				</TR>
 				
-				<TD align=middle valign="middle"><input style="WIDTH: 70px; HEIGHT: 30px" type="button" value='登录' onclick="checkUser()"></TD>
-				<TD align=middle valign="middle"><input style="WIDTH: 70px; HEIGHT: 30px" type='reset' value='重置'></TD>
+				<TD align=middle valign="middle">
+					<input class='shell_btn' type="button" value='登录' onclick="checkUser()"></TD>
+				<TD align=middle valign="middle">
+					<input class='shell_btn' type='reset' value='重置'></TD>
 				
 				<TD align=middle valign="middle">
-					<input style="WIDTH: 70px; HEIGHT: 30px" type='reset' value='pop' onclick="testPop(this);">
+					<input class='shell_btn' type='reset' value='pop' onclick="testPop(this);">
 				</TD>
 				</TR>
 				
@@ -124,8 +135,6 @@ function checkUser(){
 		
 		  </TBODY></TABLE>
 		  </form>
-
- 		  
 </TD>
   </TR></TBODY></TABLE>
 </BODY>

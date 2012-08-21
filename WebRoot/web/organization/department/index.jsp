@@ -14,9 +14,8 @@
 <title>@SHELL</title>
 
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/cuheXhkBDkh.css" />
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/p_e4y6WmY0P.css" />
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/eExuUYovHyE.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
+<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_framework.css">
 
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/jquery/jquery.noty.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/jquery/noty_theme_default.css" />
@@ -387,12 +386,9 @@
 		var SYS_MESSAGE_TXT = "<%=session.getAttribute("SYS_MESSAGE_VALUE") %>";
 		var SYS_MESSAGE_TYPE = "<%=session.getAttribute("SYS_MESSAGE_TYPE") %>";
 
-		//if(SYS_MESSAGE_TYPE == null){
-			//SYS_MESSAGE_TYPE = "information";
-		//}
-		//alert(SYS_MESSAGE_TYPE);
 		//有bug
-		if(SYS_MESSAGE_TXT!=null && SYS_MESSAGE_TXT!=""){
+		//if(SYS_MESSAGE_TXT!=null && SYS_MESSAGE_TXT!=""){
+			if(true==false){
 			var noty_id = noty({
 				  "text": SYS_MESSAGE_TXT,
 				  "layout": "top",
