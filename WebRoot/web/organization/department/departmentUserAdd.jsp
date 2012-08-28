@@ -38,82 +38,135 @@
 	<div style="margin-top: 8px;margin-left:10px;margin-right:10px;">
 	<!-- 工具栏 -->
 	<div class="shell_toolBar">
-		<div class="shell_tool_btn shell_inline_block" style="float:left;">全部人员 (<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>)</div>
-		<div class="shell_tool_btn shell_inline_block" style="float:left;"> 已选择(<div class="shell_inline_block" id="shell_view_departmentuser_selected_count">0</div>)</div>
-
-		<div>
-			<!-- 搜索div开始 -->
-			<div class="shell_inline_block">
-				<form name="departmentUserAddForm" method="post" action="">
-					<input type="hidden" id="currentPage" name="currentPage" value="1" />
-					<input type="hidden" id="ids" name="user.id" value="" />
-					<input type="hidden" id="departmentID" name="id" value="" />
-					<div class="uiTypeahead" id="u362713_2">
-						<div class="wrap">
-							<div class="innerWrap">
-								<span class="shell_tool_search textInput"> 
-									<span>
-									 <input	type="text" class="inputtext DOMControl_placeholder"
-										name="user.fullName" value="<%=request.getParameter("user.fullName")==null?"":request.getParameter("user.fullName") %>" title="键入搜索条件" />
-										<button type="button" title="Search for documentation" onclick="javascript:doDepartmentUnbindUserSearch();"></button> 
+		
+		<!-- 题头开始 -->
+		<table cellspacing=0 cellpadding=0 width=100% border=0 align="center">
+		  <tbody>
+		    <tr>
+		      <td width=20 valign="top" bgcolor="E3EDFF" >
+		      	<img src="../../../images/holly-11-10t.gif" border=0> 
+		      </td>
+		      <td bgcolor="E3EDFF" width="100%">
+		        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		          <tr>
+		            <td height="4" colspan="9"></td>
+		          </tr>
+		          <tr>
+		            <td width="20%" style="text-align: right;">
+		           	 <span onclick="javascript:doAddDepartment();" style="cursor: pointer;">
+		            	全部部门(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>)
+		            </span>
+		            </td>
+		            <td width="10%" style="text-align: right;">
+		           	 <span onclick="javascript:doBatchDeleteDepartment();" style="cursor: pointer;">
+		            	 已选择(<span id="shell_view_departmentuser_selected_count">0</span>)
+		             </span>
+		            </td>
+		            <td width="10%" style="text-align: center;">
+		            </td>
+		            <td width="10%">
+		            	<!-- 搜索div开始 -->
+						<div>
+						<form name="departmentUserAddForm" method="post" action="">
+						<input type="hidden" id="currentPage" name="currentPage" value="1" />
+						<input type="hidden" id="ids" name="user.id" value="" />
+						<input type="hidden" id="departmentID" name="id" value="" />
+						<div class="uiTypeahead" id="u362713_2">
+							<div class="wrap">
+								<div class="innerWrap">
+									<span class="shell_tool_search textInput"> 
+										<span>
+										 <input	type="text" class="inputtext DOMControl_placeholder"
+											name="user.fullName" value="<%=request.getParameter("user.fullName")==null?"":request.getParameter("user.fullName") %>" title="键入搜索条件" />
+											<button type="button" title="Search for documentation" onclick="javascript:doDepartmentUnbindUserSearch();"></button> 
+										</span>
 									</span>
-								</span>
+								</div>
 							</div>
 						</div>
-					</div>
-				</form>
-			</div>
-			<!-- 搜索div结束 -->
-					
-		</div>
+						</form>
+						</div>
+						<!-- 搜索div结束 -->
+		            </td>
+		            <td width="45%" align="right">
+		            </td>
+		            <td width="10" align="right"><b><img src="../../../images/holly-x.gif" height="12"></b></td>
+		            <td width="10" align="center"><b><img src="../../../images/holly-s.gif" height="12"></b></td>
+		          </tr>
+		        </table>
+		        <b></b>
+		        </td>
+		      <td align="right" valign="top" bgcolor="E3EDFF"><img src="../../../images/holly-11-10v.gif" border=0></td>
+		    </tr>
+		    <tr>
+		      <td colspan="3" valign="top" height="2" bgcolor="2865A2"></td>
+		    </tr>
+		  </tbody>
+		</table>
+		<!-- 题头结束 -->
+		
 	</div>
 
 
 	<!-- 主数据显示区域 开始 -->			 		
 	<div style="border: solid 0px #cccccc ; height: 100%;" class="shell_grid">
-		<table style="width: 100%;">
-			<tr style="background-color: #627aad">
-				<th>
-					<input type="checkbox" id="checkUSERAll" onclick="doCheckAll(this);" /> 
-				</th>
-				<th>全名</th>
-				<th>性别</th>
-				<th>工号</th>
-				<th>地址</th>
-				<th>电话</th>
-				<th>生日</th>
-			</tr>
 	
-	
+		 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+	          <tr>
+	            <td bgcolor="808080" valign="top">
+	              <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" height="100%">
+	                <tr>
+	                  <td nowrap bgcolor="#B5BCCE" valign="top" align="center">
+	                    <table cellspacing=1 cellpadding=2 width="100%" border="0">
+	                      <tbody>
+				<!-- 标题 -->
+	            <tr>
+	             	 <th width="5%" align=left bgcolor=#E3EDFF class="a1">
+	                  	<input type="checkbox" id="checkUSERAll" onclick="doCheckAll(this);" /> 
+	                 </th>
+	                 <th width="10%" align=left bgcolor=#E3EDFF class="a1">全名 </th>
+	                 <th width="10%" align=left bgcolor=#E3EDFF class="a1">性别</th>
+	                 <th width="10%" align=left bgcolor=#E3EDFF class="a1">工号</th>
+	                 <th width="3%" align=left bgcolor=#E3EDFF class="a1">地址</th>
+					 <th width="15%" align=left bgcolor=#E3EDFF class="a1">电话</th>
+					 <th width="20%" align=left bgcolor=#E3EDFF class="a1">生日</th>
+				
+	            </tr>             
+	                  
+							<%	if(resultList!=null){			
+									for(int j=0;j<resultList.size();j++){
+										TblSysUser user = (TblSysUser)resultList.get(j);									
+							%>	
+								 
+	                         <tr onclick="doChangeColor('color<%=j %>');" id="color<%=j %>" bgcolor="#FFFFFF">
+	                          <td width="5%" align=center  class="a1">
+	                          	<input type="checkbox" name="checkedUser" value="<%=user.getId() %>" /> 
+	                          </td>
+	                          <td width="10%" align=left class="a1">
+	                          	<%=user.getFullName() %>
+	                          </td>
+	                          <td width="10%" align=center class="a1"><%=user.getSex() %></td>
+	                          <td width="10%" align=left  class="a1"><%=user.getUserCode() %></td>
+	                          <td width="30%" align=center class="a1"><%=user.getAddress() %></td>
+							  <td width="15%" align=center class="a1"><%=user.getTelephone() %></td>
+							  <td width="20%" align=center  class="a1"><%=user.getBirthday() %></td>
+	                        </tr>
 		
-		<%	if(resultList!=null){			
-				for(int j=0;j<resultList.size();j++){
-					TblSysUser user = (TblSysUser)resultList.get(j);									
-		%>					
-	
-		<div>
-			<tr>
-				<td>
-					<input type="checkbox" name="checkedUser" value="<%=user.getId() %>" /> 
-				</td>
-				<td><%=user.getFullName() %></td>
-				<td><%=user.getSex() %></td>
-				<td><%=user.getUserCode() %></td>
-				<td><%=user.getAddress() %></td>
-				<td><%=user.getTelephone() %></td>
-				<td><%=user.getBirthday() %></td>
-			</tr>
-		</div>		
-												   
-		   <%}}%>
-		</table>	
+		
+							<%}}%>
+	                        
+	                      </tbody>
+	                  </table></td>
+	                </tr>
+	            </table></td>
+	          </tr>
+	   </table>
+		
+	</div>
+	<!-- 主数据显示区域 结束 -->
 			<!-- 翻页 -->
 			<shell_services:pagination totalPages="<%=(voResult==null)?0:voResult.getTotalPages() %>" 
 									   currentPageNO="<%=(voResult==null)?0:voResult.getCurrentPage() %>" />
-	</div>
-	<!-- 主数据显示区域 结束 -->
-	<br/>
-	
 	</div>
 	
 	

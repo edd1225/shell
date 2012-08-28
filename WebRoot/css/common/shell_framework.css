@@ -24,6 +24,13 @@ body {
 	SCROLLBAR-DARKSHADOW-COLOR: white
 }
 
+
+table td{
+	
+}
+
+
+
 /* 个别元素设置字体大小 */
 .a1 {
 	font-size: 12px;
@@ -51,29 +58,24 @@ INPUT {
 
 a {
     cursor: pointer;
-    font-size: 12px;
 	color: #3b5998;
 	text-decoration: none
 }
 
 a:hover {
-	font-size: 12px;
 	color: #333;
 	text-decoration: none
 }
 
 a:link {
-	font-size: 12px;
 	text-decoration: none
 }
 
 a:active {
-	font-size: 12px;
 	text-decoration: none;
 }
 
 a:visited {
-	font-size: 12px
 }
 
 TEXTAREA {

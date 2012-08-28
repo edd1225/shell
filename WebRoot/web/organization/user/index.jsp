@@ -47,13 +47,16 @@
 <body class="safari4 Locale_zh_CN" >
 
 	<div class="shellPage">
+	
 		<!-- 顶行菜单导航开始 -->
 		<div class="menu">
-				<a class="logo" href="<%=request.getContextPath() %>"> 
-					<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17">
-			    </a> 
-			    
-			<div class="content">
+		
+	 	<div class="logo">
+			<a href="<%=request.getContextPath() %>"> 
+				<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17">
+		    </a>
+	 	</div>
+			<div class="topNav">
 				<a class="l" href="<%=request.getContextPath() %>/web/defaultFrame/mainFrame.jsp">主面板</a>
 				<a class="l" href="http://developers.facebook.com/module/">组织机构</a>
 				<a class="l" href="http://developers.facebook.com/blog/">权限管理</a> 
@@ -61,7 +64,7 @@
 				<a class="l" href="https://developers.facebook.com/apps">设置</a>
 				
 				<!-- 登录个人信息 -->
-				<div align="right" style="padding-top: 7px;padding-right: 5px; font-size: small;font-weight: normal;">
+				<div align="right" style="float:right; padding-top: 7px;padding-right: 5px;font-size: 12px; ">
 					<span style="padding-left: 5px;">
 						<%=request.getSession().getAttribute("userCode")!=null ? request.getSession().getAttribute("userCode") : "游客" %>	
 					</span>
@@ -72,11 +75,14 @@
 						注销
 					</span>
 				</div>	
-
-				<div class="clear"></div>
+				
+				<div style="clear: both;"></div>
+		
 			</div>
 		</div>
 		<!-- 顶行菜单导航结束 -->
+		
+		<div style="clear: both;"></div>
 
 		<div class="body nav">
 		
@@ -100,45 +106,95 @@
 		
 			<!-- 右侧内容主显示区域 -->
 			<div class="content">
+				<div class="contentWrap">
+				
 				<div id="bodyText" class="bodyText">
-					
+				
 					<div class="shell_toolBar">
-						<div class="shell_tool_btn shell_inline_block" style="float:left;">全部用户(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>人)</div>
-						<div class="shell_tool_btn shell_inline_block" style="float:left;"> 已选择(<div class="shell_inline_block" id="shell_view_selected_count">0</div>)</div>
 						
-						<div>
-
-						<!-- 搜索div开始 -->
-						<div class="shell_inline_block">
-						<form name="userForm" method="post" action="">
-							<input type="hidden" id="currentPage" name="currentPage" value="1" />
-							<input type="hidden" id="ids" name="id" value="fuck you." />
-								<div class="uiTypeahead">
-									<div class="wrap">
-										<div class="innerWrap">
-											<span class="shell_tool_search textInput"> 
-												<span>
-												 <input	type="text" class="inputtext DOMControl_placeholder"
-													name="fullName" value="<%=request.getParameter("fullName")==null?"":request.getParameter("fullName") %>" title="键入搜索条件" />
-													<button type="button" title="Search for documentation" onclick="javascript:doUserSearch();"></button> 
-												</span>
-											</span>
+						<!-- 题头开始 -->
+						<table cellspacing=0 cellpadding=0 width=100% border=0 align="center">
+						  <tbody>
+						    <tr>
+						      <td width=20 valign="top" bgcolor="E3EDFF" >
+						      	<img src="../../../images/holly-11-10t.gif" border=0> 
+						      </td>
+						      <td bgcolor="E3EDFF" width="100%">
+						        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+						          <tr>
+						            <td height="4" colspan="9"></td>
+						          </tr>
+						          <tr>
+						          	<td width="10%" style="text-align: right;">
+						          		<span> 已选择(<span id="shell_view_selected_count">0</span>)</span>
+						          	</td>
+									<td width="10%" style="text-align: right;">
+										<span>全部部门(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>人)</span>
+									</td>
+						          
+						            <td width="5%" style="text-align: right;">
+						           	 <span onclick="javascript:doAddUser();" style="cursor: pointer;">
+						            	<img src="../../../images/docnew.gif">
+						            	增加</span>
+						            </td>
+						            <td width="5%" style="text-align: right;">
+						           	 <span onclick="javascript:doBatchDelete();" style="cursor: pointer;">
+						            	<img src="../../../images/docdelete.gif">
+						            	删除</span>
+						            </td>
+						            <td width="5%" style="text-align: right;">
+							            <span onclick="javascript:doUpdateUser();" style="cursor: pointer;">
+						            	<img src="../../../images/docedit.gif">
+						            	更新</span>
+						            </td>
+						            <td width="10%" style="text-align: center;">
+						            	<span style="cursor: pointer;">
+						            	<img  src="../../../images/shapeTriangle.gif">
+						            	更多操作</span>
+						            </td>
+						            <td width="10%">
+						            	<!-- 搜索div开始 -->
+										<div>
+										<form name="userForm" method="post" action="">
+											<input type="hidden" id="currentPage" name="currentPage" value="1" />
+											<input type="hidden" id="ids" name="id" value="fuck you." />
+												<div class="uiTypeahead">
+													<div class="wrap">
+														<div class="innerWrap">
+															<span class="shell_tool_search textInput"> 
+																<span>
+																 <input	type="text" class="inputtext DOMControl_placeholder"
+																	name="fullName" value="<%=request.getParameter("fullName")==null?"":request.getParameter("fullName") %>" title="键入搜索条件" />
+																	<button type="button" title="Search for documentation" onclick="javascript:doUserSearch();"></button> 
+																</span>
+															</span>
+														</div>
+													</div>
+												</div>
+										</form>
 										</div>
-									</div>
-								</div>
-						</form>
-						</div>
-						<!-- 搜索div结束 -->
-								
-							<div class="shell_tool_btn shell_inline_block" onclick="javascript:doAddUser();">+&nbsp;增加</div>
-							<div class="shell_tool_btn shell_inline_block" onclick="javascript:doBatchDelete();">-&nbsp;删除</div>
-							<div class="shell_tool_btn shell_inline_block" onclick="javascript:doUpdateUser();">U&nbsp;更新</div>
-							<div class="shell_tool_btn shell_inline_block">+&nbsp;更多操作</div>
-						</div>
+										<!-- 搜索div结束 -->
+						            </td>
+						            <td width="35%" align="right">
+						            
+						            </td>
+						            <td width="10" align="right"><b><img src="../../../images/holly-x.gif" height="12"></b></td>
+						            <td width="10" align="center"><b><img src="../../../images/holly-s.gif" height="12"></b></td>
+						         
+						          </tr>
+						        </table>
+						        <b></b>
+						        </td>
+						      <td align="right" valign="top" bgcolor="E3EDFF"><img src="../../../images/holly-11-10v.gif" border=0></td>
+						    </tr>
+						    <tr>
+						      <td colspan="3" valign="top" height="2" bgcolor="2865A2"></td>
+						    </tr>
+						  </tbody>
+						</table>
+						<!-- 题头结束 -->
 						
 					</div>
-					
-				
 			 		
 					<div>
 						
@@ -179,25 +235,29 @@
 											   currentPageNO="<%=(voResult==null)?0:voResult.getCurrentPage() %>" />
 			
 				</div>
-				<div class="clear"></div>
-			</div>
-		</div>
-
-
-
-		<!-- 页脚div 开始 -->
-		<div class="footer">
-			<div class="content">
-				<div class="copyright">SHELL &copy; 2012</div>
-				<div class="links">
-					<a href="http://www.facebook.com/platform">关于SHELL</a> <a
-						href="http://developers.facebook.com/policy/">平台政策</a> <a
-						href="http://www.facebook.com/policy.php">隐私政策</a> <a
-						href="http://www.facebook.com/policy.php">自定义页脚</a>
+				
 				</div>
+				
+				<!-- 页脚div 开始 -->
+				<div class="footer">
+					<div class="footerWrap">
+						<div class="copyright">SHELL &copy; 2012</div>
+						<div class="links">
+							<a href="http://www.facebook.com/platform">关于</a> <a
+								href="http://developers.facebook.com/policy/">平台政策</a> <a
+								href="http://www.facebook.com/policy.php">隐私政策</a> <a
+								href="http://www.facebook.com/policy.php">自定义页脚</a>
+						</div>
+					</div>
+				</div>
+				<!-- 页脚div 结束 -->
+				
+				
 			</div>
 		</div>
-		<!-- 页脚div 结束 -->
+
+
+
 	</div>
 
 <!-- js库要按照顺序提前加载，否则后面的js函数失效 -->	

@@ -86,3 +86,21 @@ function popWindow(_loadURL,_titleTXT,_reloadFunc){
         }
     });
 }
+
+
+/**
+ * 改变表格行背景颜色
+ * @param trId
+ */
+function doChangeColor(trId){
+	for( i=0; i < 10 ;i++ ){
+		var curId = "color" + i;
+		if(curId == trId){
+			//document.getElementById("color"+i).bgColor="#FFFCE3";
+			document.getElementById("color"+i).bgColor="#E3EDFF";
+		}else{
+			if(document.getElementById("color"+i)!=null )
+				document.getElementById("color"+i).bgColor="#FFFFFF";
+		}
+	}
+}

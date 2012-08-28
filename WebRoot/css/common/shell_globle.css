@@ -9,8 +9,8 @@
 
 /* @SHELL全局样式-div可以水平排列 对IE失效 */
 .shell_inline_block{
-	display: inline-block;
     position: relative;
+	display: inline-block;
 }
 
 /* @SHELL用户身份面板 被选择样式 */
@@ -68,11 +68,11 @@
 
 /* @SHELL工具栏 */
 .shell_toolBar{
-	background: none repeat scroll 0 0 #eee;
+	background: none repeat scroll 0 0 #E3EDFF;
 	/*margin-bottom: 10px;*/
 	padding-bottom: 1px;	
 	padding-top:1px;
-	border:1px solid;
+	border:0px solid;
 	border-color: #999999 #999999 #888888;
 	border-bottom: 0px solid #DDDDDD;
   		
@@ -84,9 +84,9 @@
 	border: 1px solid #999;
 	line-height: 13px;
 	*/
-	background-repeat: no-repeat;
 	background-position: -352px -348px;
-	background-color: #EEE;
+	background-repeat: no-repeat;
+	background-color: #E3EDFF;
 	border-bottom-color: #888;
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1);
 	border-image: initial;
@@ -128,9 +128,11 @@
     -moz-border-top-colors: none;
     border-style: solid none none;
     border-width: 1px 0 0;
-    display: inline-block;
     padding: 1px 0 2px;
-    position: relative;	
+    position: relative;
+    display: inline-block;
+    /*
+    */	
 }
 /* @SHELL工具栏搜索文本框样式 */	
 .shell_tool_search input {
@@ -320,7 +322,7 @@ ul.shell_tab_container_nav a.active {
 
 
 
-/* @SHELL 数据表格 */
+/* @SHELL 数据表格 
 .shell_grid table {
 	border-collapse: collapse;
 	width: 100%;
@@ -354,9 +356,9 @@ ul.shell_tab_container_nav a.active {
 	padding-bottom: 1px;
 	padding-right: 5px;
 	vertical-align: middle;
-    /*white-space: nowrap;*/
+    white-space: nowrap;
 }
-
+*/
 
 /* @SHELL 搜索框  */
 .uiTypeahead {
@@ -364,84 +366,85 @@ ul.shell_tab_container_nav a.active {
 	border: solid #bdc7d8;
 	border-width: 1px 0;
 	cursor: default;
+	width: auto
+	/*
 	position: relative
+	*/
 }
 .uiTypeahead .wrap {
 	border: solid #bdc7d8;
-	border-width: 0 1px
+	border-width: 0 1px;
+	width: auto
 }
 .uiTypeahead .innerWrap {
 	overflow: hidden;
-	zoom: 1
+	zoom: 1;
+	width: auto
 }
 .uiTypeahead .textInput {
 	background-color: transparent;
 	border: 0;
 	outline: 0;
-	width: 100%
+	width: auto
 }
 .uiTypeahead .selected {
 	background-color: #e2e8f6
 }
 
-/********************************************************************************/
-
-.shellPage a:hover {
-	/*text-decoration: underline*/
-}
-
-/*
-.shellPage a.uiButton:hover,.shellPage a.itemAnchor:hover {
-	text-decoration: none
-}
-.shellPage img {
-	border: 0
-}
-*/
-
-.shellPage table {
-	/*
-	border: 0;
-	margin: 0;
-	border-collapse: collapse;
-	border-spacing: 0
-	*/
-}
-
-/*
-.shellPage table td,.shellPage table th {
-	border: 0;
-	padding: 0;
-	text-align: left;
-	vertical-align: top
-}
-
-.shellPage table th {
-	font-weight: bold
-}
-
-.shellPage h1,.shellPage h2,.shellPage h3,.shellPage h4 {
-	margin: 0;
-	padding: 0;
-	border: 0
-}
-*/
+/************************************************************************************************************************/
 
 .shellPage .clear {
 	clear: both
 }
 
+.shellPage{
+	width:100%;
+	height: 100%;
+	overflow-x: hidden;
+	position: relative;
+}
+
+
+.shellPage .body{
+	border: 0px solid #000;
+	width: 100%;
+	height:auto;
+	
+	
+	position: absolute;
+	top:42px;
+	overflow: hidden;
+}
+
+
 /*--- 设置主内容区域样式  ---*/
 .shellPage .body .content {
-	margin-top: 0px;
-	margin-left: 200px;
 	/*
-	margin-right: 13px;
-	width:1050px;
-	margin: 0 200px auto;
+	position: absolute;
+	top: 0;
+	bottom: 0px;
+	left: 200px;
+	right: 0;
+	float: left;
 	*/
-	
-	max-width: 1040px
+	margin-left:200px;
+	border: 0px solid #d9d9d9;
+	border-top: 0;
+	overflow:hidden;
+	width:auto;
+	height:auto
+}
+
+
+.shellPage .body .content .contentWrap{
+	border: 1px solid #d9d9d9;
+	width:auto;
+	min-height: 300px
+	/*
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: #fff;
+	*/
 }
 
 
@@ -453,7 +456,7 @@ ul.shell_tab_container_nav a.active {
 */
 
 .shellPage .body pre,.shellPage .body p,.shellPage .body li,.shellPage .body dt,.shellPage .body dd,.shellPage .refindex .page,.shellPage .body textarea,.shellPage .body td
-	{
+{
 	line-height: 18px
 }
 
@@ -573,33 +576,19 @@ ul.shell_tab_container_nav a.active {
 	padding: 0
 }
 
-.shellPage .developerAppDashLeft .toplevelnav ul li a.aWrap {
-	background-position: 135px 10px
+/* 左侧导航 */
+.shellPage .toplevelnav{
+	/*position: absolute;
+	top: 0;
+	right:0;
+	left: 30px;
+	
+	*/
+	margin-left: 30px;
+	margin-top:10px;
+	width: 170px;
 }
 
-.shellPage .developerAppDashLeft .toplevelnav ul li a div.navSectionTitle
-	{
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	width: 123px
-}
-
-.shellPage .developerAppDashLeft .bodyMenu li {
-	padding-bottom: 3px
-}
-
-.shellPage .developerAppDashLeft .bodyMenu li a,.shellPage .developerAppDashLeft .bodyMenu li a.selected
-	{
-	padding: 5px 6px 0 10px
-}
-
-.shellPage .developerAppDashLeft .bodyMenu ul li img.imgWrap {
-	float: left;
-	height: 16px;
-	margin: 4x 0 0 5px;
-	width: 16px
-}
 
 .shellPage .directoryStatus,.shellPage span.dirPending,.devaitePage span.dirUnsubmitted
 	{
@@ -939,20 +928,6 @@ ul.shell_tab_container_nav a.active {
 	width: 416px
 }
 
-.shellPage .body>.content {
-	background: #fff;
-	border: 1px solid #d9d9d9;
-	border-top: 0;
-	-webkit-box-shadow: #ddd 0 1px 1px;
-	padding: 50px 20px 5px
-}
-
-/*--- 导航栏背景图片 ---*/
-.shellPage .nav>.content {
-	background: #fff
-		/* url(http://static.ak.fbcdn.net/rsrc.php/v1/yz/r/coK3kMStN_j.gif) */
-		repeat-y
-}
 
 .shellPage .body ol,.shellPage .body ul {
 	list-style-type: disc;
@@ -1078,9 +1053,15 @@ table td,table th {
 	width: auto
 }
 
+
+
+
+/* 页脚 */
 .shellPage .footer {
+	
+	width: 100%;
 	color: #777;
-	padding-bottom: 30px
+	padding-top: 10px
 }
 
 /* 页脚内容区域 */
@@ -1410,54 +1391,65 @@ table td,table th {
 	width: 0
 }
 
+/* 顶部导航栏 */
 .shellPage .menu {
 	background: #3b5998;
 	font-weight: bold;
-	padding-top: 8px
+	padding-top: 0px;
+	width: 100%;
+	height:42px;
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	left:0;
+	right:0
 }
 
-/*--- 设置主导航区域样式-横向导航栏  ---*/
-.shellPage .menu .content {
-	background: #627aad;
-	font-size: 15px;
-	border: 1px solid #1a3c6c;
-	border-bottom: 0;
-	margin-top: 0px;
+.shellPage .menu .menuWrapper{
+	width: auto;
 	margin-left: 200px;
 	padding: 0
-	/*
-	margin-right: 2px;
-	margin: 0 200px auto;
-	width: 1050px
-	*/
+}
+
+.shellPage .menu .topNav {
+	margin-left: 200px;
+	margin-top:8px;	
+	overflow:hidden;
+	height:33px;
+	width:auto;
+	background: #627aad;
+	font-size: 13.5px;
+	border: 1px solid #1a3c6c;
+	border-bottom: 0;
+	
 }
 
 .shellPage .menu,.shellPage .menu a {
 	color: #fff
 }
 
-.shellPage .menu a.logo {
-	margin-right: 0px;
-	padding: 5px 17px 12px;
-	line-height: 0
+.shellPage .menu .logo {
+	float: left;
+	height: 42px;
+	width: 200px;
+	display: block
 }
 
-.shellPage .menu a.logo img {
-	width: 166px;
-	height: 17px
-}
-
-.shellPage .menu a.logo,.shellPage .menu a.l {
-	display: block;
-	float: left
+.shellPage .menu .logo img {
+	width: auto;
+	height: auto;
+	margin-top: 10px;
+	margin-left: 17px;
 }
 
 .shellPage .menu a.l {
+	display: block;
+	float: left;
 	line-height: 29px;
 	padding: 2px 11px 2px
 }
 
-.shellPage .menu a.l:hover,.shellPage .menu a.logo:hover {
+.shellPage .menu a.l:hover,.shellPage .menu .logo:hover {
 	background: #1a3c6c;
 	text-decoration: none
 }
@@ -1506,11 +1498,7 @@ table td,table th {
 	padding: 5px 4px
 }
 
-.shellPage .menu {
-	position: fixed;
-	width: 100%;
-	z-index: 100
-}
+
 
 .shellPage #navsubsectionpages {
 	margin-top: 20px
@@ -1536,9 +1524,15 @@ table td,table th {
 	padding: 0
 }
 
+
+/********************************************************************************************************/
+
 /* 内容主显示区域 */
 .shellPage .bodyText {
-	margin-left: 7px
+	margin-left: 8px;
+	margin-top: 10px;
+	margin-right: 8px;
+	margin-bottom:10px;
 }
 
 .shellPage .bodyMenu li a.private.selected {
@@ -1553,11 +1547,9 @@ table td,table th {
 
 /* 左侧导航栏  */
 .shellPage .bodyMenu {
-	float: left;
+	float:left;
 	overflow: hidden;
-	width: 166px;
-	margin-top: 60px;
-	margin-left: 35px
+	width: 200px
 }
 
 .shellPage .bodyMenu.fixed {

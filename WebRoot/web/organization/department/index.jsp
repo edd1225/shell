@@ -45,13 +45,16 @@
 <body class="safari4 Locale_zh_CN" >
 
 	<div class="shellPage">
+	
 		<!-- 顶行菜单导航开始 -->
 		<div class="menu">
-				<a class="logo" href="<%=request.getContextPath() %>"> 
-					<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17">
-			    </a> 
-			    
-			<div class="content">
+		
+	 	<div class="logo">
+			<a href="<%=request.getContextPath() %>"> 
+				<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17">
+		    </a>
+	 	</div>
+			<div class="topNav">
 				<a class="l" href="<%=request.getContextPath() %>/web/defaultFrame/mainFrame.jsp">主面板</a>
 				<a class="l" href="http://developers.facebook.com/module/">组织机构</a>
 				<a class="l" href="http://developers.facebook.com/blog/">权限管理</a> 
@@ -59,7 +62,7 @@
 				<a class="l" href="https://developers.facebook.com/apps">设置</a>
 				
 				<!-- 登录个人信息 -->
-				<div align="right" style="padding-top: 7px;padding-right: 5px; font-size: small;font-weight: normal;">
+				<div align="right" style="float:right; padding-top: 7px;padding-right: 5px;font-size: 12px; ">
 					<span style="padding-left: 5px;">
 						<%=request.getSession().getAttribute("userCode")!=null ? request.getSession().getAttribute("userCode") : "游客" %>	
 					</span>
@@ -70,11 +73,14 @@
 						注销
 					</span>
 				</div>	
-
-				<div class="clear"></div>
+				
+				<div style="clear: both;"></div>
+		
 			</div>
 		</div>
 		<!-- 顶行菜单导航结束 -->
+
+		<div style="clear: both;"></div>
 
 		<div class="body nav">
 		
@@ -98,112 +104,175 @@
 		
 			<!-- 右侧内容主显示区域 -->
 			<div class="content">
+			
+			<div class="contentWrap">
+			
 				<div id="bodyText" class="bodyText">
 					
+					<!-- 工具栏 -->
 					<div class="shell_toolBar">
-						<div class="shell_tool_btn shell_inline_block" style="float:left;">全部部门(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>)</div>
-						<div class="shell_tool_btn shell_inline_block" style="float:left;"> 已选择(<div class="shell_inline_block" id="shell_view_selected_count">0</div>)</div>
-
-						<div>
-							<!-- 搜索div开始 -->
-							<div class="shell_inline_block">
-								<form name="departmentForm" method="post" action="">
-									<input type="hidden" id="currentPage" name="currentPage" value="1" />
-									<input type="hidden" id="ids" name="id" value="" />
-									<input type="hidden" name="currentDepartmentID" id="currentDepartmentID" value="" />
-									
-									<div class="uiTypeahead" id="u362713_2">
-										<div class="wrap">
-											<div class="innerWrap">
-												<span class="shell_tool_search textInput"> 
-													<span>
-													 <input	type="text" class="inputtext DOMControl_placeholder"
-														name="departmentName" value="<%=request.getParameter("departmentName")==null?"":request.getParameter("departmentName") %>" title="键入搜索条件" />
-														<button type="button" title="Search for documentation" onclick="javascript:doDepartmentSearch();"></button> 
-													</span>
-												</span>
+					
+					
+					<!-- 题头开始 -->
+						<table cellspacing=0 cellpadding=0 width=100% border=0 align="center">
+						  <tbody>
+						    <tr>
+						      <td width=20 valign="top" bgcolor="E3EDFF" >
+						      	<img src="../../../images/holly-11-10t.gif" border=0> 
+						      </td>
+						      <td bgcolor="E3EDFF" width="100%">
+						        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+						          <tr>
+						            <td height="4" colspan="9"></td>
+						          </tr>
+						          <tr>
+						          <%--
+						            <td width="4%" align="center">
+							            <b><font color="127BC4">
+							            	 <img src="../../../images/icon_next.gif">
+							            </font></b>
+						            </td>
+						           --%>
+						            
+						            
+						            <td width="5%" style="text-align: right;">
+						           	 <span onclick="javascript:doAddDepartment();" style="cursor: pointer;">
+						            	<img src="../../../images/docnew.gif">
+						            	增加</span>
+						            </td>
+						            <td width="5%" style="text-align: right;">
+						           	 <span onclick="javascript:doBatchDeleteDepartment();" style="cursor: pointer;">
+						            	<img src="../../../images/docdelete.gif">
+						            	删除</span>
+						            </td>
+						            <td width="5%" style="text-align: right;">
+							            <span onclick="javascript:doUpdateDepartment();" style="cursor: pointer;">
+						            	<img src="../../../images/docedit.gif">
+						            	更新</span>
+						            </td>
+						            <td width="10%" style="text-align: center;">
+						            	<span style="cursor: pointer;">
+						            	<img  src="../../../images/shapeTriangle.gif">
+						            	更多操作</span>
+						            </td>
+						            <td width="10%">
+						            	<!-- 搜索div开始 -->
+										<div>
+										<form name="departmentForm" method="post" action="">
+											<input type="hidden" id="currentPage" name="currentPage" value="1" />
+											<input type="hidden" id="ids" name="id" value="" />
+											<input type="hidden" name="currentDepartmentID" id="currentDepartmentID" value="" />
+											<div class="uiTypeahead" id="u362713_2">
+												<div class="wrap">
+													<div class="innerWrap">
+														<span class="shell_tool_search textInput"> 
+															<span>
+															 <input	type="text" class="inputtext DOMControl_placeholder"
+																name="departmentName" value="<%=request.getParameter("departmentName")==null?"":request.getParameter("departmentName") %>" title="键入搜索条件" />
+																<button type="button" title="Search for documentation" onclick="javascript:doDepartmentSearch();"></button> 
+															</span>
+														</span>
+													</div>
+												</div>
 											</div>
+										</form>
 										</div>
-									</div>
-								</form>
-							</div>
-							<!-- 搜索div结束 -->
-									
-							<div class="shell_tool_btn shell_inline_block" onclick="javascript:doAddDepartment();">+&nbsp;增加</div>
-							<div class="shell_tool_btn shell_inline_block" onclick="javascript:doBatchDeleteDepartment();">-&nbsp;删除</div>
-							<div class="shell_tool_btn shell_inline_block" onclick="javascript:doUpdateDepartment();">U&nbsp;更新</div>
-							<div class="shell_tool_btn shell_inline_block">+&nbsp;更多操作</div>
-						</div>
+									<!-- 搜索div结束 -->
+						            </td>
+						            <td width="55%" align="right">
+						            
+						            </td>
+						            <td width="10" align="right"><b><img src="../../../images/holly-x.gif" height="12"></b></td>
+						            <td width="10" align="center"><b><img src="../../../images/holly-s.gif" height="12"></b></td>
+						         
+						          </tr>
+						        </table>
+						        <b></b>
+						        </td>
+						      <td align="right" valign="top" bgcolor="E3EDFF"><img src="../../../images/holly-11-10v.gif" border=0></td>
+						    </tr>
+						    <tr>
+						      <td colspan="3" valign="top" height="2" bgcolor="2865A2"></td>
+						    </tr>
+						  </tbody>
+						</table>
+						<!-- 题头结束 -->
+						
 					</div>
 					
-					<!-- 主数据显示区域 开始 -->			 		
-					<div style="border: solid 0px #555555; overflow: auto;" class="shell_grid">
+					<div style="height: 0px;width: 100%;"></div>	
+		
+					<!-- 主数据显示区域 开始 -->	
+					<div class="shell_grid" style="border: solid 0px #555555; overflow: auto;">
 					
-						<!-- 标题 -->
-						<div class="shell_grid_head" style="overflow:auto; width: 100%;">
-						<table cellpadding="0" cellspacing="0">
-						<!-- 
-						 -->	
-							<tr style="height: 0px;"> 
-								<td style="padding:0;border:0;margin:0;height:0px;width:40px;"></td>
-								<td style="padding:0;border:0;margin:0;height:0px;width:100px;" ></td>
-								<td style="padding:0;border:0;margin:0;height:0px;width:100px;" ></td>
-								<td style="padding:0;border:0;margin:0;height:0px;width:100px;" ></td>
-								<td style="padding:0;border:0;margin:0;height:0px;width:100px;" ></td>
-							</tr>
-							<tr>
-								<th> 
-									<input type="checkbox" id="checkAll" onclick="javascript:checkBoxAll();" /> 
-								</th>
-								<th>部门名称</th>
-								<th>部门类型</th>
-								<th>所属组织</th>
-								<th>创建时间</th>
-							</tr>
-						</table>
-						</div>
+					 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+					          <tr>
+					            <td bgcolor="808080" valign="top">
+					              <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" height="100%">
+					                <tr>
+					                  <td nowrap bgcolor="#B5BCCE" valign="top" align="center">
+					                    <table cellspacing=1 cellpadding=2 width="100%" border="0">
+					                      <tbody>
+								<!-- 标题 -->
+					            <tr>
+					             	 <th width="10%" align=left bgcolor=#E3EDFF class="a1">
+					                  	<input type="checkbox" id="checkAll" onclick="javascript:checkBoxAll();" /> 
+					                 </th>
+					                 <th width="20%" align=left bgcolor=#E3EDFF class="a1">部门名称 </th>
+					                 <th width="20%" align=left bgcolor=#E3EDFF class="a1">部门类型</th>
+					                 <th width="20%" align=left bgcolor=#E3EDFF class="a1">所属组织</th>
+					                 <th width="30%" align=left bgcolor=#E3EDFF class="a1">创建时间</th>
+					            </tr>             
+					                  
+											<%	if(resultList!=null){			
+													for(int j=0;j<resultList.size();j++){
+														TblSysDepartment department = (TblSysDepartment)resultList.get(j);									
+											%>	
+												 
+					                        <tr onclick="doChangeColor('color<%=j %>');" id="color<%=j %>" bgcolor="#FFFFFF" >
+					                          <td width="10%" align=center  class="a1">
+					                          	<input type="checkbox" name="checkedDepartment" value="<%=department.getId() %>" />
+					                          </td>
+					                          <td width="20%" align=left class="a1">
+					                          	<a href="#" id="<%=department.getId() %>" onclick="javascript:doLoadUser(this);" >
+														<%=department.getDepartmentName() %>
+												</a>
+					                          </td>
+					                          <td width="20%" align=center  class="a1"><%=department.getDepartmentType() %></td>
+					                          <td width="20%" align=left class="a1"><%=department.getOrganizationID() %></td>
+					                          <td width="30%" align=center class="a1"><%=department.getCreateTime() %></td>
+					                        </tr>
 						
-						
-						<div class="shell_grid_data" style="overflow:auto; border: solid 0px #aaa; width: 100%;">
-						<table cellpadding="0" cellspacing="0">	
-							<tr style="height: 0px;"> 
-								<td style="padding:0;border:0;margin:0;height:0px;width:40px;"></td>
-								<td style="padding:0;border:0;margin:0;height:0px;width:100px;" ></td>
-								<td style="padding:0;border:0;margin:0;height:0px;width:100px;" ></td>
-								<td style="padding:0;border:0;margin:0;height:0px;width:100px;" ></td>
-								<td style="padding:0;border:0;margin:0;height:0px;width:100px;" ></td>
-							</tr>
-						 
-						<%	if(resultList!=null){			
-								for(int j=0;j<resultList.size();j++){
-									TblSysDepartment department = (TblSysDepartment)resultList.get(j);									
-						%>	
-										
-							<tr>
-								<td>
-								 	<input type="checkbox" name="checkedDepartment" value="<%=department.getId() %>" /> 
-								</td>
-								<td><a href="#" id="<%=department.getId() %>" onclick="javascript:doLoadUser(this);" >
-									<%=department.getDepartmentName() %></a>
-								</td>
-								<td ><%=department.getDepartmentType() %></td>
-								<td ><%=department.getOrganizationID() %></td>
-								<td ><%=department.getCreateTime() %></td>
-							</tr>
-	
-						  <%}}%>
-							
-						</table>
-						</div>	
-						
+											 <%}}%>
+					                        
+					                      </tbody>
+					                  </table></td>
+					                </tr>
+					            </table></td>
+					          </tr>
+					   </table>
+					
+					</div>	
+					<!-- 主数据显示区域 结束 -->			
 					<!-- 翻页 紧跟数据区下方 -->
 					<shell_services:pagination totalPages="<%=(voResult==null)?0:voResult.getTotalPages() %>" 
 											   currentPageNO="<%=(voResult==null)?0:voResult.getCurrentPage() %>" />
-
-					</div>
-					<!-- 主数据显示区域 结束 -->	
+			
 					
-					<div> <span>&nbsp;&nbsp;</span>	</div>
+					<div style="height: 5px;width: 100%;"></div>			
+				
+			<%--  暂时保留		
+			<!-- 主数据显示区域 开始 -->			 		
+					<div class="shell_grid" style="border: solid 0px #555555; overflow: auto;">
+						<!-- 标题 -->
+						<div class="shell_grid_head" style="overflow:auto; width: 100%;">
+						</div>
+						<div class="shell_grid_data" style="overflow:auto; border: solid 0px #aaa; width: 100%;">
+						</div>	
+					</div>
+			<!-- 主数据显示区域 结束 -->	
+			--%>		
+					<div style="height: 8px;width: 100%;"></div>	
 						
 					<!-- 标签数据显示区 开始 -->
 					<div id="tab-container" style="border: solid 0px; overflow:hidden;width:100%; ">
@@ -239,24 +308,25 @@
 			
 			
 				</div>
-				<div class="clear"></div>
-			</div>
-		</div>
-
-
-		<!-- 页脚div 开始 -->
-		<div class="footer">
-			<div class="content">
-				<div class="copyright">SHELL &copy; 2012</div>
-				<div class="links">
-					<a href="http://www.facebook.com/platform">关于</a> <a
-						href="http://developers.facebook.com/policy/">平台政策</a> <a
-						href="http://www.facebook.com/policy.php">隐私政策</a> <a
-						href="http://www.facebook.com/policy.php">自定义页脚</a>
+				
+			</div>	
+				
+			<!-- 页脚div 开始 -->
+			<div class="footer">
+				<div class="footerWrap">
+					<div class="copyright">SHELL &copy; 2012</div>
+					<div class="links">
+						<a href="http://www.facebook.com/platform">关于</a> <a
+							href="http://developers.facebook.com/policy/">平台政策</a> <a
+							href="http://www.facebook.com/policy.php">隐私政策</a> <a
+							href="http://www.facebook.com/policy.php">自定义页脚</a>
+					</div>
 				</div>
 			</div>
+			<!-- 页脚div 结束 -->	
+				
+			</div>
 		</div>
-		<!-- 页脚div 结束 -->
 		
 	</div>
 
@@ -288,9 +358,6 @@
 		userIframe.src = '<%=request.getContextPath() %>/web/organization/department/userIndex.action?id='+id;
 		tabber.show(1);
 		document.getElementById("currentDepartmentID").value = id;
-		
-		
-		
 	}
 	
 	
