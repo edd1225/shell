@@ -64,23 +64,24 @@ public class UserController implements SystemParam {
 		if(userVO.getId()!=null && !"".equals(userVO.getId().trim())){
 			rowNums = tblSysUserService.deleteByID(userVO);
 		}
-		request.getSession().setAttribute("SYS_MESSAGE_TYPE","success");
-		request.getSession().setAttribute("SYS_MESSAGE_VALUE", "成功删除"+rowNums+"条记录.");
 		return new ModelAndView("redirect:/web/organization/user/index.action");
 	}
 	
 	
+	/**
+	 * 增加系统用户
+	 * @param request
+	 * @param userVO
+	 * @return
+	 */
 	@RequestMapping(value="add")
 	public ModelAndView add(HttpServletRequest request , TblSysUserVO userVO){
 		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
 		int rowNums = 0;
-		if(userVO!=null && !"".equals(userVO.getUserCode()) && !"".equals(userVO.getPassword()) 
-															&& !"".equals(userVO.getFullName())  ){
+		if(userVO!=null && !"".equals(userVO.getUserCode()) && !"".equals(userVO.getPassword()) && !"".equals(userVO.getFullName())  ){
 			rowNums = tblSysUserService.add(userVO);
 		}
-		request.getSession().setAttribute("SYS_MESSAGE_TYPE","success");
-		request.getSession().setAttribute("SYS_MESSAGE_VALUE", "成功添加"+rowNums+"条记录.");
-		return new ModelAndView("redirect:/web/organization/user/index.action");
+		return new ModelAndView("common/ok");
 	}
 	
 	
@@ -112,9 +113,7 @@ public class UserController implements SystemParam {
 		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
 		int rowNums = 0;
 		rowNums = tblSysUserService.update(userVO);
-		request.getSession().setAttribute("SYS_MESSAGE_TYPE","success");
-		request.getSession().setAttribute("SYS_MESSAGE_VALUE", "成功更新"+rowNums+"条记录.");
-		return new ModelAndView("redirect:/web/organization/user/index.action");
+		return new ModelAndView("common/ok");
 	}
 	
 	

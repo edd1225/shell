@@ -19,5 +19,17 @@
 		</property>
 	</bean>
 	
+	<!-- 系统工号服务 -->
+	<bean id="tblSysAgentCodeService" class="shell.framework.organization.agentcode.service.impl.TblSysAgentCodeService4JdbcImpl">
+		<property name="jdbcBaseDao">
+			<ref bean="baseDaoTemplate.Jdbc"/>
+		</property>
+	</bean>
 	
+	<!-- 系统角色服务 -->
+	<bean id="tblSysRoleService" class="shell.framework.organization.role.service.impl.TblSysRoleService4JdbcImpl">
+		<property name="jdbcBaseDao">
+			<ref bean="baseDaoTemplate.Jdbc"/>
+		</property>
+	</bean>
 </beans>

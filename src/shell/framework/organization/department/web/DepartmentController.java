@@ -44,7 +44,9 @@ public class DepartmentController {
 	 * @return ModelAndView对象
 	 */
 	@RequestMapping(value="index")
-	public ModelAndView index(HttpServletRequest request,@RequestParam(required=false) Integer currentPage , TblSysDepartmentVO departmentVO){
+	public ModelAndView index(HttpServletRequest request,@RequestParam(required=false) Integer currentPage , 
+			TblSysDepartmentVO departmentVO){
+		
 		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
 		if(currentPage==null || currentPage<=0){
 			currentPage = 1;
@@ -71,6 +73,16 @@ public class DepartmentController {
 	}
 	
 	
+	@RequestMapping(value="roleIndex")
+	public ModelAndView roleIndex(@RequestParam(required=false) Integer currentPage , TblSysDepartmentVO departmentVO){
+		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
+		if(currentPage==null || currentPage<=0){
+			currentPage = 1;
+		}
+		VOResult voResult = departmentService.findRoleByPagination(currentPage, SystemParam.PAGE_SIZE, departmentVO);
+		return new ModelAndView("web/organization/department/roleIndex","voResult",voResult);
+	}
+	
 	/**
 	 * 索引未绑定部门的用户
 	 * @param currentPage
@@ -88,6 +100,16 @@ public class DepartmentController {
 	}
 	
 	
+	@RequestMapping(value="unAssignRoleIndex")
+	public ModelAndView unAssignRoleIndex(@RequestParam(required=false) Integer currentPage , TblSysDepartmentVO departmentVO){
+		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
+		if(currentPage==null || currentPage<=0){
+			currentPage = 1;
+		}
+		VOResult voResult = departmentService.findRoleByUnAssignDepartment(currentPage, SystemParam.PAGE_SIZE, departmentVO);
+		return new ModelAndView("web/organization/department/departmentRoleAdd","voResult",voResult);
+	}
+	
 	/**
 	 * 增加部门
 	 * @param request
@@ -104,9 +126,7 @@ public class DepartmentController {
 			departmentVO.setIsValid(SystemParam.IS_VALID);
 			rowNums = departmentService.add(departmentVO);
 		}
-		request.getSession().setAttribute("SYS_MESSAGE_TYPE","success");
-		request.getSession().setAttribute("SYS_MESSAGE_VALUE", "成功添加"+rowNums+"条记录.");
-		return new ModelAndView("redirect:/web/organization/department/index.action");
+		return new ModelAndView("common/ok");
 	}
 	
 	
@@ -157,9 +177,7 @@ public class DepartmentController {
 		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
 		int rowNums = 0;
 		rowNums = departmentService.update(departmentVO);
-		request.getSession().setAttribute("SYS_MESSAGE_TYPE","success");
-		request.getSession().setAttribute("SYS_MESSAGE_VALUE", "成功更新"+rowNums+"条记录.");
-		return new ModelAndView("redirect:/web/organization/department/index.action");
+		return new ModelAndView("common/ok");
 	}
 	
 	
@@ -174,13 +192,24 @@ public class DepartmentController {
 		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
 		int rowNums = 0;
 		rowNums = departmentService.assignSysUser(departmentVO);
-		
-		request.getSession().setAttribute("SYS_MESSAGE_TYPE","success");
-		request.getSession().setAttribute("SYS_MESSAGE_VALUE", "成功更新"+rowNums+"条记录.");
-		
-		return new ModelAndView("redirect:/web/organization/department/index.action");
+		return new ModelAndView("common/ok");
 	}
 	
+	
+	/**
+	 * 给部门分配角色
+	 * @param request
+	 * @param departmentVO
+	 * @return
+	 */
+	@RequestMapping(value="assignSysRole")
+	public ModelAndView assignSysRole(HttpServletRequest request , TblSysDepartmentVO departmentVO){
+		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
+		int rowNums = 0;
+		rowNums = departmentService.assignSysRole(departmentVO);
+		return new ModelAndView("common/ok");
+		
+	}
 	
 	/**
 	 * 解除部门人员的绑定关系
@@ -193,10 +222,21 @@ public class DepartmentController {
 		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
 		int rowNums = 0;
 		rowNums = departmentService.unassignSysUser(departmentVO.getId(),departmentVO.getUser().getId().split("-"));
-		
-		request.getSession().setAttribute("SYS_MESSAGE_TYPE","success");
-		request.getSession().setAttribute("SYS_MESSAGE_VALUE", "成功更新"+rowNums+"条记录.");
 		return new ModelAndView("redirect:/web/organization/department/unbindUserIndex.action");
 	}
 	
+	
+	/**
+	 * 回收部门的角色
+	 * @param request
+	 * @param departmentVO
+	 * @return
+	 */
+	@RequestMapping(value="unAssignSysRole")
+	public ModelAndView unAssignSysRole(HttpServletRequest request , TblSysDepartmentVO departmentVO){
+		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
+		int rowNums = 0;
+		rowNums = departmentService.unAssignSysRole(departmentVO);
+		return new ModelAndView("redirect:/web/organization/department/roleIndex.action");
+	}
 }

@@ -68,10 +68,13 @@
 
 /* @SHELL工具栏 */
 .shell_toolBar{
+	/*
 	background: none repeat scroll 0 0 #E3EDFF;
-	/*margin-bottom: 10px;*/
-	padding-bottom: 1px;	
-	padding-top:1px;
+	margin-bottom: 10px;
+	margin-right: 400px;
+	*/
+	width: 100%;
+	padding: 0px;
 	border:0px solid;
 	border-color: #999999 #999999 #888888;
 	border-bottom: 0px solid #DDDDDD;
@@ -322,7 +325,12 @@ ul.shell_tab_container_nav a.active {
 
 
 
-/* @SHELL 数据表格 
+/* @SHELL 数据表格 */
+.shell_grid {
+	width: 100%;
+}
+
+/*
 .shell_grid table {
 	border-collapse: collapse;
 	width: 100%;
@@ -394,7 +402,7 @@ ul.shell_tab_container_nav a.active {
 /************************************************************************************************************************/
 
 .shellPage .clear {
-	clear: both
+	clear: both;
 }
 
 .shellPage{
@@ -410,10 +418,18 @@ ul.shell_tab_container_nav a.active {
 	width: 100%;
 	height:auto;
 	
-	
 	position: absolute;
 	top:42px;
 	overflow: hidden;
+}
+
+
+/* 左侧导航栏  */
+.shellPage .bodyMenu {
+	float:left;
+	display: inline;
+	overflow: hidden;
+	width: 200px
 }
 
 
@@ -425,35 +441,30 @@ ul.shell_tab_container_nav a.active {
 	bottom: 0px;
 	left: 200px;
 	right: 0;
-	float: left;
 	*/
-	margin-left:200px;
+	margin-left:-250px;
+	float: right;
 	border: 0px solid #d9d9d9;
 	border-top: 0;
 	overflow:hidden;
-	width:auto;
+	width:100%;
 	height:auto
 }
 
 
 .shellPage .body .content .contentWrap{
 	border: 1px solid #d9d9d9;
+	margin-left: 200px;
+	overflow-x: auto;
+	overflow-y: auto;
+	/*
+	margin-right: 20px;
 	width:auto;
 	min-height: 300px
-	/*
-	overflow-x: hidden;
-	overflow-y: auto;
 	background: #fff;
 	*/
 }
 
-
-/*
-.shellPage .header,.shellPage .body,.shellPage .body p,.shellPage .body ul,.shellPage .body ol,.shellPage .body li,.shellPage .body th,.shellPage .body th,.shellPage .body td
-	{
-	font-size: 13px
-}
-*/
 
 .shellPage .body pre,.shellPage .body p,.shellPage .body li,.shellPage .body dt,.shellPage .body dd,.shellPage .refindex .page,.shellPage .body textarea,.shellPage .body td
 {
@@ -1058,8 +1069,7 @@ table td,table th {
 
 /* 页脚 */
 .shellPage .footer {
-	
-	width: 100%;
+	margin-left:200px;	
 	color: #777;
 	padding-top: 10px
 }
@@ -1405,24 +1415,24 @@ table td,table th {
 	right:0
 }
 
-.shellPage .menu .menuWrapper{
-	width: auto;
+.shellPage .menu .topNavWrapper{
 	margin-left: 200px;
-	padding: 0
+	margin-top:8px;	
+	background: #627aad;
+	height:32px;
+	border: 1px solid #1a3c6c;
+	border-bottom: 0;
 }
 
 .shellPage .menu .topNav {
-	margin-left: 200px;
-	margin-top:8px;	
 	overflow:hidden;
-	height:33px;
-	width:auto;
-	background: #627aad;
+	margin-left: -300px;
+	float: right;
+	width:100%;
 	font-size: 13.5px;
-	border: 1px solid #1a3c6c;
-	border-bottom: 0;
-	
 }
+
+
 
 .shellPage .menu,.shellPage .menu a {
 	color: #fff
@@ -1432,7 +1442,9 @@ table td,table th {
 	float: left;
 	height: 42px;
 	width: 200px;
+	/*
 	display: block
+	*/
 }
 
 .shellPage .menu .logo img {
@@ -1543,13 +1555,6 @@ table td,table th {
 
 .shellPage .bodyMenu li a.private {
 	margin-left: 5px
-}
-
-/* 左侧导航栏  */
-.shellPage .bodyMenu {
-	float:left;
-	overflow: hidden;
-	width: 200px
 }
 
 .shellPage .bodyMenu.fixed {

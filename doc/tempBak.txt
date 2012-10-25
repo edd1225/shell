@@ -1,0 +1,87 @@
+***********	ajax 请求
+			
+				$.ajax({
+					type: "post",
+					url: "<%=request.getContextPath() %>/web/organization/user/update.action",
+					data: {
+						id: $("input[name='id']").attr("value"),
+						userCode: $("input[name='userCode']").attr("value"),
+						password: $("input[name='password']").attr("value"),
+						passwordDuration: $("input[name='passwordDuration']").attr("value"),
+						fullName: $("input[name='fullName']").attr("value"),
+						address: $("input[name='address']").attr("value"),
+						sex: $("input[name='sex']").attr("value"),
+						education: $("input[name='education']").attr("value"),
+						email: $("input[name='email']").attr("value"),
+						telephone: $("input[name='telephone']").attr("value"),
+						mobile: $("input[name='mobile']").attr("value"),
+						postCode: $("input[name='postCode']").attr("value"),
+						photo: $("input[name='photo']").attr("value"),
+						status: $("input[name='status']").attr("value"),
+						hireDate: $("input[name='hireDate']").attr("value"),
+						remark: $("input[name='remark']").attr("value"),
+						birthday: $("input[name='birthday']").attr("value")
+					},
+					success: function(returnData){
+						window.parent.$.fn.destory();
+					}
+				});
+				
+
+
+<!-- 自适用iframe高度，自适应弹出框div高度 -->
+<script for=window EVENT=onload language="JavaScript" type="text/javascript">
+    parent.document.getElementById('innerIframe').style.height=document.body.scrollHeight;
+    parent.document.getElementById('jquery-jmodal').style.height = document.body.scrollHeight;
+</script>
+
+
+<%--
+		<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery.noty.js"></script>	
+		//----------测试通知效果 bug-----------------------------------------------------------------------------------
+		var SYS_MESSAGE_TXT = "<%=session.getAttribute("SYS_MESSAGE_VALUE") %>";
+		var SYS_MESSAGE_TYPE = "<%=session.getAttribute("SYS_MESSAGE_TYPE") %>";
+			if(true==false){
+			var noty_id = noty({
+				  "text": SYS_MESSAGE_TXT,
+				  "layout": "top",
+				  "type": SYS_MESSAGE_TYPE,
+				  "animateOpen":{"height":"toggle"},
+				  "animateClose":{"height":"toggle"},
+				  "speed":500,
+				  "timeout":1000,
+				  "closeButton":false,
+				  "closeOnSelfClick":false,
+				  "closeOnSelfOver":false,
+				  "modal":false,
+				  "onClose": function(){
+					  //alert('mmmm');
+				  	}
+			});
+		}
+	--%>					
+	
+	
+	
+//------------------------------- 已选择对象个数变化函数 ----------------------------------------------------------
+	var rescumeCount = function(obj){
+		if(obj.checked == false){
+			$("#shell_view_selected_count").text(parseInt($("#shell_view_selected_count").text(), 10) - 1);
+		} else { 
+			$("#shell_view_selected_count").text(parseInt($("#shell_view_selected_count").text(), 10) + 1);
+		}
+	};	
+	
+//------------------------- 复选按钮单击事件 ------------------------------------------------------------------------
+	$("input[name='checkedRole']").click(function(){
+		var $subs = $("input[name='checkedRole']");
+	    $("#checkAll").prop("checked" , $subs.length == $subs.filter(":checked").length ? true :false);
+	    rescumeCount(this);
+	});
+	
+	
+$.each($(".shell_item_selected"),function(key,obj){
+					obj=$(obj); //需要重新获取对象
+					roleIDs = roleIDs + obj.attr("id") + "-";
+				});	
+				

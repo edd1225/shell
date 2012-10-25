@@ -1,5 +1,6 @@
 /******************************************************
  * @SHELL Util JS v1.0
+ * 
  * Javascript 工具類
  * DateTime: 2012.8.6
  * By changming.Y
@@ -125,8 +126,8 @@ function isVoidStr(inputVal){
 
 /**
  * 选中/去选 所有复选框
- * all_box 全选checkbox按钮
- * group_box 同名checkbox
+ * @param all_box 全选checkbox按钮ID
+ * @param group_box 同名checkbox的name
  */
 function selectAll(all_box, group_box) {
 	var main_checkbox = document.getElementById(all_box);
@@ -142,15 +143,15 @@ function selectAll(all_box, group_box) {
 
 
 /**
- * 复选框是否有被选中
- * @param checkBox_name 复选框组名
- * @returns {Boolean} 至少选中一个返回选中的第一个checkbox的vaule属性值，否则返回false
+ * 判断页面复选框是否有被选中
+ * @param checkBox_name 复选框组名name
+ * @returns {Boolean} 至少选中一个，返回true，否则返回false
  */
-function checkBoxSelected(checkBox_name){
+function isCheckBoxSelected(checkBox_name){
 	var checkBoxes = document.getElementsByName(checkBox_name);
 	for(var i=0;i<checkBoxes.length;i++){
 		if(checkBoxes[i].checked){
-			return checkBoxes[i].value;
+			return true;
 		}
 	}
 	return false;
@@ -206,18 +207,99 @@ function getcheckBoxAllValue(group_box, elemName) {
 }
 
 
+/**
+ * 获取指定checkbox组中选中的唯一checkbox的值
+ * @param groupBox_name checkbox组名
+ * @returns checkbox对象VALUE属性值
+ */
+function getCheckBoxSingleValue(groupBox_name){
+	var checkBoxes = document.getElementsByName(groupBox_name);
+	for(var i=0;i<checkBoxes.length;i++){
+		if(checkBoxes[i].checked){
+			return checkBoxes[i].value;
+		}
+	}
+	return false;
+}
 
 
 /**
- * 新建窗口，位于屏幕中央
- * 无菜单栏 无工具栏 无标题栏
+ * 复选框元素选中个数变化函数
+ * @param obj checkbox事件源对象
+ * @param view_selected_count_id 显示选中checkbox个数的span元素id
  */
-function openNewWindow(xURL, xwidth, xheight) {
-	var showx = (window.screen.availWidth - xwidth) / 2;
-	var showy = (window.screen.availHeight - xheight) / 2;
-	var retval = window.open(xURL, "_blank", "resizable=yes,height=" + xheight + ",width=" + xwidth + ",left=" + showx + ",top=" + showy + ",menubar=no,scrollbars=yes,toolbar=no,titlebar=no");
+function rescumeCount(obj,view_selected_count_id){
+	if(obj.checked==false){
+		document.getElementById(view_selected_count_id).innerHTML = parseInt(document.getElementById(view_selected_count_id).innerHTML, 10) - 1;
+	} else{
+		document.getElementById(view_selected_count_id).innerHTML = parseInt(document.getElementById(view_selected_count_id).innerHTML, 10) + 1;
+	}
 }
 
+
+/**
+ * 当checkboxGroup的选择状态变化时，同步全选按钮checkbox的选择状态，同时更新选中的checkbox个数
+ * @param obj checkbox事件源对象
+ * 1.	checkboxGroup没有被全部选中时，全选按钮为未选中状态   
+ * 2.	checkboxGroup被全部选中，全选按钮才能为选中状态
+ * @param groupBox_name checkboxGroup的name
+ * @param checkAll_id 全选checkbox的id 
+ * @param view_selected_count_id 显示选中的checkbox的span元素id
+ */
+function checkGroupAllCheck(obj,groupBox_name,checkAll_id,view_selected_count_id){
+	var checkBoxObj = document.getElementsByName(groupBox_name);
+	var checkedNum = 0;
+	for(var i=0;i<checkBoxObj.length;i++){
+		if(checkBoxObj[i].checked==true){
+			checkedNum++;
+		}
+	}
+	document.getElementById(checkAll_id).checked = (checkedNum==checkBoxObj.length ? true : false);
+	//更新选择对象个数
+	rescumeCount(obj,view_selected_count_id);
+}
+
+
+/**
+ * 当checkboxGroup的选择状态变化时，同步全选按钮checkbox的选择状态
+ * 1.	checkboxGroup没有被全部选中时，全选按钮为未选中状态   
+ * 2.	checkboxGroup被全部选中，全选按钮才能为选中状态
+ * @param groupBox_name checkboxGroup的name
+ * @param checkAll_id 全选checkbox的id 
+ */
+function checkGroupAllSync(groupBox_name,checkAll_id){
+	var checkBoxObj = document.getElementsByName(groupBox_name);
+	var checkedNum = 0;
+	for(var i=0;i<checkBoxObj.length;i++){
+		if(checkBoxObj[i].checked==true){
+			checkedNum++;
+		}
+	}
+	document.getElementById(checkAll_id).checked = (checkedNum==checkBoxObj.length ? true : false);
+}
+
+
+/**
+ * 递归获取指定DOM元素中包含的INPUT复选框对象
+ * @param obj dom元素，包含了CHECKBOX对象
+ * @returns INPUT checkbox对象
+ */
+function recursionGetCheckBox(obj){
+	if(obj.tagName){
+		for(var i=0;i<obj.childNodes.length;i++){
+			if(obj.childNodes[i].tagName && obj.childNodes[i].tagName!="INPUT"){
+				var inputObj = recursionGetCheckBox(obj.childNodes[i]);
+				if(inputObj){
+					return inputObj;
+				}
+			}else if(obj.childNodes[i].tagName && obj.childNodes[i].tagName=="INPUT"){
+				return obj.childNodes[i];
+			}
+		}
+	}else{
+		return false;
+	}
+}
 
 /**
 * 判断给定中英文混合串长度是否超长
@@ -348,6 +430,58 @@ function markTr(trId,tableId){
 	if(markTr)
 		markTr.style.background = "#F7F7CC"
 }
+
+/**
+ * 对于ie和非ie，获取事件
+ * @returns
+ */
+function getEvent() {
+	if(document.all) {
+		return window.event;//如果是ie
+	}
+	func=getEvent.caller;
+	while(func!=null) {
+	var arg0=func.arguments[0];
+	if(arg0) {
+		if((arg0.constructor==Event || arg0.constructor ==MouseEvent)
+				||(typeof(arg0)=="object" && arg0.preventDefault && arg0.stopPropagation)) {
+			return arg0;
+		}
+	}
+	func=func.caller;
+	}
+		return null;
+}	
+
+/**
+ * 对于ie和非ie，获取事件源对象
+ * @returns
+ */
+function getSrcElement(){
+	var event = getEvent();
+	return (event.srcElement)?event.srcElement:event.target; 
+}
+
+
+/**
+ * 删除多选select的选项
+ * @param selectObj multi-select对象
+ */
+function delSelectedOption(selectObj){
+	if(selectObj==null){
+		alert("select 对象错误！");
+		return false;
+	}
+	for(var i=0;i<selectObj.options.length;i++){
+		if(i>=0 && i<=selectObj.options.length-1 && selectObj.options[i].selected){
+			selectObj.options[i] = 	null;
+			i--;
+		}
+	}
+}
+
+
+
 
 
 

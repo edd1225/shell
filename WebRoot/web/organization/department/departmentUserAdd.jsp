@@ -54,7 +54,7 @@
 		          <tr>
 		            <td width="20%" style="text-align: right;">
 		           	 <span onclick="javascript:doAddDepartment();" style="cursor: pointer;">
-		            	全部部门(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>)
+		            	全部人员(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>人)
 		            </span>
 		            </td>
 		            <td width="10%" style="text-align: right;">
@@ -70,7 +70,7 @@
 						<form name="departmentUserAddForm" method="post" action="">
 						<input type="hidden" id="currentPage" name="currentPage" value="1" />
 						<input type="hidden" id="ids" name="user.id" value="" />
-						<input type="hidden" id="departmentID" name="id" value="" />
+						<input type="hidden" id="departmentID" name="id" value="<%=request.getParameter("currentDepartmentID") %>" />
 						<div class="uiTypeahead" id="u362713_2">
 							<div class="wrap">
 								<div class="innerWrap">
@@ -122,7 +122,7 @@
 				<!-- 标题 -->
 	            <tr>
 	             	 <th width="5%" align=left bgcolor=#E3EDFF class="a1">
-	                  	<input type="checkbox" id="checkUSERAll" onclick="doCheckAll(this);" /> 
+	                  	<input type="checkbox" id="checkUSERAll" onclick="javascript:selectAll('checkUSERAll','checkedUser');" /> 
 	                 </th>
 	                 <th width="10%" align=left bgcolor=#E3EDFF class="a1">全名 </th>
 	                 <th width="10%" align=left bgcolor=#E3EDFF class="a1">性别</th>
@@ -140,7 +140,8 @@
 								 
 	                         <tr onclick="doChangeColor('color<%=j %>');" id="color<%=j %>" bgcolor="#FFFFFF">
 	                          <td width="5%" align=center  class="a1">
-	                          	<input type="checkbox" name="checkedUser" value="<%=user.getId() %>" /> 
+	                          	<input type="checkbox" name="checkedUser" value="<%=user.getId() %>" 
+	                          		   onclick="javascript:checkGroupAllSync('checkedUser','checkUSERAll');" /> 
 	                          </td>
 	                          <td width="10%" align=left class="a1">
 	                          	<%=user.getFullName() %>
@@ -168,8 +169,6 @@
 			<shell_services:pagination totalPages="<%=(voResult==null)?0:voResult.getTotalPages() %>" 
 									   currentPageNO="<%=(voResult==null)?0:voResult.getCurrentPage() %>" />
 	</div>
-	
-	
 	<div class="shell_btn_okcancle">
     	<input type="button" value="确定" onclick="javascript: doAction('ok'); " />&nbsp;&nbsp;
     	<input type="button" value="取消" onclick="javascript: doAction('cancle');" />
@@ -178,15 +177,12 @@
 	
 	
 <!-- js库要按照顺序提前加载，否则后面的js函数失效 受限加载jquery，在加载其他基于jquery的js -->	
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/common/shell_globle.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/common/shell_util.js"></script>	
 	
 <script type="text/javascript">
 	
 	function doAction(action){
-		//获取当前选择的部门ID值
-		document.getElementById("departmentID").value = window.parent.document.getElementById("currentDepartmentID").value;
 		if(action == 'ok'){
 			var selectedCount =  checkBoxSelectedCount('checkedUser');
 			if(selectedCount<=0){
@@ -197,54 +193,31 @@
 					//循环取出选择对象id值，以“-”进行分隔
 					getcheckBoxAllValue("checkedUser","ids");
 					doSubmit(null,"<%=request.getContextPath() %>/web/organization/department/assignSysUser.action","departmentUserAddForm");
+					window.returnValue = 'ok';
 				}
 			}
 		}
-		window.parent.$.fn.destory();
+		if(action=='cancle'){
+			window.returnValue = 'cancle';
+			window.close();
+		}
 	}	
 	
 	//---------------------- 未绑定人员搜索 -------------------------------------------------------------------------
 	function doDepartmentUnbindUserSearch(){
-		var _action = "<%=request.getContextPath() %>/web/organization/department/unbindUserIndex.action";
+		var _action = "<%=request.getContextPath() %>/web/organization/department/unbindUserIndex.action?currentDepartmentID=" + document.getElementById("departmentID").value;
 		doSubmit(null,_action,"departmentUserAddForm");	
+		window.returnValue = 'ok';
 	}
 		
 	//------------------------ 人员分页查询 ---------------------------------------------------------------------
 	function doPaging(_currentPage){
-		var _action = "<%=request.getContextPath() %>/web/organization/department/unbindUserIndex.action";
+		var _action = "<%=request.getContextPath() %>/web/organization/department/unbindUserIndex.action?currentDepartmentID=" + document.getElementById("departmentID").value;
 		doSubmit(_currentPage,_action,"departmentUserAddForm");
+		window.returnValue = 'ok';
 	}
-	
-	
-	//------------------------- 复选框全选 全取消 列表数据 -------------------------------------------------------------------------
-	function doCheckAll(obj){
-		selectAll("checkUSERAll","checkedUser");
-		//更新选择对象个数
-		var selectedCheckboxNum = checkBoxSelectedCount("checkedUser");
-		document.getElementById("shell_view_departmentuser_selected_count").innerHTML = selectedCheckboxNum;
-	}
-	
-	//------------------------- 复选框按钮单击 触发事件 ------------------------------------------------------------------------
-	$("input[name='checkedUser']").click(function(){
-		var $subs = $("input[name='checkedUser']");
-	    $("#checkUSERAll").prop("checked" , $subs.length == $subs.filter(":checked").length ? true :false);
-	    rescumeCount(this);
-	});
-	//------------------------------- 已选择对象个数变化函数 ----------------------------------------------------------
-	var rescumeCount = function(obj){
-		if(obj.checked == false){
-			$("#shell_view_departmentuser_selected_count").text(parseInt($("#shell_view_departmentuser_selected_count").text(), 10) - 1);
-		} else { 
-			$("#shell_view_departmentuser_selected_count").text(parseInt($("#shell_view_departmentuser_selected_count").text(), 10) + 1);
-		}
-	};
 	
 </script>
-	
-<script for=window EVENT=onload language="JavaScript" type="text/javascript">
-   parent.document.getElementById('innerIframe').style.height=document.body.scrollHeight;
-   parent.document.getElementById('jquery-jmodal').style.height = document.body.scrollHeight;
-</script> 
 	
 </body>
 </html>

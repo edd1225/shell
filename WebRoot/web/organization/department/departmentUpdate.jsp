@@ -40,7 +40,8 @@
     
  
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery-1.7.2.min.js"></script>
-   
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/common/shell_globle.js"></script>
+
 <script type="text/javascript">
 	
 	function doAction(action){
@@ -48,35 +49,17 @@
 			//TODO 验证表单....
 			
 			if(window.confirm("确定更新部门信息？")){
-				$.ajax({
-					type: "post",
-					url: "<%=request.getContextPath() %>/web/organization/department/update.action",
-					data: {
-						id: $("input[name='id']").attr("value"),
-						departmentName: $("input[name='departmentName']").attr("value"),
-						departmentType: $("input[name='departmentType']").attr("value"),
-						organizationID: $("input[name='organizationID']").attr("value"),
-						parentID: $("input[name='parentID']").attr("value"),
-						isVD: $("input[name='isVD']").attr("value")
-					},
-					success: function(returnData){
-						window.parent.$.fn.destory();
-					}
-				});
-				
+				doSubmit(null,"<%=request.getContextPath() %>/web/organization/department/update.action","departmentUpdateForm");
+				window.returnValue = "ok";
 			}
-		}else{
-			window.parent.$.fn.destory();
+		}
+		if(action=='cancle'){
+			window.returnValue = 'cancle';
+			window.close();
 		}
 	}
 
 </script>  
 
-<script for=window EVENT=onload language="JavaScript" type="text/javascript">
-    parent.document.getElementById('innerIframe').style.height=document.body.scrollHeight;
-    parent.document.getElementById('jquery-jmodal').style.height = document.body.scrollHeight;
-    //alert(document.body.scrollHeight);
-</script> 
- 
 </body>
 </html>

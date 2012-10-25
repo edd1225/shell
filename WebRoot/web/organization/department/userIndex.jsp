@@ -12,15 +12,12 @@
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_globle.css" />
 <link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/common/shell_framework.css" />
 
-<link type="text/css" rel="stylesheet"	href="<%=request.getContextPath() %>/css/jquery/jquery.jmodal.css"/>
-
 	<%
 		Object obj = request.getAttribute("voResult");
 		VOResult voResult = null;
 		java.util.List resultList = null;
 		int totalPages = 0;
 		int totalRaws = 0;
-		
 		if(obj != null){
 			voResult = (VOResult)obj;
 			resultList = voResult.getResultList();
@@ -38,7 +35,6 @@
   
 	<!-- 工具栏 -->
 	<div class="shell_toolBar">
-	
 	
 		<!-- 题头开始 -->
 		<table cellspacing=0 cellpadding=0 width=100% border=0 align="center">
@@ -130,7 +126,7 @@
 				<!-- 标题 -->
 	            <tr>
 	             	 <th width="5%" align=left bgcolor=#E3EDFF class="a1">
-	                  	<input type="checkbox" id="checkDUAll" onclick="doCheckAll(this);" /> 
+	                  	<input type="checkbox" id="checkDUAll" onclick="javascript:selectAll('checkDUAll','checkedDepartmentUser');" /> 
 	                 </th>
 	                 <th width="10%" align=left bgcolor=#E3EDFF class="a1">全名 </th>
 	                 <th width="10%" align=left bgcolor=#E3EDFF class="a1">性别</th>
@@ -149,7 +145,8 @@
 	                        <tr onclick="doChangeColor('color<%=j %>');" id="color<%=j %>" bgcolor="#FFFFFF">
 	                        
 	                          <td width="5%" align=center  class="a1">
-	                          	<input type="checkbox" name="checkedDepartmentUser" value="<%=user.getId() %>" /> 
+	                          	<input type="checkbox" name="checkedDepartmentUser" value="<%=user.getId() %>" 
+	                          		   onclick="javascript:checkGroupAllSync('checkedDepartmentUser','checkDUAll');" /> 
 	                          </td>
 	                          <td width="10%" align=left class="a1">
 	                          	<%=user.getFullName() %>
@@ -184,16 +181,15 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/common/shell_globle.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/common/shell_util.js"></script>
 
-
 <script type="text/javascript">
-	function reload(){
-		doDepartmentUserSearch();
-	}
 	//------------------------ 增加部门下人员 -----------------------------------------------------------------------
 	function doAddUserofDepartment(){
-		var loadURL = "<%=request.getContextPath() %>/web/organization/department/unbindUserIndex.action";
-		var titleTXT = "增加人员";
-		window.parent.popWindow(loadURL,titleTXT, reload);
+		document.getElementById("ids").value = window.parent.document.getElementById("currentDepartmentID").value;
+		var loadURL = "<%=request.getContextPath() %>/web/organization/department/unbindUserIndex.action?currentDepartmentID=" + document.getElementById("ids").value;
+		var retValue = openNewWindow(loadURL,900,450);
+		if(retValue=='ok'){
+			doDepartmentUserSearch();
+		}
 	}
 
 	//------------------------ 解除部门下人员 -----------------------------------------------------------------------
@@ -236,37 +232,12 @@
 		doSubmit(null,"<%=request.getContextPath() %>/web/organization/department/userIndex.action","departmentUserForm");
 	}
 	
-	
-	//------------------------- 复选框全选 -------------------------------------------------------------------------
-	function doCheckAll(obj){
-		selectAll("checkDUAll","checkedDepartmentUser");
-		//更新选择对象个数
-		var selectedCheckboxNum = checkBoxSelectedCount("checkedDepartmentUser");
-		document.getElementById("shell_view_departmentuser_selected_count").innerHTML = selectedCheckboxNum;
-	}
-	
-	//------------------------- 复选框按钮单击事件 ------------------------------------------------------------------------
-	$("input[name='checkedDepartmentUser']").click(function(){
-		var $subs = $("input[name='checkedDepartmentUser']");
-	    $("#checkDUAll").prop("checked" , $subs.length == $subs.filter(":checked").length ? true :false);
-	    rescumeCount(this);
-	});
-	//------------------------------- 已选择对象个数变化函数 ----------------------------------------------------------
-	var rescumeCount = function(obj){
-		if(obj.checked == false){
-			$("#shell_view_departmentuser_selected_count").text(parseInt($("#shell_view_departmentuser_selected_count").text(), 10) - 1);
-		} else { 
-			$("#shell_view_departmentuser_selected_count").text(parseInt($("#shell_view_departmentuser_selected_count").text(), 10) + 1);
-		}
-	};
-	
-	
-	
 </script>
 
+<!-- 这个要保留，使父iframe的高度自动适应加载的页面高度 -->
 <script for=window EVENT=onload language="JavaScript" type="text/javascript">
-    parent.document.getElementById('tabIfame').style.height=document.body.scrollHeight;
-    //alert(document.body.scrollHeight);
+	//alert(document.body.scrollHeight);	
+    parent.document.getElementById('userTabIfame').style.height=document.body.scrollHeight;
 </script>
 
 

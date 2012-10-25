@@ -79,7 +79,6 @@ function popWindow(_loadURL,_titleTXT,_reloadFunc){
         initWidth:initWidthValue,
         initHeight:initHeightValue,
         fixed: false, 							//相对于父层容器定位，否则相对于浏览器窗口定位
-        
         okEvent: function(obj, args) {
         	//obj.callBack(); //确定按钮的回调函数
         	args.complete(); //卸载弹出DIV
@@ -90,17 +89,32 @@ function popWindow(_loadURL,_titleTXT,_reloadFunc){
 
 /**
  * 改变表格行背景颜色
- * @param trId
+ * @param trId 行id
  */
 function doChangeColor(trId){
 	for( i=0; i < 10 ;i++ ){
 		var curId = "color" + i;
 		if(curId == trId){
-			//document.getElementById("color"+i).bgColor="#FFFCE3";
-			document.getElementById("color"+i).bgColor="#E3EDFF";
+			document.getElementById("color"+i).bgColor="#F7F7CC";
 		}else{
 			if(document.getElementById("color"+i)!=null )
 				document.getElementById("color"+i).bgColor="#FFFFFF";
 		}
 	}
+}
+
+
+/**
+ * 新建模态窗口，位于屏幕中央
+ * 无菜单栏 无工具栏 有标题栏
+ */
+function openNewWindow(xURL, xwidth, xheight) {
+	//var showx = (window.screen.availWidth - xwidth) / 2;
+	//var showy = (window.screen.availHeight - xheight) / 2;
+	var windowWidth = document.documentElement.clientWidth; 
+	var showx = (windowWidth - xwidth) / 2;
+    var showy =  (150 + document.documentElement.scrollTop);
+	//not for chrome
+	//window.open(xURL, "", "resizable=no,height=" + xheight + ",width=" + xwidth + ",left=" + showx + ",top=" + showy + ",menubar=no,scrollbars=yes,toolbar=no,titlebar=yes");
+    return window.showModalDialog(xURL,"","dialogWidth="+ xwidth +"px;dialogHeight="+ xheight +"px;status=no;help=no;scroll=no");
 }

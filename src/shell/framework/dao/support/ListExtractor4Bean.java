@@ -24,7 +24,9 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import com.sun.org.apache.commons.beanutils.BeanUtils;
 
 /**
- * <p> 结果集提取器，结果集属性转为bean属性，返回包含bean的list对象 </p>
+ * <p> 结果集提取器，结果集属性转为bean属性，返回包含bean的list对象 
+ * 	   该提取器针对
+ * </p>
  *
  * @author ChangMing.Yang
  * @version 1.0 $LastChangedDate: 2012-4-19 上午9:18:55 $

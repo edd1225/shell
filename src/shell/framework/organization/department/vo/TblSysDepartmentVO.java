@@ -9,6 +9,7 @@
 package shell.framework.organization.department.vo;
 
 import shell.framework.model.TblSysUser;
+import shell.framework.organization.role.vo.TblSysRoleVO;
 import shell.framework.organization.user.vo.TblSysUserVO;
 
 /**
@@ -39,6 +40,9 @@ public class TblSysDepartmentVO {
 	
 	//部门下系统用户
 	private TblSysUserVO user;
+	//部门分配角色
+	private TblSysRoleVO role;
+
 	
 	/**
 	 * @return the id
@@ -198,4 +202,18 @@ public class TblSysDepartmentVO {
 	public void setUser(TblSysUserVO user) {
 		this.user = user;
 	}
+	/**
+	 * @return the role
+	 */
+	public TblSysRoleVO getRole() {
+		return role;
+	}
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(TblSysRoleVO role) {
+		this.role = role;
+	}
+	
+	
 }

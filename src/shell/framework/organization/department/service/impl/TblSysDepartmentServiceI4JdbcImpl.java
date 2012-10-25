@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import shell.framework.core.SystemParam;
 import shell.framework.dao.IJdbcBaseDao;
 import shell.framework.dao.support.VOResult;
 import shell.framework.model.TblSysDepartment;
+import shell.framework.model.TblSysRole;
 import shell.framework.model.TblSysUser;
 import shell.framework.organization.department.service.TblSysDepartmentService;
 import shell.framework.organization.department.vo.TblSysDepartmentVO;
@@ -203,13 +205,13 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 				TblSysDepartment department = new TblSysDepartment();
 				Map<String,String> propertyMap = new HashMap<String,String>();
-				propertyMap.put("departmentName", "DEPARTMENT_NAME");
-				propertyMap.put("departmentType", "DEPARTMENT_TYPE");
-				propertyMap.put("organizationID", "ORGANIZATION_ID");
-				propertyMap.put("parentID", "PARENT_ID");
-				propertyMap.put("orderID", "ORDER_NO");
-				propertyMap.put("isValid", "IS_VALID");
-				propertyMap.put("isVD", "IS_VD");
+//				propertyMap.put("departmentName", "DEPARTMENT_NAME");
+//				propertyMap.put("departmentType", "DEPARTMENT_TYPE");
+//				propertyMap.put("organizationID", "ORGANIZATION_ID");
+//				propertyMap.put("parentID", "PARENT_ID");
+//				propertyMap.put("orderID", "ORDER_NO");
+//				propertyMap.put("isValid", "IS_VALID");
+//				propertyMap.put("isVD", "IS_VD");
 				PopulateUtil.populate(department, rs, propertyMap);
 				return department;
 			}
@@ -258,9 +260,7 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 	 */
 	public int assignSysUser(TblSysDepartmentVO departmentVO) {
 		String sql = "insert into TBL_SYS_USER_DEPARTMENT values (?,?)";
-		
 		final String departmentID =  departmentVO.getId();
-		
 		String sysUserIds[] = departmentVO.getUser().getId().split("-");
 		final List<String> idList = new ArrayList<String>();
 		for(String id : sysUserIds){
@@ -276,6 +276,39 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 			public void setValues(PreparedStatement ps, int index) throws SQLException {
 				String sysUser_id = idList.get(index);
 				ps.setString(1, sysUser_id);
+				ps.setString(2, departmentID);
+			}
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#getBatchSize()
+			 */
+			public int getBatchSize() {
+				return idList.size();
+			}
+		});
+		return deleteNumbers.length;
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#assignSysRole(shell.framework.organization.department.vo.TblSysDepartmentVO)
+	 */
+	public int assignSysRole(TblSysDepartmentVO departmentVO) {
+		String sql = "insert into TBL_SYS_ROLE_DEPARTMENT values (?,?)";
+		final String departmentID =  departmentVO.getId();
+		String sysRoleIds[] = departmentVO.getRole().getRole().getId().split("-");
+		final List<String> idList = Arrays.asList(sysRoleIds);
+		
+		int[] deleteNumbers = jdbcBaseDao.batchUpdate(sql, idList, new BatchPreparedStatementSetter() {
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#setValues(java.sql.PreparedStatement, int)
+			 */
+			public void setValues(PreparedStatement ps, int index) throws SQLException {
+				String sysRole_id = idList.get(index);
+				ps.setString(1, sysRole_id);
 				ps.setString(2, departmentID);
 			}
 			
@@ -359,6 +392,40 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 	}
 	
 	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#unAssignSysRole(java.lang.String, shell.framework.organization.department.vo.TblSysDepartmentVO)
+	 */
+	public int unAssignSysRole(TblSysDepartmentVO departmentVO) {
+		String sql = "delete from TBL_SYS_ROLE_DEPARTMENT where ROLE_ID=? and DEPARTMENT_ID=?";
+		final String departmentID =  departmentVO.getId();
+		String sysRoleIds[] = departmentVO.getRole().getRole().getId().split("-");
+		final List<String> idList = Arrays.asList(sysRoleIds);
+		
+		int[] deleteNumbers = jdbcBaseDao.batchUpdate(sql, idList, new BatchPreparedStatementSetter() {
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#setValues(java.sql.PreparedStatement, int)
+			 */
+			public void setValues(PreparedStatement ps, int index) throws SQLException {
+				String sysRole_id = idList.get(index);
+				ps.setString(1, sysRole_id);
+				ps.setString(2, departmentID);
+			}
+			
+			/*
+			 * (non-Javadoc)
+			 * @see org.springframework.jdbc.core.BatchPreparedStatementSetter#getBatchSize()
+			 */
+			public int getBatchSize() {
+				return idList.size();
+			}
+		});
+		return deleteNumbers.length;
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see shell.framework.organization.department.service.TblSysDepartmentService#findUserByPagination(int, int, java.io.Serializable)
 	 */
@@ -369,7 +436,6 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 		if(departmentVO.getUser()!=null && departmentVO.getUser().getFullName()!=null && !"".equals(departmentVO.getUser().getFullName().trim())){
 			sql.append(" and user.FULLNAME like '%" + departmentVO.getUser().getFullName().trim() + "%'");
 		}
-		
 		
 		VOResult voResult = jdbcBaseDao.query(sql.toString(), new RowMapper<Object>(){
 			
@@ -389,6 +455,35 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 		return voResult;
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#findRoleByPagination(int, int, shell.framework.organization.department.vo.TblSysDepartmentVO)
+	 */
+	public VOResult findRoleByPagination(int currentPage, int pageSize,TblSysDepartmentVO departmentVO) {
+		StringBuffer sql = new StringBuffer("select * from TBL_SYS_ROLE role , TBL_SYS_ROLE_DEPARTMENT rd where rd.DEPARTMENT_ID='"+ departmentVO.getId().trim() +"' and" +
+				" role.ID=rd.ROLE_ID and role.IS_VALID='T'");
+		if(departmentVO.getRole()!=null && departmentVO.getRole().getRole()!=null && !"".equals(departmentVO.getRole().getRole().getName().trim())){
+			sql.append(" and role.NAME like '%"+ departmentVO.getRole().getRole().getName().trim() +"%'");
+		}
+		
+		VOResult voResult = jdbcBaseDao.query(sql.toString(), new RowMapper<Object>(){
+			
+			/* (non-Javadoc)
+			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+			 */
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				TblSysRole sysRole = new TblSysRole();
+				Map<String,String> propertyMap = new HashMap<String,String>();
+				propertyMap.put("isValid" , "IS_VALID");
+				propertyMap.put("isVirtual" , "IS_VIRTUAL");
+				PopulateUtil.populate(sysRole, rs, propertyMap);
+				return sysRole;
+			}
+			
+		}, currentPage, pageSize);
+		return voResult;
+	}
+	
 	
 	/* (non-Javadoc)
 	 * @see shell.framework.organization.department.service.TblSysDepartmentService#findUserByUnbindDepartment(int, int, java.io.Serializable)
@@ -420,6 +515,34 @@ public class TblSysDepartmentServiceI4JdbcImpl implements TblSysDepartmentServic
 		return voResult;
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.department.service.TblSysDepartmentService#findRoleByUnAssignDepartment(int, int, shell.framework.organization.department.vo.TblSysDepartmentVO)
+	 */
+	public VOResult findRoleByUnAssignDepartment(int currentPage, int pageSize,TblSysDepartmentVO departmentVO) {
+		//获取已经分配给当前部门以外的所有角色对象
+		StringBuffer sql = new StringBuffer("select * from TBL_SYS_ROLE role where role.ID not in (select ROLE_ID from TBL_SYS_ROLE_DEPARTMENT where DEPARTMENT_ID='" + 
+						   departmentVO.getId() +"') and role.IS_VALID = 'T' "  );
+		if(departmentVO !=null && departmentVO.getRole()!=null && departmentVO.getRole().getRole()!=null && !"".equals(departmentVO.getRole().getRole().getName().trim())){
+			sql.append(" and role.NAME like '%" + departmentVO.getRole().getRole().getName().trim() + "%'");
+		}
+		VOResult voResult = jdbcBaseDao.query(sql.toString(), new RowMapper<Object>(){
+			
+			/* (non-Javadoc)
+			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+			 */
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				TblSysRole role =  new TblSysRole();
+				Map<String,String> propertyMap = new HashMap<String,String>();
+				propertyMap.put("isValid" , "IS_VALID");
+				propertyMap.put("isVirtual" , "IS_VIRTUAL");
+				PopulateUtil.populate(role, rs ,propertyMap);
+				return role;
+			}
+			
+		}, currentPage, pageSize);
+		return voResult;
+	}
 	
 	
 	/* (non-Javadoc)

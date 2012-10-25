@@ -18,45 +18,44 @@
 		<!-- 顶行菜单导航开始 -->
 		<div class="menu">
 		
+		<div class="topNav">
+				
+				<div class="topNavWrapper">
+					<a class="l" href="<%=request.getContextPath() %>/web/defaultFrame/mainFrame.jsp">主面板</a>
+					<a class="l" href="http://developers.facebook.com/module/">组织机构</a>
+					<a class="l" href="http://developers.facebook.com/blog/">权限管理</a> 
+					<a class="l" href="https://developers.facebook.com/apps">编码设置</a>
+					<a class="l" href="https://developers.facebook.com/apps">设置</a>
+					<!-- 登录个人信息 -->
+					<div align="right" style="float:right; padding-top: 7px;padding-right: 5px;font-size: 12px; ">
+						<span style="padding-left: 5px;">
+							<%=request.getSession().getAttribute("userCode")!=null ? request.getSession().getAttribute("userCode") : "游客" %>	
+						</span>
+						<span style="padding-left: 5px;">
+							设置
+						</span>
+						<span style="padding-left: 5px;">
+							注销
+						</span>
+					</div>	
+				</div>
+				
+				<div style="clear: both;"></div>
+		
+			</div>
+		
 	 	<div class="logo">
 			<a href="<%=request.getContextPath() %>"> 
 				<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17">
 		    </a>
 	 	</div>
-			<div class="topNav">
-				<a class="l" href="<%=request.getContextPath() %>/web/defaultFrame/mainFrame.jsp">主面板</a>
-				<a class="l" href="http://developers.facebook.com/module/">组织机构</a>
-				<a class="l" href="http://developers.facebook.com/blog/">权限管理</a> 
-				<a class="l" href="https://developers.facebook.com/apps">编码设置</a>
-				<a class="l" href="https://developers.facebook.com/apps">设置</a>
-				
-				<div style="clear: both;"></div>
-		
-			</div>
+	 	
 		</div>
 		<!-- 顶行菜单导航结束 -->
 
 		<div style="clear: both;"></div>
 
 		<div class="body nav">
-		
-			<!-- 左侧导航栏 -->
-				<div id="bodyMenu" class="bodyMenu">
-					<div class="toplevelnav">
-						<ul>
-							<li><a href="<%=request.getContextPath() %>/web/organization/user/index.action">
-									<div class="navSectionTitle">人员管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/department/index.action">
-									<div class="navSectionTitle">部门管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/agentCode/index.action">
-									<div class="navSectionTitle">工号管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/position/index.action">
-									<div class="navSectionTitle">岗位管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/role/index.action">
-									<div class="navSectionTitle">角色管理</div> </a></li>
-						</ul>
-					</div>
-				</div>
 		
 			<!-- 内容主显示区域 -->
 			<div class="content">
@@ -88,7 +87,25 @@
 			
 			</div>
 			
-			<div style="clear: both;"></div>
+			<!-- 左侧导航栏 -->
+			<div id="bodyMenu" class="bodyMenu">
+				<div class="toplevelnav">
+					<ul>
+						<li><a href="<%=request.getContextPath() %>/web/organization/user/index.action">
+								<div class="navSectionTitle">人员管理</div> </a></li>
+						<li><a href="<%=request.getContextPath() %>/web/organization/department/index.action">
+								<div class="navSectionTitle">部门管理</div> </a></li>
+						<li><a href="<%=request.getContextPath() %>/web/organization/agentCode/index.action">
+								<div class="navSectionTitle">工号管理</div> </a></li>
+						<li><a href="<%=request.getContextPath() %>/web/organization/position/index.action">
+								<div class="navSectionTitle">岗位管理</div> </a></li>
+						<li><a href="<%=request.getContextPath() %>/web/organization/role/index.action">
+								<div class="navSectionTitle">角色管理</div> </a></li>
+					</ul>
+				</div>
+			</div>
+			
+			
 		
 		</div>
 

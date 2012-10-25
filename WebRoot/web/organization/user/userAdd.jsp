@@ -31,8 +31,7 @@
     	<input type="button" value="取消" onclick="javascript: doAction('cancle');" />
     </div>
 	
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery-1.7.2.min.js"></script>
-
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/common/shell_globle.js"></script>
 <script type="text/javascript">
 
 	function doAction(action){
@@ -40,46 +39,17 @@
 			//TODO 验证表单....
 			
 			if(window.confirm("确定增加用户？")){
-				//ajax实现提交表单
-				$.ajax({
-					type: "post",
-					url: "<%=request.getContextPath() %>/web/organization/user/add.action",
-					data: {
-						userCode: $("input[name='userCode']").attr("value"),
-						password: $("input[name='password']").attr("value"),
-						passwordDuration: $("input[name='passwordDuration']").attr("value"),
-						fullName: $("input[name='fullName']").attr("value"),
-						address: $("input[name='address']").attr("value"),
-						sex: $("input[name='sex']").attr("value"),
-						education: $("input[name='education']").attr("value"),
-						email: $("input[name='email']").attr("value"),
-						telephone: $("input[name='telephone']").attr("value"),
-						mobile: $("input[name='mobile']").attr("value"),
-						postCode: $("input[name='postCode']").attr("value"),
-						photo: $("input[name='photo']").attr("value"),
-						status: $("input[name='status']").attr("value"),
-						hireDate: $("input[name='hireDate']").attr("value"),
-						remark: $("input[name='remark']").attr("value"),
-						birthday: $("input[name='birthday']").attr("value")
-					},
-					success: function(returnData){
-						window.parent.$.fn.destory();
-					}
-				});
+				doSubmit(null,"<%=request.getContextPath() %>/web/organization/user/add.action","userAddForm");
+				window.returnValue = "ok";
 			}
 		}
-		window.parent.$.fn.destory();
+		if(action=='cancle'){
+			window.returnValue = "cancle";
+			window.close();
+		}
 	}
-	
 	
 </script>    
     	
-<script for=window EVENT=onload language="JavaScript" type="text/javascript">
-    parent.document.getElementById('innerIframe').style.height=document.body.scrollHeight;
-    parent.document.getElementById('jquery-jmodal').style.height = document.body.scrollHeight;
-</script> 	
-	
-	
-	
 </body>
 </html>

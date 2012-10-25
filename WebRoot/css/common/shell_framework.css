@@ -1,20 +1,28 @@
+/*
+*{
+	margin: 0;
+	padding: 0;	
+}
+*/
+
 body {
+	overflow: hidden;
 	background: url(../../images/shell_bgimg.gif);
 	font-size: 12px;
 	text-decoration: none;
 	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
 	color: #333;
-	margin: 0;
-	padding: 0;
 	text-align: left;
 	direction: ltr;
-	unicode-bidi: embed
+	margin: 0;
+	padding: 0;
+
 	/*
+	unicode-bidi: embed;
 	line-height: 1.28;
 	*/
 	
-	
-	/* 滚动条样式 */
+	/* 滚动条样式
 	SCROLLBAR-FACE-COLOR: white;
 	SCROLLBAR-HIGHLIGHT-COLOR: white;
 	SCROLLBAR-SHADOW-COLOR: #add0eb;
@@ -22,14 +30,12 @@ body {
 	SCROLLBAR-ARROW-COLOR: #5e9cc7;
 	SCROLLBAR-TRACK-COLOR: white;
 	SCROLLBAR-DARKSHADOW-COLOR: white
+	 */
 }
 
-
-table td{
-	
+html{
+	overflow: hidden;
 }
-
-
 
 /* 个别元素设置字体大小 */
 .a1 {
@@ -163,7 +169,6 @@ img {
 
 td,td.label {
 	font-size: 12px;
-	text-align: left
 }
 
 dd {

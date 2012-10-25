@@ -45,37 +45,18 @@
 			//TODO 验证表单....
 			
 			if(window.confirm("确定增加部门？")){
-				//ajax实现提交表单
-				$.ajax({
-					type: "post",
-					url: "<%=request.getContextPath() %>/web/organization/department/add.action",
-					data: {
-						departmentName: $("input[name='departmentName']").attr("value"),
-						departmentType: $("input[name='departmentType']").attr("value"),
-						organizationID: $("input[name='organizationID']").attr("value"),
-						parentID: $("input[name='parentID']").attr("value"),
-						isVD: $("input[name='isVD']").attr("value")
-					},
-					success: function(returnData){
-						//$(".shell_form").html(returnData);
-						window.parent.$.fn.destory();
-					}
-				});
-				
+				doSubmit(null,"<%=request.getContextPath() %>/web/organization/department/add.action","departmentAddForm");
+				window.returnValue = "ok";
 			}
-		}else{
-			window.parent.$.fn.destory();
+		}
+		if(action=='cancle'){
+			window.returnValue = 'cancle';
+			window.close();
 		}
 	}
 
 
 </script>   
  
-<script for=window EVENT=onload language="JavaScript" type="text/javascript">
-    parent.document.getElementById('innerIframe').style.height=document.body.scrollHeight;
-    parent.document.getElementById('jquery-jmodal').style.height = document.body.scrollHeight;
-    //alert(document.body.scrollHeight);
-</script>    
-    
 </body>
 </html>

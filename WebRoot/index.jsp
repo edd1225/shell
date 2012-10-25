@@ -16,18 +16,15 @@
 </style>
 
 <!--  
+	<script language="javascript" src="js/common/alert.js"></script>
 -->
 <link href="css/common/shell_framework.css" rel="stylesheet" type="text/css">
 
 <script language="javascript" src="js/common/shell_util.js"></script>
-<script language="javascript" src="js/common/alert.js"></script>
+
 <script language='javascript'>
 
 //alert(yesOrNoConfirm("发"));
-
-function testPop(obj){
-	testMessageBox(obj);
-}
 
 //登录验证
 function checkUser(){
@@ -49,7 +46,7 @@ function checkUser(){
 </script>
 
 </HEAD>
-<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0"  >
+<BODY leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
 
 <TABLE height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0" >
   <TBODY>
@@ -92,7 +89,7 @@ function checkUser(){
 				  <TD class=a1 colSpan=2 height=15>&nbsp;</TD>
 				</TR>
 				<TR>
-				  <TD class=a1 width="37%" height="1" nowrap>
+				  <TD class=a1 width="37%" height="1"  nowrap>
 				  	<FONT color=#55728a>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;ID：</FONT>
 				  </TD>
 				  <TD width="63%">
@@ -123,9 +120,6 @@ function checkUser(){
 				<TD align=middle valign="middle">
 					<input class='shell_btn' type='reset' value='重置'></TD>
 				
-				<TD align=middle valign="middle">
-					<input class='shell_btn' type='reset' value='pop' onclick="testPop(this);">
-				</TD>
 				</TR>
 				
 				</TBODY>

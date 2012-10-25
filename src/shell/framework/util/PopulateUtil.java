@@ -114,17 +114,30 @@ public class PopulateUtil {
 	 * @throws InvocationTargetException
 	 */
 	protected static void _superPopulate(Object bean , Map<String, Object> rows) {
-		
+		Map<String,String> beanPropertyMap = new HashMap<String,String>();
 		if(bean==null || rows==null){
 			return;
 		}
 		
 		//将javabean的属性放入map中 <大写属性名，原属性名>
 		Field[] fields = bean.getClass().getDeclaredFields();
-		Map<String,String> beanPropertyMap = new HashMap<String,String>();
-		for(Field fieldName : fields){
-			beanPropertyMap.put(fieldName.getName().toUpperCase(), fieldName.getName());
+		//考虑bean的父类中的fields属性
+		Field[] superFileds = bean.getClass().getSuperclass().getDeclaredFields();
+		
+		if(superFileds.length>0){
+			Field[] mixFields = new Field[fields.length+superFileds.length];
+			System.arraycopy(superFileds, 0, mixFields, 0, superFileds.length);
+			System.arraycopy(fields, 0, mixFields, superFileds.length, fields.length);
+			
+			for(Field fieldName : mixFields){
+				beanPropertyMap.put(fieldName.getName().toUpperCase(), fieldName.getName());
+			}
+		}else{
+			for(Field fieldName : fields){
+				beanPropertyMap.put(fieldName.getName().toUpperCase(), fieldName.getName());
+			}
 		}
+		
 		
 		//屏蔽记录行的列名大小写
 		Iterator<String> names = rows.keySet().iterator();

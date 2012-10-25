@@ -86,6 +86,13 @@ public interface TblSysDepartmentService {
 	public int assignSysUser(TblSysDepartmentVO departmentVO);
 	
 	/**
+	 * 给部门分配角色，支持批量分配
+	 * @param departmentVO
+	 * @return
+	 */
+	public int assignSysRole(TblSysDepartmentVO departmentVO);
+	
+	/**
 	 * 回收指定部门下系统用户
 	 * @param departmentId 部门id
 	 * @param sysUserIds 用户id数组
@@ -103,6 +110,13 @@ public interface TblSysDepartmentService {
 	
 	
 	/**
+	 * 回收部门的角色
+	 * @param departmentVO
+	 * @return 回收的角色记录数
+	 */
+	public int unAssignSysRole(TblSysDepartmentVO departmentVO);
+	
+	/**
 	 * 分页查询部门人员
 	 * @param currentPage
 	 * @param pageSize
@@ -110,6 +124,17 @@ public interface TblSysDepartmentService {
 	 * @return 分页对象-人员
 	 */
 	public VOResult findUserByPagination(int currentPage , int pageSize, TblSysDepartmentVO departmentVO);
+	
+	
+	/**
+	 * 分页查询指定部门分配的角色
+	 * @param currentPage
+	 * @param pageSize
+	 * @param departmentVO
+	 * @return 分页对象-角色
+	 */
+	public VOResult findRoleByPagination(int currentPage , int pageSize, TblSysDepartmentVO departmentVO);
+	
 	
 	/**
 	 * 查询未分配给部门的系统用户
@@ -119,6 +144,17 @@ public interface TblSysDepartmentService {
 	 * @return 分页对象-人员
 	 */
 	public VOResult findUserByUnbindDepartment(int currentPage , int pageSize, TblSysDepartmentVO departmentVO);
+	
+	
+	/**
+	 * 查询未分配给部门的系统角色
+	 * @param currentPage
+	 * @param pageSize
+	 * @param departmentVO
+	 * @return
+	 */
+	public VOResult findRoleByUnAssignDepartment(int currentPage , int pageSize, TblSysDepartmentVO departmentVO);
+	
 	
 	/**
 	 * 按照数组次序重新给部门进行排序
