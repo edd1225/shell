@@ -11,6 +11,7 @@ package shell.framework.organization.user.service;
 import java.io.Serializable;
 import shell.framework.dao.support.VOResult;
 import shell.framework.model.TblSysUser;
+import shell.framework.organization.user.vo.TblSysUserDetailVO;
 import shell.framework.organization.user.vo.TblSysUserVO;
 
 /**
@@ -60,5 +61,43 @@ public interface TblSysUserService {
 	 */
 	public int update(TblSysUserVO userVO);
 	
+	/**
+	 * 系统用户详细信息显示
+	 * @param id
+	 * @return
+	 */
+	public TblSysUserDetailVO show(Serializable id);
 	
+	/**
+	 * 索引指定系统用户分配的角色
+	 * @param currentPage
+	 * @param pageSize
+	 * @param userVO 系统用户值对象
+	 * @return 分页对象
+	 */
+	public VOResult findAssignRoleByPagination(int currentPage,int pageSize,TblSysUserVO userVO);
+	
+	/**
+	 * 索引所有已经分配给指定用户的角色 
+	 * @param currentPage
+	 * @param pageSize
+	 * @param userVO
+	 * @return
+	 */
+	public VOResult findUnAssignRoleByPagination(int currentPage,int pageSize,TblSysUserVO userVO);
+	
+	
+	/**
+	 * 分配系统角色给指定用户
+	 * @param userVO 系统用户值对象
+	 * @return 更新记录数
+	 */
+	public int assignSysRole(TblSysUserVO userVO);
+	
+	/**
+	 * 回收指定系统用户的已经分配的角色
+	 * @param userVO
+	 * @return
+	 */
+	public int unAssignSysRole(TblSysUserVO userVO);
 }

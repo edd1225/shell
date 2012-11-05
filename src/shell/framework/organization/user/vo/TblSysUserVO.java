@@ -8,6 +8,8 @@
  */
 package shell.framework.organization.user.vo;
 
+import shell.framework.model.TblSysRole;
+
 /**
  * <p> 系统用户值对象 </p>
  *
@@ -42,8 +44,20 @@ public class TblSysUserVO {
 	private String updatedTime;
 	private String creator;
 	
+	private TblSysRole role;
 	
-	
+	/**
+	 * @return the role
+	 */
+	public TblSysRole getRole() {
+		return role;
+	}
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(TblSysRole role) {
+		this.role = role;
+	}
 	/**
 	 * @return the id
 	 */

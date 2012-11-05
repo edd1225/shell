@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import shell.framework.core.DefaultBeanFactory;
 import shell.framework.core.SystemParam;
 import shell.framework.dao.support.VOResult;
 import shell.framework.model.TblSysUser;
+import shell.framework.organization.department.service.TblSysDepartmentService;
 import shell.framework.organization.user.service.TblSysUserService;
+import shell.framework.organization.user.vo.TblSysUserDetailVO;
 import shell.framework.organization.user.vo.TblSysUserVO;
 
 /**
@@ -117,4 +118,87 @@ public class UserController implements SystemParam {
 	}
 	
 	
+	/**
+	 * 展示系统用户详细信息
+	 * @param request
+	 * @param userVO
+	 * @return
+	 */
+	@RequestMapping(value="show")
+	public ModelAndView show(HttpServletRequest request , TblSysUserVO userVO){
+		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
+		TblSysUserDetailVO sysUser = null;
+		if(userVO.getId()!=null && !"".equals(userVO.getId())){
+			sysUser  = tblSysUserService.show(userVO.getId());
+		}
+		return new ModelAndView("web/organization/user/userDetail","tblSysUser",sysUser);
+	}
+	
+	
+	/**
+	 * 索引所有已经分配给指定用户的角色
+	 * @param request
+	 * @param currentPage
+	 * @param userVO
+	 * @return
+	 */
+	@RequestMapping(value="roleIndex")
+	public ModelAndView roleIndex(HttpServletRequest request ,@RequestParam(required=false) Integer currentPage , 
+							   TblSysUserVO userVO){
+		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
+		if(currentPage==null || currentPage<=0){
+			currentPage = 1;
+		}
+		VOResult voResult = tblSysUserService.findAssignRoleByPagination(currentPage, SystemParam.PAGE_SIZE, userVO);
+		return new ModelAndView("web/organization/user/roleIndex","voResult",voResult);
+	}
+	
+	
+	/**
+	 * 索引所有未分配给指定系统用户的角色
+	 * @param request
+	 * @param currentPage
+	 * @param userVO
+	 * @return
+	 */
+	@RequestMapping(value="unAssignRoleIndex")
+	public ModelAndView unAssignRoleIndex(HttpServletRequest request ,@RequestParam(required=false) Integer currentPage,
+								TblSysUserVO userVO){
+		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
+		if(currentPage==null || currentPage<=0){
+			currentPage = 1;
+		}
+		VOResult voResult = tblSysUserService.findUnAssignRoleByPagination(currentPage, SystemParam.PAGE_SIZE, userVO);
+		return new ModelAndView("web/organization/user/userRoleAdd","voResult",voResult);
+	}
+	
+	
+	/**
+	 * 分配系统角色给指定用户
+	 * @param request
+	 * @param userVO
+	 * @return
+	 */
+	@RequestMapping(value="assignSysRole")
+	public ModelAndView assignSysRole(HttpServletRequest request , TblSysUserVO userVO){
+		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
+		int rowNums = 0;
+		rowNums = tblSysUserService.assignSysRole(userVO);
+		return new ModelAndView("common/ok");
+	}
+	
+	
+	/**
+	 * 回收指定用户已经分配的角色
+	 * @param request
+	 * @param userVO
+	 * @return
+	 */
+	@RequestMapping(value="unAssignSysRole")
+	public ModelAndView unAssignSysRole(HttpServletRequest request , TblSysUserVO userVO){
+		TblSysUserService tblSysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
+		int rowNums = 0;
+		rowNums = tblSysUserService.unAssignSysRole(userVO);
+		return new ModelAndView("redirect:/web/organization/user/roleIndex.action");
+	}
 }

@@ -230,7 +230,7 @@
 					
 					</div>	
 					<!-- 主数据显示区域 结束 -->			
-					<!-- 翻页 紧跟数据区下方 -->
+					<!-- 翻页 -->
 					<shell_services:pagination totalPages="<%=(voResult==null)?0:voResult.getTotalPages() %>" 
 											   currentPageNO="<%=(voResult==null)?0:voResult.getCurrentPage() %>" />
 			

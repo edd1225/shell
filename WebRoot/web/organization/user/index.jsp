@@ -88,7 +88,7 @@
 		
 			<!-- 右侧内容主显示区域 -->
 			<div class="content">
-				<div class="contentWrap">
+				<div class="contentWrap" id="contentWrap">
 				
 				<div id="bodyText" class="bodyText">
 				
@@ -140,6 +140,7 @@
 										<form name="userForm" method="post" action="">
 											<input type="hidden" id="currentPage" name="currentPage" value="1" />
 											<input type="hidden" id="ids" name="id" value="fuck you." />
+											<input type="hidden" id="currentUserID" name="currentUserID" value="" />
 												<div class="uiTypeahead">
 													<div class="wrap">
 														<div class="innerWrap">
@@ -197,9 +198,11 @@
 										//user.getFullName();
 						%>					
 	
-						<div id="<%=user.getId() %>" class="shell_user_identity shell_inline_block" tabindex="0" role="link"  >
-							<img class="shell_user_identity_img" src="<%=request.getContextPath() %>/images/shell_identify_default_img.jpg"  >
-							<div class="shell_user_identity_intro"><%=user.getFullName() %>  </div>
+						<div id="<%=user.getId() %>" class="shell_user_identity shell_inline_block" tabindex="0" role="link">
+							<img class="shell_user_identity_img" src="<%=request.getContextPath() %>/images/shell_identify_default_img.jpg" />
+							<div class="shell_user_identity_intro">
+								<%=user.getFullName() %>  
+							</div>
 						</div>
 	
 						<%			}
@@ -215,9 +218,32 @@
 					<!-- 翻页 -->
 					<shell_services:pagination totalPages="<%=(voResult==null)?0:voResult.getTotalPages() %>" 
 											   currentPageNO="<%=(voResult==null)?0:voResult.getCurrentPage() %>" />
+				
+					<div style="height: 10px;"></div>
+					
+					<!-- 标签数据显示区 开始 -->
+					<div id="tab-container" style="border: solid 0px; overflow:auto; width:100%; ">
+						<ul id="tab-container-nav"  class="shell_tab_container_nav">
+						    <li><a href="#tab1">详细</a></li>
+						    <li><a href="#tab2">角色</a></li>
+					    </ul>
+						<div class="shell_tabs_container">
+						    <div class="tab" id="tab1">
+							    <iframe id="userDetailTabIframe" name="tabIfame" src="<%=request.getContextPath() %>/web/organization/department/departmentInfo.html" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" 
+							    		style="border: 0px solid; width: 100%; overflow:inherit;">
+							    </iframe>
+						    </div>
+						    <div class="tab" id="tab2">
+							    <iframe id="userRoleTabIframe" name="tabIfame" src="<%=request.getContextPath() %>/web/organization/department/departmentInfo.html" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" 
+							    		style="border: 0px solid; width: 100%; overflow:inherit;">
+							    </iframe>
+						    </div>
+						</div>
+					</div>
+					<!-- 标签数据显示区 结束 -->
+
 			
 				</div>
-				
 				</div>
 				
 				<!-- 页脚div 开始 -->
@@ -264,6 +290,60 @@
 <!-- js库要按照顺序提前加载，否则后面的js函数失效 -->	
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/common/shell_globle.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/yetii.js"></script>
+
+
+<!-- 页面主内容区域可随意上下滚动，其他位置不动 -->
+<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	function _resize(){
+		var size = GetClientSize();
+		document.getElementById("bodyMenu").style.height=(size[1]-102)+"px";
+		document.getElementById("contentWrap").style.height=(size[1]-102)+"px";
+	}
+	
+	if(document.addEventListener) {
+		window.addEventListener("resize", _resize, false); //FF
+	} else if(document.attachEvent) {
+		window.attachEvent("onresize", _resize); //IE
+	}
+		
+	function GetClientSize(){
+		if(document.documentElement.clientWidth){
+			return [document.documentElement.clientWidth, document.documentElement.clientHeight];
+		}else{
+			return [document.body.clientWidth, document.body.clientHeight];
+		}
+	}
+	
+	_resize();
+
+	//---------------------- tab js ---------------------------------------------------------------------------------------
+	var tabber = new Yetii({
+			id: 'tab-container',
+			callback: preLoadDataFunc
+		}); 
+	//---------------------- 标签单击函数 ----------------------------------------------------------------------
+	function preLoadDataFunc(tabNumber){
+		if(tabNumber==1){
+			//loadDataFunc('<%=request.getContextPath() %>/web/organization/department/userIndex.action','tab1');
+		}
+		if(tabNumber==2){
+			var roleIframe = document.getElementById("userRoleTabIframe");
+			var id = document.getElementById("currentUserID").value;
+			//alert(id);
+			if(roleIframe.src && id!=""){
+				roleIframe.src = '<%=request.getContextPath() %>/web/organization/user/roleIndex.action?id='+id;
+			}
+		}
+	}
+	
+	
+	
+	
+	//-->
+</SCRIPT>
+
 
 <script type="text/javascript">
 
@@ -321,6 +401,12 @@
 			reload();
 		}
 	}
+	//----------------------- 加载人员详细信息 -------------------------------------------------------------------------------
+	function loadDataFun(){
+		var userDetailFrame = document.getElementById("userDetailTabIframe");
+		userDetailFrame.src = "<%=request.getContextPath() %>/web/organization/user/show.action?id=" + document.getElementById("currentUserID").value;
+	}
+	
 	
 	
 </script>	
@@ -331,8 +417,16 @@
 		$.each($(".shell_user_identity"),function(key,obj){
 			obj=$(obj);
 			obj.click(function(){
+				document.getElementById("currentUserID").value = obj.attr("id");
 				rescumeCount(obj);
 				obj.toggleClass("shell_item_selected");
+				if(obj.hasClass("shell_item_selected")){
+					loadDataFun();
+					tabber.show(1);
+				}else if(!obj.hasClass("shell_item_selected")){
+					//重置当前用户ID为空
+					document.getElementById("currentUserID").value="";
+				}
 			})
 		});		
 		

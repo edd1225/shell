@@ -73,6 +73,12 @@ public class DepartmentController {
 	}
 	
 	
+	/**
+	 * 索引指定部门分配的角色
+	 * @param currentPage
+	 * @param departmentVO
+	 * @return
+	 */
 	@RequestMapping(value="roleIndex")
 	public ModelAndView roleIndex(@RequestParam(required=false) Integer currentPage , TblSysDepartmentVO departmentVO){
 		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
@@ -100,6 +106,12 @@ public class DepartmentController {
 	}
 	
 	
+	/**
+	 * 索引部门下未分配的角色
+	 * @param currentPage
+	 * @param departmentVO
+	 * @return
+	 */
 	@RequestMapping(value="unAssignRoleIndex")
 	public ModelAndView unAssignRoleIndex(@RequestParam(required=false) Integer currentPage , TblSysDepartmentVO departmentVO){
 		TblSysDepartmentService departmentService = (TblSysDepartmentService)DefaultBeanFactory.getBean("tblSysDepartmentService");
