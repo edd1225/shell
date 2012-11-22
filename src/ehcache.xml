@@ -609,8 +609,8 @@
            eternal="false"
            overflowToDisk="false"
            timeToIdleSeconds="1200"
-           timeToLiveSeconds="1200">
-      
+           timeToLiveSeconds="1200"
+           memoryStoreEvictionPolicy="LFU" >
     </defaultCache>
 
     <!--
@@ -627,7 +627,7 @@
     disk cache, which in this configuration will go to wherever java.io.tmp is
     defined on your system. On a standard Linux system this will be /tmp"
     -->
-    <cache name="loginCache"
+    <cache name="loginInfoCache"
            maxEntriesLocalHeap="10000"
            maxEntriesLocalDisk="1000"
            eternal="false"
@@ -646,7 +646,7 @@
     is also the maximum cache size. Note that when a cache is eternal, timeToLive and
     timeToIdle are not used and do not need to be specified.
     -->
-    <cache name="roleCache"
+    <cache name="userRoleCache"
            maxEntriesLocalHeap="1000"
            eternal="true"
            overflowToDisk="false"

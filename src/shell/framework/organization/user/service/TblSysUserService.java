@@ -9,6 +9,8 @@
 package shell.framework.organization.user.service;
 
 import java.io.Serializable;
+import java.util.List;
+
 import shell.framework.dao.support.VOResult;
 import shell.framework.model.TblSysUser;
 import shell.framework.organization.user.vo.TblSysUserDetailVO;
@@ -100,4 +102,10 @@ public interface TblSysUserService {
 	 * @return
 	 */
 	public int unAssignSysRole(TblSysUserVO userVO);
+	
+	/**
+	 * 索引所有系统用户
+	 * @return
+	 */
+	public List<?> findAllUser();
 }

@@ -20,15 +20,10 @@ public class DefaultBeanFactory {
 	
 	//spring资源配置文件路径
 	private static final String CONTEXT_CONFIG_LOCATION = "classpath:applicationContext.xml";
-	
 	private static BeanFactory beanFactory = null;
-	
 	private static ServletContext sc = null;
-	
 	private static DefaultBeanFactory instance = null;
-	
 	private DefaultBeanFactory(){}
-	
 	
 	public static DefaultBeanFactory getInstance(BeanFactory beanFactory , ServletContext sc){
 		DefaultBeanFactory.beanFactory = beanFactory;
@@ -60,12 +55,12 @@ public class DefaultBeanFactory {
 				beanFactory = WebApplicationContextUtils.getWebApplicationContext(sc);
 			}else{
 				//servlet容器启动失败，就手动创建applicationContext，并在servletContext中进行注册
+				//注意：在spring初始实例话的bean中，不要调用BeanFactory.getBean()方法，这里容易造成循环加载spring bean实例，出现死循环
 				beanFactory = new ClassPathXmlApplicationContext(CONTEXT_CONFIG_LOCATION);
 			}
 		}
 		// 如果beanFactory不是web类型的applicationContext，就将其注册到servletContext中，此处会失败-类型转换错误
 		//WebApplicationContextUtils.registerEnvironmentBeans((ConfigurableListableBeanFactory)beanFactory, sc);
-		
 		return DefaultBeanFactory.beanFactory;
 	}
 	

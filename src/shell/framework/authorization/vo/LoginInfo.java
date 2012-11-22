@@ -8,6 +8,10 @@
  */
 package shell.framework.authorization.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import shell.framework.model.TblSysRole;
 import shell.framework.model.TblSysUser;
 
 /**
@@ -18,14 +22,20 @@ import shell.framework.model.TblSysUser;
  */
 public class LoginInfo {
 	
+	//登录用户
 	private TblSysUser user;
+	//登录ip
 	private String loginIP;
+	//登录主机
 	private String loginHost;
+	//登录时间
 	private String loginTime;
+	//登录sessionid
 	private String sessionID;
+	//登录url地址
 	private String url;
-	
-	
+	//登录用户拥有的最终全部角色列表（合并后的角色）
+	private List<TblSysRole> roleList = new ArrayList<TblSysRole>();
 	
 	/**
 	 * @return the sessionID
@@ -100,8 +110,18 @@ public class LoginInfo {
 		this.user = user;
 	}
 	
+	/**
+	 * @param roleList the roleList to set
+	 */
+	public void setRoleList(List roleList) {
+		this.roleList = roleList;
+	}
 	
-	
-	
+	/**
+	 * @return the roleList
+	 */
+	public List getRoleList() {
+		return roleList;
+	}
 	
 }

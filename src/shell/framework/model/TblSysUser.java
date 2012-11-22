@@ -8,14 +8,18 @@
  */
 package shell.framework.model;
 
+import java.io.Serializable;
+
 /**
  * <p> 系统用户实体类 </p>
  *
  * @author ChangMing.Yang
  * @version 1.0 $LastChangedDate: 2012-4-30 上午7:39:46 $
  */
-public class TblSysUser {
+public class TblSysUser implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private String id;
 	//用户登录ID
 	private String userCode;

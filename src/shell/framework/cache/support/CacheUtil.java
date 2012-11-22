@@ -9,9 +9,7 @@
 package shell.framework.cache.support;
 
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import shell.framework.cache.Cache;
 import shell.framework.cache.CacheFactory;
 
@@ -24,15 +22,15 @@ import shell.framework.cache.CacheFactory;
 public class CacheUtil {
 	
 	private Logger logger = Logger.getLogger(CacheUtil.class);
-	
-	public static String BEAN_ID = "cacheUtil";
-	
-	/**
-	 * 具体业务缓存列表
-	 */
 	private List<String> cacheRegionList;
-	
 	private static CacheFactory cacheFactory;
+
+	public static String USER_CACHE = "userCache";
+	public static String LOGIN_INFO_CACHE = "loginInfoCache";
+	public static String USER_ROLE_CACHE = "userRoleCache";
+	public static String DEPARTMENT_CACHE = "departmentCache";
+	public static String FUNCTION_CACHE = "functionCache";
+
 	
 	/**
 	 * @return the cacheFactory
@@ -47,12 +45,10 @@ public class CacheUtil {
 	/**
 	 * @param cacheFactory the cacheFactory to set
 	 */
+	@SuppressWarnings("all")
 	public void setCacheFactory(CacheFactory cacheFactory) {
 		this.cacheFactory = cacheFactory;
 	}
-	
-	
-	
 
 	/**
 	 * @param cacheRegionList the cacheRegionList to set
@@ -60,8 +56,6 @@ public class CacheUtil {
 	public void setCacheRegionList(List<String> cacheRegionList) {
 		this.cacheRegionList = cacheRegionList;
 	}
-
-	
 	
 	/**
 	 * 获取缓存对象值
@@ -82,7 +76,6 @@ public class CacheUtil {
 		return getCache(null).getCacheNames();
 	}
 	
-	
 	/**
 	 * 将数据存入指定缓存
 	 * @param regionName 业务缓存名称
@@ -93,7 +86,6 @@ public class CacheUtil {
 		getCache(regionName).put(key, value);
 	}
 	
-	
 	/**
 	 * 删除指定缓存中的对象值
 	 * @param regionName
@@ -103,16 +95,12 @@ public class CacheUtil {
 		getCache(regionName).remove(key);
 	}
 	
-	
 	/**
 	 * 清除当前缓存策略下的所有缓存对象
 	 */
 	public static void clearCaches() throws CacheException {
 		getCache(null).clear();
 	}
-	
-	
-	
 	
 	/**
 	 * 销毁指定的cache
@@ -121,7 +109,6 @@ public class CacheUtil {
 	public static void destoryCache(String regionName) throws CacheException {
 		getCache(regionName).destroy();
 	}
-	
 	
 	/**
 	 * 获取指定缓存中所有的对象key值
@@ -132,7 +119,6 @@ public class CacheUtil {
 		return getCache(regionName).getKeys();
 	}
 	
-	
 	/**
 	 * 刷新指定缓存
 	 * @param regionName 缓存名称
@@ -140,7 +126,6 @@ public class CacheUtil {
 	public static void refreshCache(String regionName){
 		//TODO 刷新指定缓存
 	}
-	
 	
 	/**
 	 * 获取cache对象，根据指定业务名称
@@ -154,7 +139,7 @@ public class CacheUtil {
 	
 	
 	/**
-	 * 系统启动时，初始化各种业务cache空间（此时并没有数据）
+	 * spring启动时，初始化加载各种业务cache空间（此时并没有数据填充cache空间）
 	 */
 	protected void initial() throws CacheException {
 		try{
@@ -164,7 +149,7 @@ public class CacheUtil {
 				}
 			}
 		}catch(Exception e){
-			logger.error(e.getMessage() + "\n Cache initialization failure！");
+			logger.error(e.getMessage() + "Cache initialization failure！");
 			throw new CacheException(e);
 		}
 	}

@@ -8,14 +8,18 @@
  */
 package shell.framework.model;
 
+import java.io.Serializable;
+
 /**
  * <p> 系统部门实体类 </p>
  *
  * @author ChangMing.Yang
  * @version 1.0 $LastChangedDate: 2012-6-26 下午5:36:26 $
  */
-public class TblSysDepartment {
+public class TblSysDepartment implements Serializable{
 
+	private static final long serialVersionUID = -4884689673220678425L;
+	
 	private String id ;
 	private String departmentName;
 	private String departmentType;

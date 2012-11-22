@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import shell.framework.authorization.support.AuthorizationException;
 import shell.framework.authorization.vo.LoginInfo;
+import shell.framework.cache.support.CacheUtil;
 import shell.framework.core.DefaultBeanFactory;
 import shell.framework.dao.impl.JdbcBaseDaoTemplate;
 import shell.framework.model.TblSysUser;
@@ -53,7 +54,6 @@ public class LoginService {
 		}
 		
 		List<?> resultList = this.checkUser(userCode, password);
-		
 		if (resultList==null || resultList.size()==0){
 			String message = "userCode or password is mismatching!";
 			return false;
@@ -78,7 +78,6 @@ public class LoginService {
 	 */
 	public List<?> checkUser(String userCode,String password) {
 		String sql = "select * from TBL_SYS_USER user where user.USERCODE=? and user.PASSWORD=?";
-		
 		JdbcBaseDaoTemplate jbdt = (JdbcBaseDaoTemplate)DefaultBeanFactory.getBean("baseDaoTemplate.Jdbc");
 		//password要进行加密
 		List<?> resultList = jbdt.query(sql, new Object[]{userCode,password}, new RowMapper<Object>(){
@@ -93,11 +92,9 @@ public class LoginService {
 				propertyMap.put("createdTime" , "CREATE_TIME");
 				propertyMap.put("updatedTime" , "UPDATE_TIME");
 				PopulateUtil.populate(user, rs ,propertyMap);
-				
 				return user;
 			}
 		});
-		
 		return resultList;
 	}
 	
@@ -107,25 +104,33 @@ public class LoginService {
 	 * @param user 当前登录用户
 	 * @param request
 	 */
+	@SuppressWarnings("all")
 	public void updateSession(TblSysUser user , HttpServletRequest request){
 		if(request==null){
 			logger.warn("THE REQUEST IS NOT COME FROM HTTP!");
 			return;
 		}
-		LoginInfo userInfo = new LoginInfo();
-		userInfo.setUser(user);
-		userInfo.setLoginHost(request.getRemoteHost());
-		userInfo.setLoginIP(request.getRemoteAddr());
+		LoginInfo loginInfo = new LoginInfo();
+		loginInfo.setUser(user);
+		loginInfo.setLoginHost(request.getRemoteHost());
+		loginInfo.setLoginIP(request.getRemoteAddr());
 		//TODO 需要使用日期工具解析成时间字符串
-		userInfo.setLoginTime(String.valueOf(System.currentTimeMillis()));
-		userInfo.setSessionID(request.getRequestedSessionId());
-		userInfo.setUrl(request.getRequestURI());
+		loginInfo.setLoginTime(String.valueOf(System.currentTimeMillis()));
+		loginInfo.setSessionID(request.getRequestedSessionId());
+		loginInfo.setUrl(request.getRequestURI());
+		List<String> roleList = (List)CacheUtil.getValue(CacheUtil.USER_ROLE_CACHE, user.getId());
+		loginInfo.setRoleList(roleList);
+
+//		System.out.println("userid=" + user.getId());
+//		System.out.println(loginInfo.getRoleList()==null ? "" : loginInfo.getRoleList().toString());
 		
+		
+		//TODO 登录信息应该放入缓存中
 		HttpSession session = request.getSession(true);
 		session.removeAttribute(user.getUserCode());
 		session.removeAttribute("userCode");
-		
-		session.setAttribute(user.getUserCode(), userInfo);
+		//TODO 为什么这么写，有问题
+		session.setAttribute(user.getUserCode(), loginInfo);
 		request.getSession().setAttribute("userCode", user.getUserCode());
 	}
 	

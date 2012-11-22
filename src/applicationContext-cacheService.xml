@@ -20,12 +20,25 @@
 		<!-- 初始化cache，但没有数据填充cache -->
 		<property name="cacheRegionList">
 			<list>
-				<value>loginCache</value>
-				<value>roleCache</value>
+				<!-- 用户缓存区域 -->
 				<value>userCache</value>
+				<!-- 用户登录信息缓存区域 -->
+				<value>loginInfoCache</value>
+				<!-- 部门树缓存区域 -->
+				<value>departmentCache</value>
+				<!-- 用户最终角色缓存区域 -->
+				<value>userRoleCache</value>
+				<!-- 系统功能树缓存区域 -->
+				<value>functionCache</value>
 			</list>
 		</property>
 	</bean>
-
+	
+	<!-- 系统缓存初始化 -->
+ 	<bean id="sys.cacheInitializer" class="shell.framework.core.SystemCacheInitializer" init-method="initial" lazy-init="false" depends-on="cacheUtil">
+ 		<property name="jdbcBaseDao">
+			<ref bean="baseDaoTemplate.Jdbc"/>
+		</property>
+ 	</bean>
 
 </beans>

@@ -125,6 +125,29 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 
 	
 	/* (non-Javadoc)
+	 * @see shell.framework.organization.user.service.TblSysUserService#findAllUser()
+	 */
+	public List<?> findAllUser() {
+		String sql = "select * from TBL_SYS_USER";
+		List<?> resultList = jdbcBaseDao.query(sql,new RowMapper<Object>() {
+			
+			/* (non-Javadoc)
+			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+			 */
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				TblSysUser user = new TblSysUser();	
+				Map<String,String> propertyMap = new HashMap<String,String>();
+				propertyMap.put("createdTime" , "CREATE_TIME");
+				propertyMap.put("updatedTime" , "UPDATE_TIME");
+				PopulateUtil.populate(user, rs ,propertyMap);
+				return user;
+			}
+		});
+		return resultList;
+	}
+	
+	
+	/* (non-Javadoc)
 	 * @see shell.framework.organization.user.service.TblSysUserService#delete(shell.framework.organization.user.vo.TblSysUserVO)
 	 */
 	public int deleteByID(TblSysUserVO userVO) {

@@ -27,15 +27,15 @@ public class CacheTestCase extends SpringContextBaseTestCase {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onSetUpInTransaction() throws Exception {
-		cacheUtil = (CacheUtil)this.getApplicationContext().getBean(CacheUtil.BEAN_ID);
+		cacheUtil = (CacheUtil)this.getApplicationContext().getBean("cacheUtil");
 	}
 	
 	public void testPutValue(){
-		cacheUtil.putValue("loginCache", "user", "zhangsan");
+		cacheUtil.putValue("loginInfoCache", "user", "zhangsan");
 	}
 	
 	public void testGetValue(){
-		Object obj = cacheUtil.getValue("loginCache", "user");
+		Object obj = cacheUtil.getValue("loginInfoCache", "user");
 		System.out.println("+++++++" + obj);
 	}
 	
