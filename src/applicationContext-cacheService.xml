@@ -35,7 +35,7 @@
 	</bean>
 	
 	<!-- 系统缓存初始化 -->
- 	<bean id="sys.cacheInitializer" class="shell.framework.core.SystemCacheInitializer" init-method="initial" lazy-init="false" depends-on="cacheUtil">
+ 	<bean id="sys.cacheInitializer" class="shell.framework.cache.SystemCacheInitializer" init-method="initial" lazy-init="false" depends-on="cacheUtil">
  		<property name="jdbcBaseDao">
 			<ref bean="baseDaoTemplate.Jdbc"/>
 		</property>
