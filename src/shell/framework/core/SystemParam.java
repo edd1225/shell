@@ -21,7 +21,8 @@ public interface SystemParam {
 	//记录是否有效
 	public static String IS_VALID = "T";  // 有效
 	public static String IN_VALID = "F";  // 无效
-	
+	//登录SESSIONID
+	public static String SESSIOIN_ID_LOGIN_INFO = "loginInfo";
 	
 	
 	

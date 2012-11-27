@@ -17,11 +17,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
-
 import shell.framework.core.SystemParam;
 import shell.framework.dao.IJdbcBaseDao;
 import shell.framework.dao.support.VOResult;
@@ -123,6 +120,31 @@ public class TblSysUserService4JdbcImpl implements TblSysUserService {
 		return (TblSysUser)resultList.get(0);
 	}
 
+	
+	
+	/* (non-Javadoc)
+	 * @see shell.framework.organization.user.service.TblSysUserService#findUserByUserCode(java.lang.String)
+	 */
+	public TblSysUser findUserByUserCode(String userCode) {
+		String sql = "select * from TBL_SYS_USER user where user.USERCODE=?";
+		List<?> resultList = jdbcBaseDao.query(sql, new Object[]{userCode}, new RowMapper<Object>(){
+			
+			/* (non-Javadoc)
+			 * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+			 */
+			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+				TblSysUser user = new TblSysUser();
+				
+				Map<String,String> propertyMap = new HashMap<String,String>();
+				propertyMap.put("createdTime" , "CREATE_TIME");
+				propertyMap.put("updatedTime" , "UPDATE_TIME");
+				PopulateUtil.populate(user, rs ,propertyMap);
+				return user;
+			}
+		});
+		return (resultList==null || resultList.size()==0) ? null : (TblSysUser)resultList.get(0);
+	}
+	
 	
 	/* (non-Javadoc)
 	 * @see shell.framework.organization.user.service.TblSysUserService#findAllUser()

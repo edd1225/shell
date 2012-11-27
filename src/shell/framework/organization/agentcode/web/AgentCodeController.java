@@ -30,6 +30,7 @@ import shell.framework.organization.agentcode.vo.TblSysAgentCodeVO;
  */
 @Controller
 @RequestMapping("/web/organization/agentCode/*")
+@SuppressWarnings("unused")
 public class AgentCodeController {
 	
 	/**

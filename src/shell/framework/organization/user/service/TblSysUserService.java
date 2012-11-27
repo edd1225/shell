@@ -41,6 +41,15 @@ public interface TblSysUserService {
 	 */
 	public TblSysUser findUserByID(Serializable id);
 	
+	
+	/**
+	 * 查询单个系统用户，根据登录ID
+	 * @param userCode
+	 * @return 系统用户对象 
+	 */
+	public TblSysUser findUserByUserCode(String userCode);
+	
+	
 	/**
 	 * 根据系统用户ID删除用户，支持批量删除
 	 * @param userVO 系统用户值对象 ，删除时使用id字段值存储所有id值，以“-”分割

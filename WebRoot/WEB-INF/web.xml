@@ -76,12 +76,12 @@
   	<filter-name>loginFilter</filter-name>
   	<url-pattern>/web/*</url-pattern>
   </filter-mapping>
-  <filter-mapping>
+<filter-mapping>
   	<filter-name>loginFilter</filter-name>
   	<url-pattern>/login.action</url-pattern>
   </filter-mapping>
-
-
+  
+  
   
   <jsp-config>
   	<taglib>

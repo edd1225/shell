@@ -9,26 +9,26 @@
 package shell.framework.authorization.test;
 
 import junit.framework.Assert;
-import shell.framework.authorization.service.LoginService;
+import shell.framework.authorization.service.AuthorizationService;
 import shell.framework.dao.test.SpringContextBaseTestCase;
 import shell.framework.model.TblSysUser;
 
 /**
- * <p> 权限模块测试用例 </p>
+ * <p> 鉴权模块测试用例 </p>
  *
  * @author ChangMing.Yang
  * @version 1.0 $LastChangedDate: 2012-5-2 上午11:14:39 $
  */
 public class AuthorizationTestCase extends SpringContextBaseTestCase {
 
-	private LoginService loginService = null;
+	private AuthorizationService authService = null;
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.test.AbstractTransactionalSpringContextTests#onSetUpInTransaction()
 	 */
 	@Override
 	protected void onSetUpInTransaction() throws Exception {
-		loginService = (LoginService)this.getApplicationContext().getBean(LoginService.BEAN_ID);
+		authService = (AuthorizationService)this.getApplicationContext().getBean(AuthorizationService.BEAN_ID);
 	}
 	
 	
@@ -39,7 +39,7 @@ public class AuthorizationTestCase extends SpringContextBaseTestCase {
 		user.setPassword("9999");
 		user.setFullName("GOOGLE PLUS");
 		
-		boolean result = loginService.login(user.getUserCode(),user.getPassword(),null);
+		boolean result = authService.login(user.getUserCode(),user.getPassword(),null);
 		
 		Assert.assertEquals(false, result);
 		

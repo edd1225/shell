@@ -9,13 +9,11 @@
 package shell.framework.authorization.web;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import shell.framework.authorization.service.LoginService;
-import shell.framework.authorization.support.AuthorizationException;
+import shell.framework.authorization.service.AuthorizationService;
 import shell.framework.core.DefaultBeanFactory;
+import shell.framework.core.SystemParam;
 
 /**
  * <p> 系统登录控制器 </p>
@@ -28,15 +26,18 @@ public class LoginController {
 
 	@RequestMapping("/login")
 	public String login(String userCode,String password,HttpServletRequest request){
-		if(userCode==null || password==null){
-			throw new AuthorizationException("NO USERCODE OR PASSWORD SPECIFIED!");
-		}
-		LoginService loginService = (LoginService)DefaultBeanFactory.getBean(LoginService.BEAN_ID);
-		if(!loginService.login(userCode, password, request)){
-			return "redirect:index.jsp";
+		AuthorizationService authService = (AuthorizationService)DefaultBeanFactory.getBean(AuthorizationService.BEAN_ID);
+		if(userCode!=null && password!=null){
+			if(authService.login(userCode, password, request)){
+				return "web/defaultFrame/mainFrame";
+			}
 		}else{
-			return "web/defaultFrame/mainFrame";
+			//浏览器对应服务端session中已经存在用户登录信息，忽略掉登录验证过程
+			if(request.getSession().getAttribute(SystemParam.SESSIOIN_ID_LOGIN_INFO)!=null){
+				return "web/defaultFrame/mainFrame";
+			}
 		}
+		return "redirect:index.jsp";
 	}
 	
 	
