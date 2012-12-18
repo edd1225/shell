@@ -38,7 +38,7 @@ public class RoleController {
 	 * 索引所有的角色
 	 * @param request
 	 * @param currentPage
-	 * @param departmentVO
+	 * @param sysRoleVO
 	 * @return
 	 */
 	@RequestMapping(value="index")

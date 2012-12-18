@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@page import="shell.framework.model.TblSysFunction"%>
-<%@page import="shell.framework.dao.support.VOResult"%>
+<%@ page import="shell.framework.model.TblSysFunction"%>
+<%@ page import="shell.framework.dao.support.VOResult"%>
 <%@ taglib prefix="shell_tree" uri="http://taglib.shell/shell-tree.tld" %>
 									
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">

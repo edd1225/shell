@@ -1,6 +1,8 @@
 <%@page import="shell.framework.model.TblSysUser"%>
 <%@page import="shell.framework.organization.user.service.TblSysUserService"%>
 <%@page import="shell.framework.dao.support.VOResult"%>
+<%@ page import="shell.framework.core.SystemParam" %>
+<%@ page import="shell.framework.authorization.vo.LoginInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="shell_services" uri="http://taglib.shell/shell-services.tld" %>
 
@@ -48,17 +50,24 @@
 		<div class="menu">
 		
 		<div class="topNav">
-				
-				<div class="topNavWrapper">
-					<a class="l" href="<%=request.getContextPath() %>/web/defaultFrame/mainFrame.jsp">主面板</a>
-					<a class="l" href="http://developers.facebook.com/module/">组织机构</a>
-					<a class="l" href="http://developers.facebook.com/blog/">权限管理</a> 
-					<a class="l" href="https://developers.facebook.com/apps">编码设置</a>
-					<a class="l" href="https://developers.facebook.com/apps">设置</a>
-					<!-- 登录个人信息 -->
-					<div align="right" style="float:right; padding-top: 7px;padding-right: 5px;font-size: 12px; ">
+
+				<div style="clear: both;"></div>
+
+            <div class="topNavWrapper">
+                <a class="l" href="<%=request.getContextPath() %>/web/defaultFrame/mainFrame.jsp">主面板</a>
+
+                <shell_services:authority  authorityID="PAGE.FUN.MENU.SENDSHELL">
+                    <a class="l" href="http://developers.facebook.com/module/">组织机构</a>
+                    <a class="l" href="http://developers.facebook.com/blog/">权限管理</a>
+                </shell_services:authority>
+                <a class="l" href="https://developers.facebook.com/apps">编码设置</a>
+                <a class="l" href="https://developers.facebook.com/apps">设置</a>
+
+
+                <!-- 个人登录信息 -->
+                <div align="right" style="float:right; padding-top: 7px;padding-right: 5px;font-size: 12px; ">
 						<span style="padding-left: 5px;">
-							<%=request.getSession().getAttribute("userCode")!=null ? request.getSession().getAttribute("userCode") : "游客" %>	
+							<%=request.getSession().getAttribute(SystemParam.SESSIOIN_ID_LOGIN_INFO)!=null ? ((LoginInfo)request.getSession().getAttribute(SystemParam.SESSIOIN_ID_LOGIN_INFO)).getUser().getFullName() : "游客" %>
 						</span>
 						<span style="padding-left: 5px;">
 							设置
@@ -66,11 +75,9 @@
 						<span style="padding-left: 5px;">
 							注销
 						</span>
-					</div>	
-				</div>
-				
-				<div style="clear: both;"></div>
-		
+                </div>
+            </div>
+
 			</div>
 		
 	 	<div class="logo">

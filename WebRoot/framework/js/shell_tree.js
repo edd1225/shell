@@ -21,10 +21,11 @@ function change(){
         var nested = document.getElementById("DIV_" + getSrcElement().nextSibling.nextSibling.id);
         if (nested.style.display=="none") {
             nested.style.display='';
-            getSrcElement().src="http://localhost:8080/shell/framework/images/tree_minus.gif";
+            //TODO 应用root地址不应该写死
+            getSrcElement().src="http://localhost:8080/framework/images/tree_minus.gif";
         }else {
             nested.style.display="none";
-            getSrcElement().src="http://localhost:8080/shell/framework/images/tree_plus.gif";
+            getSrcElement().src="http://localhost:8080/framework/images/tree_plus.gif";
         }
     }
 }
@@ -50,7 +51,7 @@ function findAncestors(obj) {
 /**
  * 获取对象的内部html
  * @param obj
- * @returns
+ * @return
  */
 function findHeaderText(obj) {
 	return obj.lastChild.previousSibling.innerHTML;

@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2012 by IKermi Inc. All Rights Reserved.
- * $Id: LoginService.java $
+ * $Id: AuthorizationService.java $
  * $LastChangedDate: 2012-4-29 下午9:45:06 $
  *
  * This software is the proprietary information of IKermi, Inc.
@@ -9,121 +9,132 @@
 package shell.framework.authorization.service;
 
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import org.apache.log4j.Logger;
-import shell.framework.authorization.support.AuthorizationException;
-import shell.framework.authorization.vo.LoginInfo;
-import shell.framework.cache.support.CacheUtil;
-import shell.framework.core.DefaultBeanFactory;
-import shell.framework.core.SystemParam;
-import shell.framework.model.TblSysUser;
-import shell.framework.organization.user.service.TblSysUserService;
+import java.util.Map;
+
+import org.omg.CORBA.portable.StreamableValue;
+import shell.framework.dao.IJdbcBaseDao;
+
 
 /**
- * <p> 系统鉴权之登录服务，不需要基于接口方式，业务类直接调用即可 </p>
+ * <p> 系统鉴权服务，不需要基于接口方式，业务类直接调用即可 </p>
  *
  * @author ChangMing.Yang
  * @version 1.0 $LastChangedDate: 2012-4-29 下午9:45:06 $
  */
 public class AuthorizationService {
 
-	private Logger logger = Logger.getLogger(AuthorizationService.class);
+	private IJdbcBaseDao jdbcBaseDao;
 	
 	public static String BEAN_ID = "authorizationService";
 	
+	/**
+	 * @return the jdbcBaseDao
+	 */
+	public IJdbcBaseDao getJdbcBaseDao() {
+		return jdbcBaseDao;
+	}
 	
 	/**
-	 * 用户登录验证
-	 * @param userCode 用户ID
-	 * @param password 密码-明文
-	 * @param request http请求
-	 * @return
-	 * @throws AuthorizationException
+	 * @param jdbcBaseDao the jdbcBaseDao to set
 	 */
-	@SuppressWarnings("unused")
-	public boolean login(String userCode,String password,HttpServletRequest request) throws AuthorizationException {
-		if(userCode==null || password==null){
-			logger.warn("NO USERCODE OR PASSWORD SPECIFIED !");
-			throw new AuthorizationException("NO USERCODE OR PASSWORD SPECIFIED !");
+	public void setJdbcBaseDao(IJdbcBaseDao jdbcBaseDao) {
+		this.jdbcBaseDao = jdbcBaseDao;
+	}
+	
+	/**
+	 * 获取指定角色的所有权限
+	 * @param roleIDs 角色集合
+	 * @return 包括权限id的list集合
+	 */
+	public List<String> getAllAuthorities(List<String> roleIDs){
+		
+		return null;
+	}
+
+	
+	/**
+	 * 根据指定角色，判断是否拥有某个权限资源的访问权限
+	 * @param roleIDList 角色ID集合
+	 * @param funcValue 权限资源值
+	 * @param funcID 权限资源ID
+	 * @return true-拥有 false-没有
+	 */
+	public boolean hasAuthority(List<String> roleIDList,String funcValue,String funcID){
+        StringBuilder sql;
+        String roleIds = "";
+        boolean  hasAuth = false;
+        if(roleIDList==null || roleIDList.size()==0){
+            return false;
+        }
+        for (String roleID : roleIDList) {
+            roleIds = roleIds + "'" + roleID + "',";
+        }
+        roleIds = roleIds.substring(0, roleIds.length()-1);
+        sql = new StringBuilder("select * from (select * from TBL_SYS_AUTHORITY" + " where ROLE_ID in ("+roleIds+")");
+        if(funcID!=null && !"".equals(funcID)){
+			sql.append(" and FUNCTION_ID='").append(funcID).append("'");
 		}
-		TblSysUser userObj = checkUser(userCode);
-		if(userObj!=null){
-			//核对密码 
-			//TODO password要进行加密
-			if(password.equals(userObj.getPassword())){
-				this.updateSession(userObj, request);
-				return true;
-			}
-		}
-		String message = "userCode or password is mismatching!";
-		return false;
+		sql.append(") auth");
+        if(funcValue!=null && !"".equals(funcValue)){
+            sql.append(" join TBL_SYS_FUNCTION func on auth.FUNCTION_ID=func.ID and func.FUNCTION_URL <> '' ");
+        }
+        
+        //TODO 需要优化，不会每次访问权限资源都要查询数据库，应该放入缓存中
+		List<?> resultList = jdbcBaseDao.query(sql.toString());
+
+        if(resultList!=null && resultList.size()>0){
+            for(Object rowsMap : resultList) {
+                //PAGE类型资源权限
+                if(funcID!=null && !"".equals(funcID)){
+                    String _funcID = ((Map)rowsMap).get("FUNCTION_ID")==null ? "" : (String)((Map)rowsMap).get("FUNCTION_ID");
+                    if(_funcID.equals(funcID)) {
+                        hasAuth = true;
+                        break;
+                    }
+                }
+
+                //URL类型资源权限
+                if(funcValue!=null && !"".equals(funcValue)){
+                    String functionValuePattern =  (String)((Map)rowsMap).get("FUNCTION_URL");
+                    //匹配权限资源值与ACL表中的设定权限资源值（目前只针对形如/xxx/xxx/*进行匹配）
+                    if (functionValuePattern!=null){
+                        if(functionValuePattern.endsWith("*")){
+                            functionValuePattern = functionValuePattern.substring(0,functionValuePattern.length()-1);
+                        }
+                        if(funcValue.startsWith(functionValuePattern)){
+                            hasAuth = true;
+                            break;
+                        }
+                    }
+                }
+
+                //COMMAND类型资源权限
+                //TODO  COMMAND类型资源权限验证
+            }
+        }
+        return hasAuth;
 	}
 	
 	
 	/**
-	 * 用户注销
-	 * 1.session中用户登录数据
-	 * 2.缓存中的用户权限数据
-	 * @param userID 系统用户记录ID
-	 * @throws AuthorizationException
+	 * 根据指定角色，判断是否拥有某个权限资源的访问权限
+	 * @param roleIDs 角色ID结合
+	 * @param funcValue 权限资源值
+	 * @return true-拥有 false-没有
 	 */
-	public void logout(String userID , HttpServletRequest request) throws AuthorizationException{
-		request.getSession().removeAttribute(SystemParam.SESSIOIN_ID_LOGIN_INFO);
+	public boolean hasAuthority(List<String> roleIDs,String funcValue){
+		return this.hasAuthority(roleIDs, funcValue, null);
 	}
 	
 	
 	/**
-	 * 验证是否存在该用户,并更新缓存中的用户信息
+	 * 判断指定用户是否拥有某个权限资源的访问权限 - 扩展功能
 	 * @param userCode 用户登录ID
-	 * @return 系统用户对象
+	 * @param funcValue 权限资源值
+	 * @return true-拥有 false-没有
 	 */
-	protected TblSysUser checkUser(String userCode) {
-		TblSysUserService sysUserService = (TblSysUserService)DefaultBeanFactory.getBean("tblSysUserService");
-		TblSysUser userObj = null;
-		Object user = CacheUtil.getValue(CacheUtil.USER_CACHE, userCode);
-		//缓存中存在
-		if(user!=null && user instanceof TblSysUser){
-			userObj = (TblSysUser)user;
-		//从数据库中获取
-		}else{
-			userObj = sysUserService.findUserByUserCode(userCode);
-			//更新userCache缓存 
-			if(userObj!=null && CacheUtil.getValue(CacheUtil.USER_CACHE,userCode)==null ){
-				CacheUtil.putValue(CacheUtil.USER_CACHE, userCode, userObj);
-			}
-		}
-		return userObj;
-	}
-	
-	
-	/**
-	 * 更新session中的用户登录信息
-	 * 
-	 * @param user 当前登录用户
-	 * @param request
-	 */
-	@SuppressWarnings("all")
-	public void updateSession(TblSysUser user , HttpServletRequest request){
-		if(request==null){
-			logger.warn("THE REQUEST IS NOT COME FROM HTTP!");
-			return;
-		}
-		LoginInfo loginInfo = new LoginInfo();
-		loginInfo.setUser(user);
-		loginInfo.setLoginHost(request.getRemoteHost());
-		loginInfo.setLoginIP(request.getRemoteAddr());
-		//TODO 需要使用日期工具解析成时间字符串
-		loginInfo.setLoginTime(String.valueOf(System.currentTimeMillis()));
-		loginInfo.setSessionID(request.getRequestedSessionId());
-		loginInfo.setUrl(request.getRequestURI());
-		//从缓存中获得用户角色数据
-		List<String> roleList = (List)CacheUtil.getValue(CacheUtil.USER_ROLE_CACHE, user.getId());
-		loginInfo.setRoleList(roleList);
-		//每个用户登录信息放入session，根据sessionID区分
-		HttpSession session = request.getSession(true);
-		session.removeAttribute(SystemParam.SESSIOIN_ID_LOGIN_INFO);
-		session.setAttribute(SystemParam.SESSIOIN_ID_LOGIN_INFO, loginInfo);
+	public boolean hasAuthority(String userCode,String funcValue){
+		return true;
 	}
 	
 }

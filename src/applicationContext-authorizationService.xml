@@ -5,6 +5,16 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
-	<bean id="authorizationService" class="shell.framework.authorization.service.AuthorizationService" />
+	<!-- 系统登录 -->
+	<bean id="loginService" class="shell.framework.authorization.service.LoginService" />
+	
+	<!-- 系统鉴权服务 -->
+	<bean id="authorizationService" class="shell.framework.authorization.service.AuthorizationService">
+		<property name="jdbcBaseDao">
+			<ref bean="baseDaoTemplate.Jdbc"/>
+		</property>
+	</bean>
+	
+
 
 </beans>

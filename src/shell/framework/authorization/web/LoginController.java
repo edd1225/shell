@@ -11,7 +11,7 @@ package shell.framework.authorization.web;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import shell.framework.authorization.service.AuthorizationService;
+import shell.framework.authorization.service.LoginService;
 import shell.framework.core.DefaultBeanFactory;
 import shell.framework.core.SystemParam;
 
@@ -26,9 +26,9 @@ public class LoginController {
 
 	@RequestMapping("/login")
 	public String login(String userCode,String password,HttpServletRequest request){
-		AuthorizationService authService = (AuthorizationService)DefaultBeanFactory.getBean(AuthorizationService.BEAN_ID);
+		LoginService loginService = (LoginService)DefaultBeanFactory.getBean(LoginService.BEAN_ID);
 		if(userCode!=null && password!=null){
-			if(authService.login(userCode, password, request)){
+			if(loginService.login(userCode, password, request)){
 				return "web/defaultFrame/mainFrame";
 			}
 		}else{

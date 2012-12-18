@@ -171,12 +171,13 @@ public class TblSysRoleService4JdbcImpl implements TblSysRoleService {
 		Map resultMap = new HashMap();
 		List<?> funcAllList = new ArrayList(); 
 		try {
-			funcAllList = MPTTTreeUtil.retrieveAllTree("000", this.jdbcBaseDao);
+			//根节点，不应该写死，应该从系统编码表（数据字典）中获取
+			funcAllList = MPTTTreeUtil.retrieveAllTree(SystemParam.AUTHORITY_TREE_ROOT_ID, this.jdbcBaseDao);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		String sql = "select ID,FUNCTION_NAME from TBL_SYS_FUNCTION , TBL_SYS_PERMISSION where ID=FUNCTION_ID and ROLE_ID ='" + sysRoleVO.getRole().getId() + "'";
+		String sql = "select ID,FUNCTION_NAME from TBL_SYS_FUNCTION , TBL_SYS_AUTHORITY where ID=FUNCTION_ID and ROLE_ID ='" + sysRoleVO.getRole().getId() + "'";
 		List<?> funcList = jdbcBaseDao.query(sql);
 		List funcOfRoleList = new ArrayList();
 		for(Object funcMap : funcList){
@@ -200,10 +201,10 @@ public class TblSysRoleService4JdbcImpl implements TblSysRoleService {
 	 */
 	@SuppressWarnings("unused")
 	public int saveFunctionsOfRole(final TblSysRoleVO sysRoleVO) {
-		String delSQL = "delete from TBL_SYS_PERMISSION where ROLE_ID=?";
-		String sql = "insert into TBL_SYS_PERMISSION values (?,?)";
+		String delSQL = "delete from TBL_SYS_AUTHORITY where ROLE_ID=?";
+		String sql = "insert into TBL_SYS_AUTHORITY values (?,?,?,?)";
 		
-		//先删掉角色的所有系统功能
+		//先删掉角色的所有权限点
 		int delNum = jdbcBaseDao.update(delSQL, new Object[]{sysRoleVO.getRole().getId()});
 
 		String[] functionIDs = sysRoleVO.getFunction().getId().split("-");
@@ -222,6 +223,8 @@ public class TblSysRoleService4JdbcImpl implements TblSysRoleService {
 				String functionID = functionIdList.get(index);
 				ps.setString(1, sysRoleVO.getRole().getId());
 				ps.setString(2, functionID);
+				ps.setString(3, "");
+				ps.setInt(4, SystemParam.AUTHORITY_OPER_READ_ONLY);	//权限点默认操作值，暂不起作用 0-读取
 			}
 			
 			/*

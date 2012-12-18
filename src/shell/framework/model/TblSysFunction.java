@@ -19,8 +19,8 @@ public class TblSysFunction {
 	private String id;
 	private String functionName;
 	private String functionURL;
-	private String isMenu;
-	private String parentFunctionID;
+	private String functionType;
+	private String parentFunID;
 	private int orderNO;
 	private String remark;
 	private String createTime;
@@ -65,28 +65,28 @@ public class TblSysFunction {
 		this.functionURL = functionURL;
 	}
 	/**
-	 * @return the isMenu
+	 * @return the functionType
 	 */
-	public String getIsMenu() {
-		return isMenu;
+	public String getFunctionType() {
+		return functionType;
 	}
 	/**
-	 * @param isMenu the isMenu to set
+	 * @param functionType the functionType to set
 	 */
-	public void setIsMenu(String isMenu) {
-		this.isMenu = isMenu;
+	public void setFunctionType(String functionType) {
+		this.functionType = functionType;
 	}
 	/**
-	 * @return the parentFunctionID
+	 * @return the parentFunID
 	 */
-	public String getParentFunctionID() {
-		return parentFunctionID;
+	public String getParentFunID() {
+		return parentFunID;
 	}
 	/**
-	 * @param parentFunctionID the parentFunctionID to set
+	 * @param parentFunID the parentFunID to set
 	 */
-	public void setParentFunctionID(String parentFunctionID) {
-		this.parentFunctionID = parentFunctionID;
+	public void setParentFunID(String parentFunID) {
+		this.parentFunID = parentFunID;
 	}
 	/**
 	 * @return the orderNO

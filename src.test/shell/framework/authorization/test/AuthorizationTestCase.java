@@ -9,7 +9,7 @@
 package shell.framework.authorization.test;
 
 import junit.framework.Assert;
-import shell.framework.authorization.service.AuthorizationService;
+import shell.framework.authorization.service.LoginService;
 import shell.framework.dao.test.SpringContextBaseTestCase;
 import shell.framework.model.TblSysUser;
 
@@ -21,14 +21,14 @@ import shell.framework.model.TblSysUser;
  */
 public class AuthorizationTestCase extends SpringContextBaseTestCase {
 
-	private AuthorizationService authService = null;
+	private LoginService authService = null;
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.test.AbstractTransactionalSpringContextTests#onSetUpInTransaction()
 	 */
 	@Override
 	protected void onSetUpInTransaction() throws Exception {
-		authService = (AuthorizationService)this.getApplicationContext().getBean(AuthorizationService.BEAN_ID);
+		authService = (LoginService)this.getApplicationContext().getBean(LoginService.BEAN_ID);
 	}
 	
 	

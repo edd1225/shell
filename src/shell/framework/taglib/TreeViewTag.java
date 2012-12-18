@@ -262,7 +262,9 @@ public class TreeViewTag  extends BodyTagSupport {
         try {
             pageContext.getOut().print(sb.toString());
         }
-        catch (IOException e) {}
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return (SKIP_BODY);
     }

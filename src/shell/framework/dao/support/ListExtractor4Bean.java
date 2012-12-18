@@ -21,7 +21,8 @@ import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-import com.sun.org.apache.commons.beanutils.BeanUtils;
+//import com.sun.org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtils;
 
 /**
  * <p> 结果集提取器，结果集属性转为bean属性，返回包含bean的list对象 

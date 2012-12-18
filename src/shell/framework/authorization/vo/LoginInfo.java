@@ -10,8 +10,6 @@ package shell.framework.authorization.vo;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import shell.framework.model.TblSysRole;
 import shell.framework.model.TblSysUser;
 
 /**
@@ -34,8 +32,8 @@ public class LoginInfo {
 	private String sessionID;
 	//登录url地址
 	private String url;
-	//登录用户拥有的最终全部角色列表（合并后的角色）
-	private List<TblSysRole> roleList = new ArrayList<TblSysRole>();
+	//登录用户拥有的最终全部角色ID列表（合并后的角色）
+	private List<String> roleList = new ArrayList<String>();
 	
 	/**
 	 * @return the sessionID
@@ -113,14 +111,14 @@ public class LoginInfo {
 	/**
 	 * @param roleList the roleList to set
 	 */
-	public void setRoleList(List roleList) {
+	public void setRoleList(List<String> roleList) {
 		this.roleList = roleList;
 	}
 	
 	/**
 	 * @return the roleList
 	 */
-	public List getRoleList() {
+	public List<String> getRoleList() {
 		return roleList;
 	}
 	

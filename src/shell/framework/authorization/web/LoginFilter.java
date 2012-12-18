@@ -19,13 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
-
-import shell.framework.authorization.service.AuthorizationService;
+import shell.framework.authorization.service.LoginService;
 import shell.framework.core.DefaultBeanFactory;
 import shell.framework.core.SystemParam;
 
 /**
- * <p> 1.验证用户请求资源时是否已经登录系统 </p>
+ * <p> 验证用户请求资源时是否已经登录 </p>
  *
  * @author ChangMing.Yang
  * @version 1.0 $LastChangedDate: 2012-5-6 下午12:47:57 $
@@ -48,7 +47,6 @@ public class LoginFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse)response;
-		
 		//根据sessionID获取当前浏览器对应session
 		HttpSession session = req.getSession();
 		if(session==null){
@@ -64,9 +62,9 @@ public class LoginFilter implements Filter {
 			String usercode = req.getParameter("userCode");
 			String pwd = req.getParameter("password");
 			if(usercode!=null && pwd!=null && !usercode.trim().equals("") && !"".equals(pwd.trim())){
-				AuthorizationService authService = (AuthorizationService)DefaultBeanFactory.getBean(AuthorizationService.BEAN_ID);
-				//如果登录失败，转向登录页面
-				if(!authService.login((String)usercode,pwd,req)){
+				LoginService loginService = (LoginService)DefaultBeanFactory.getBean(LoginService.BEAN_ID);
+				//如果用户验证失败，转向登录页面
+				if(!loginService.login((String)usercode,pwd,req)){
 					this.doLogin(req, resp, filterChain);
 					return;
 				}
@@ -81,10 +79,11 @@ public class LoginFilter implements Filter {
 	
 	/**
 	 * 验证失败，转向登录页面
-	 * @param request
-	 * @param response
-	 * @param filterChain
+	 * @param request   http请求
+	 * @param response  http应答
+	 * @param filterChain   过滤器
 	 */
+    @SuppressWarnings("unused")
 	public void doLogin(ServletRequest request, ServletResponse response, FilterChain filterChain){
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse)response;
@@ -95,7 +94,7 @@ public class LoginFilter implements Filter {
 			e.printStackTrace();
 		}
 	}
-	
+
 	
 	/* (non-Javadoc)
 	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)

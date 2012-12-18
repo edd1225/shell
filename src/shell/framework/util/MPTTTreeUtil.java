@@ -66,8 +66,8 @@ public class MPTTTreeUtil {
 				Map<String,String> propertyMap = new HashMap<String,String>();
 				propertyMap.put("name" , "FUNCTION_NAME");
 				propertyMap.put("functionURL" , "FUNCTION_URL");
-				propertyMap.put("isMenu" , "IS_MENU");
-				propertyMap.put("parentID" , "PARENT_FUNCTION_ID");
+				propertyMap.put("functionType" , "FUNCTION_TYPE");
+				propertyMap.put("parentFunID" , "PARENT_FUN_ID");
 				propertyMap.put("orderNO" , "ORDER_NO");
 				PopulateUtil.populate(treeViewObject, rs ,propertyMap);
 				return treeViewObject;

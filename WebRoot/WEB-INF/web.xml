@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
-  <display-name></display-name>	
+  <display-name>@shell部署描述符</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -30,8 +30,6 @@
   	<url-pattern>*.action</url-pattern>
   </servlet-mapping>
   
-  
-  
   <listener>
   	<description>servlet容器启动加载此监听器，该监听器负责启动spring</description>
   	<listener-class>shell.framework.core.ContextLoaderListener</listener-class>
@@ -39,7 +37,7 @@
   
   <filter>
   	<description>设置字符集的过滤器</description>
-  	<filter-name>encodeingFilter</filter-name>
+  	<filter-name>encodingFilter</filter-name>
   	<filter-class>shell.framework.web.RequestEncodingFilter</filter-class>
   	<init-param>
   		<param-name>characterEncoding</param-name>
@@ -47,7 +45,7 @@
   	</init-param>
   </filter>
   <filter-mapping>
-  	<filter-name>encodeingFilter</filter-name>
+  	<filter-name>encodingFilter</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
@@ -76,13 +74,25 @@
   	<filter-name>loginFilter</filter-name>
   	<url-pattern>/web/*</url-pattern>
   </filter-mapping>
-<filter-mapping>
+  <filter-mapping>
   	<filter-name>loginFilter</filter-name>
   	<url-pattern>/login.action</url-pattern>
   </filter-mapping>
   
-  
-  
+  <filter>
+  	<description>处理URL的鉴权前置处理器,针对需要进行鉴权的URL，添加filterMapping即可</description>
+  	<filter-name>UrlAuthorizationFilter</filter-name>
+  	<filter-class>shell.framework.authorization.web.AuthorizationPostProcessor</filter-class>
+  	<init-param>
+  		<param-name>forbidPage</param-name>
+  		<param-value>/common/forbiddenAccess.jsp</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>UrlAuthorizationFilter</filter-name>
+  	<url-pattern>/web/organization/user/*</url-pattern>
+  </filter-mapping>
+
   <jsp-config>
   	<taglib>
   		<taglib-uri>http://taglib.shell/shell-services.tld</taglib-uri>

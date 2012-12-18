@@ -15,7 +15,7 @@ import java.util.List;
 import shell.framework.model.TblSysRole;
 
 /**
- * <p> 权限工具类 </p>
+ * <p> 权限工具类 - give up </p>
  *
  * @author ChangMing.Yang
  * @version 1.0 $LastChangedDate: 2012-11-16 下午3:15:48 $
