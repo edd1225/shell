@@ -145,7 +145,10 @@ public class SystemCacheInitializer {
 					roleIDList = new ArrayList<String>();
 					CacheUtil.putValue(CacheUtil.USER_ROLE_CACHE,rs.getString("USER_ID"),roleIDList);
 				}
-				roleIDList.add(rs.getString("ROLE_ID"));
+                Object _roleIdList = CacheUtil.getValue(CacheUtil.USER_ROLE_CACHE,rs.getString("USER_ID"));
+                if(_roleIdList!=null){
+                    ((List<String>)_roleIdList).add(rs.getString("ROLE_ID"));
+                }
 				return null;
 			}
 		});

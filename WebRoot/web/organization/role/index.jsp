@@ -1,5 +1,4 @@
 <%@page import="shell.framework.model.TblSysRole"%>
-<%@page import="shell.framework.organization.user.service.TblSysUserService"%>
 <%@page import="shell.framework.dao.support.VOResult"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="shell_services" uri="http://taglib.shell/shell-services.tld" %>
@@ -75,7 +74,7 @@
 		
 	 	<div class="logo">
 			<a href="<%=request.getContextPath() %>"> 
-				<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17">
+			<!--	<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17"> -->
 		    </a>
 	 	</div>
 	 	
@@ -205,7 +204,7 @@
 											%>	
 												 
 					                        <tr onclick="doChangeColor('color<%=j %>');" id="color<%=j %>" bgcolor="#FFFFFF" >
-					                          <td width="10%" align=center  class="a1">
+					                          <td width="10%" align=left  class="a1">
 					                          	<input type="checkbox" name="checkedRole" value="<%=role.getId() %>" 
 					                          	onclick="javascript:checkGroupAllSync('checkedRole','checkAll');" />
 					                          </td>
@@ -214,9 +213,9 @@
 														<%=role.getName() %>
 												</a>
 					                          </td>
-					                          <td width="20%" align=center  class="a1"><%=role.getCreateTime() %></td>
+					                          <td width="20%" align=left  class="a1"><%=role.getCreateTime() %></td>
 					                          <td width="20%" align=left class="a1"><%=role.getUpdateTime() %></td>
-					                          <td width="30%" align=center class="a1"><%=role.getCreator() %></td>
+					                          <td width="30%" align=left class="a1"><%=role.getCreator() %></td>
 					                        </tr>
 						
 											 <%}}%>
@@ -241,6 +240,7 @@
 						<ul id="tab-container-nav"  class="shell_tab_container_nav">
 						    <li><a href="#tab1">功能权限</a></li>
 						    <li><a href="#tab2">数据权限</a></li>
+                            <li><a href="#tab3">URL权限</a></li>
 					    </ul>
 						<div class="shell_tabs_container">
 						    <div class="tab" id="tab1">
@@ -253,6 +253,11 @@
 							    		style="border: 0px solid; width: 100%; overflow: auto;">
 							    </iframe>
 						    </div>
+                            <div class="tab" id="tab3">
+                                <iframe id="urlTabIframe" name="tabIfame" src="<%=request.getContextPath() %>/web/organization/department/departmentInfo.html" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"
+                                        style="border: 0px solid; width: 100%; overflow: auto;">
+                                </iframe>
+                            </div>
 						</div>
 					</div>
 					<!-- 标签数据显示区 结束 -->
@@ -291,6 +296,8 @@
 								<div class="navSectionTitle">岗位管理</div> </a></li>
 						<li><a class="selected" href="<%=request.getContextPath() %>/web/organization/role/index.action">
 								<div class="navSectionTitle">角色管理</div> </a></li>
+                        <li><a href="<%=request.getContextPath() %>/web/organization/authority/index.action">
+                            <div class="navSectionTitle">权限管理</div> </a></li>
 					</ul>
 				</div>
 			</div>
@@ -304,7 +311,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/yetii.js"></script>
 
 <!-- 页面主内容区域可随意上下滚动，其他位置不动 -->
-<SCRIPT LANGUAGE="JavaScript">
+<SCRIPT type="text/javascript" language="JavaScript">
 	<!--
 	function _resize(){
 		var size = GetClientSize();
@@ -329,26 +336,64 @@
 	_resize();
 
 	//---------------------- tab js---------------------------------------------------------------------------------------
-	var tabber = new Yetii({
+    var tabber = new Yetii({
 			id: 'tab-container',
 			callback: preLoadDataFunc
-		}); 
-	function preLoadDataFunc(tabNumber){}
+		});
+
+    /**
+     * 标签点击事件
+     * @param tabNumber
+     * @return {boolean}
+     */
+	function preLoadDataFunc(tabNumber){
+        var _currentRoleID = document.getElementById("currentRoleID").value;
+        if(tabNumber==2){
+            if(_currentRoleID==null || _currentRoleID=="" || _currentRoleID==undefined){
+                alert("请先选择角色！");
+                return false;
+            }
+            var dataTabIframeSrc = document.getElementById("dataTabIframe");
+            //dataTabIframeSrc.src = '<%=request.getContextPath() %>/web/organization/role/functionIndex.action?role.id='+_currentRoleID;
+        }
+        if(tabNumber==3){
+            if(_currentRoleID==null || _currentRoleID=="" || _currentRoleID==undefined){
+                alert("请先选择角色！");
+                return false;
+            }
+            var urlTabIframeSrc = document.getElementById("urlTabIframe");
+             urlTabIframeSrc.src = '<%=request.getContextPath() %>/web/organization/role/urlAuthorityIndex.action?role.id='+_currentRoleID;
+        }
+        return true;
+    }
+
+
+
 	//-->
 </SCRIPT>
 
 <script type="text/javascript">
 
-	//------------------------ 角色分页查询 ------------------------------------------------------------------------------
-	function doPaging(_currentPage){
+	/**
+	 * 角色分页查询
+     * @param _currentPage 当前页
+     */
+    function doPaging(_currentPage){
 		doSubmit(_currentPage,"<%=request.getContextPath() %>/web/organization/role/index.action","roleForm");
 	}
-	//------------------------ 角色搜索 ----------------------------------------------------------------------------------
-	function doRoleSearch(){
+
+	/**
+	 * 角色搜索
+     */
+    function doRoleSearch(){
 		doSubmit(null,"<%=request.getContextPath() %>/web/organization/role/index.action","roleForm");
 	}
-	//------------------------ 批量删除角色 -------------------------------------------------------------------------------
-	function doBatchDelete(){
+
+	/**
+	 * 批量删除角色
+     * @return {boolean}
+     */
+    function doBatchDelete(){
 		if(!isCheckBoxSelected("checkedRole")){
 			alert('至少选择一位角色，支持批量删除！');
 			return false;
@@ -356,23 +401,34 @@
 			if(window.confirm("确定删除？")){
 				var roleIDs = getcheckBoxAllValue("checkedRole","ids");
 				doSubmit(null,"<%=request.getContextPath() %>/web/organization/role/delete.action","roleForm");
-			}
-		} 
-	}
-	//------------------------ 增加角色 -------------------------------------------------------------------------------
-	function doAddRole(){
+            }
+            return true;
+        }
+    }
+
+	/**
+	 * 增加角色
+     */
+    function doAddRole(){
 		var loadURL = "<%=request.getContextPath() %>/web/organization/role/roleAdd.jsp";
 		var retValue = openNewWindow(loadURL,700,300);
 		if(retValue=='ok'){
 			reload();
 		}
 	}
-	//------------------------ 重新加载页面 ---------------------------------------------------------------------------
-	function reload(){
+
+	/**
+	 * 重新加载页面
+     */
+    function reload(){
 		doPaging(null);
 	}
-	//------------------------ 更新角色-------------------------------------------------------------------------------
-	function doUpdateRole(){
+
+	/**
+	 * 更新角色
+     * @return {boolean}
+     */
+    function doUpdateRole(){
 		var selectedCount = checkBoxSelectedCount("checkedRole");
 		if(selectedCount!=1){
 			alert("请选择一个角色！");
@@ -384,10 +440,15 @@
 		if(retValue=='ok'){
 			reload();
 		}
+        return true;
 	}
 	
-	//---------------------- 加载角色关联数据 -------------------------------------------------------------------------
-	function doLoadData(obj){
+	/**
+	 * 加载角色对应的功能权限数据
+     * @param obj 角色名称所在的<a>对象
+     * @return {boolean}
+     */
+    function doLoadData(obj){
 		var roleName = obj.innerText;
 		var id = obj.id;
 		if(obj){
@@ -405,11 +466,12 @@
 			//同步全选按钮状态
 			checkGroupAllSync("checkedRole","checkAll");
 		}
-		
+
 		document.getElementById("currentRoleID").value = id;
 		var functionIframe = document.getElementById("functionTabIframe");
 		functionIframe.src = '<%=request.getContextPath() %>/web/organization/role/functionIndex.action?role.id='+id + "&role.name=" + roleName ;
 		tabber.show(1);
+        return true;
 	}
 	
 </script>	

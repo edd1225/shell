@@ -111,7 +111,7 @@
 					
 			<td nowrap="true" valign="top" align="center">
 				<fieldset  style="border:1px solid #ccc; width: 200px; height:300px; text-align: left;" >
-				<legend>全部系统功能</legend>
+				<legend>系统功能树</legend>
 				
 				<shell_tree:treeview title="" href="#" param="functionId" imgfold="../../../framework/images/tree_minus.gif"  
 									imgxian="../../../framework/images/xian.gif" 
@@ -132,7 +132,7 @@
 				<fieldset style="border:1px solid #ccc; width: 200px; height:300px; text-align: left;" >
 				<legend>角色[&nbsp;<b><%=request.getParameter("role.name") %></b>&nbsp;]的功能权限</legend>
 			
-				<div id="roleFunctionsID" >
+				<div id="roleFunctionsID">
 
 					<select name="right" size="10" id="selRoleFuns" multiple style="width: 190px; height:250px; border: 0px solid ;" >
 						<%

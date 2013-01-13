@@ -41,7 +41,7 @@ public class MPTTTreeUtil {
 	 * 索引树的某个节点及其下所有的子节点
 	 * 按照先序遍历从数据库中查询出结果 使用 order by LFT ASC进行排序即可
 	 * @param treeNodeID 树中某个节点ID
-	 * @param jdbcBaseDao
+	 * @param jdbcBaseDao dao层实现类
 	 * @return List 按LFT字段升序排列的TreeViewObject对象
 	 * @throws SQLException
 	 */
@@ -55,7 +55,8 @@ public class MPTTTreeUtil {
 			map = (Map<String,Object>)rootList.get(0);
 		}
 		
-		sql = "select * from TBL_SYS_FUNCTION where LFT between " + (Integer)map.get("LFT") + " and " + (Integer)map.get("RGT") + " order by LFT ASC" ;
+		sql = "select * from TBL_SYS_FUNCTION where LFT between " + (Integer)map.get("LFT") + " and " + (Integer)map.get("RGT") +
+              " order by LFT ASC" ;
 		List<?> treeNodeList = jdbcBaseDao.query(sql, new RowMapper<Object>(){
 			
 			/* (non-Javadoc)

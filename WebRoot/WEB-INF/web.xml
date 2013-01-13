@@ -93,6 +93,9 @@
   	<url-pattern>/web/organization/user/*</url-pattern>
   </filter-mapping>
 
+
+
+
   <jsp-config>
   	<taglib>
   		<taglib-uri>http://taglib.shell/shell-services.tld</taglib-uri>

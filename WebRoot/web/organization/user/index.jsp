@@ -24,17 +24,17 @@
 		java.util.List resultList = null;
 		int totalPages = 0;
 		int totalRaws = 0;
-		
+
 		if(obj != null){
 			voResult = (VOResult)obj;
 			resultList = voResult.getResultList();
 			totalPages = voResult.getTotalPages();
 			totalRaws = voResult.getTotalRows();
-			//out.println("size=" + resultList.size());			
+			//out.println("size=" + resultList.size());
 		}else{
 			out.println("obj=NULL" );
 		}
-		
+
 	%>
 
 
@@ -45,10 +45,10 @@
 <body>
 
 	<div class="shellPage">
-	
+
 		<!-- 顶行菜单导航开始 -->
 		<div class="menu">
-		
+
 		<div class="topNav">
 
 				<div style="clear: both;"></div>
@@ -79,34 +79,34 @@
             </div>
 
 			</div>
-		
+
 	 	<div class="logo">
-			<a href="<%=request.getContextPath() %>"> 
+			<a href="<%=request.getContextPath() %>">
 				<img class="img" src="<%=request.getContextPath() %>/images/facebook_developer_logo.png" alt="Facebook" width="166" height="17">
 		    </a>
 	 	</div>
-	 	
+
 		</div>
 		<!-- 顶行菜单导航结束 -->
-		
+
 		<div style="clear: both;"></div>
 
 		<div class="body nav">
-		
+
 			<!-- 右侧内容主显示区域 -->
 			<div class="content">
 				<div class="contentWrap" id="contentWrap">
-				
+
 				<div id="bodyText" class="bodyText">
-				
+
 					<div class="shell_toolBar">
-						
+
 						<!-- 题头开始 -->
 						<table cellspacing=0 cellpadding=0 width=100% border=0 align="center">
 						  <tbody>
 						    <tr>
 						      <td width=20 valign="top" bgcolor="E3EDFF" >
-						      	<img src="../../../images/holly-11-10t.gif" border=0> 
+						      	<img src="../../../images/holly-11-10t.gif" border=0>
 						      </td>
 						      <td bgcolor="E3EDFF" width="100%">
 						        <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -120,17 +120,17 @@
 									<td width="10%" style="text-align: right;">
 										<span>全部部门(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>人)</span>
 									</td>
-						          
+
 						            <td width="5%" style="text-align: right;">
 						           	 <span onclick="javascript:doAddUser();" style="cursor: pointer;">
 						            	<img src="../../../images/docnew.gif">
 						            	增加</span>
 						            </td>
 						            <td width="5%" style="text-align: right;">
-						           	 <span onclick="javascript:doBatchDelete();" style="cursor: pointer;">
+                                        <span onclick="javascript:doBatchDelete();" style="cursor: pointer;">
 						            	<img src="../../../images/docdelete.gif">
 						            	删除</span>
-						            </td>
+                                    </td>
 						            <td width="5%" style="text-align: right;">
 							            <span onclick="javascript:doUpdateUser();" style="cursor: pointer;">
 						            	<img src="../../../images/docedit.gif">
@@ -151,11 +151,11 @@
 												<div class="uiTypeahead">
 													<div class="wrap">
 														<div class="innerWrap">
-															<span class="shell_tool_search textInput"> 
+															<span class="shell_tool_search textInput">
 																<span>
 																 <input	type="text" class="inputtext DOMControl_placeholder"
 																	name="fullName" value="<%=request.getParameter("fullName")==null?"":request.getParameter("fullName") %>" title="键入搜索条件" />
-																	<button type="button" title="Search for documentation" onclick="javascript:doUserSearch();"></button> 
+																	<button type="button" title="Search for documentation" onclick="javascript:doUserSearch();"></button>
 																</span>
 															</span>
 														</div>
@@ -166,11 +166,11 @@
 										<!-- 搜索div结束 -->
 						            </td>
 						            <td width="35%" align="right">
-						            
+
 						            </td>
 						            <td width="10" align="right"><b><img src="../../../images/holly-x.gif" height="12"></b></td>
 						            <td width="10" align="center"><b><img src="../../../images/holly-s.gif" height="12"></b></td>
-						         
+
 						          </tr>
 						        </table>
 						        <b></b>
@@ -183,51 +183,51 @@
 						  </tbody>
 						</table>
 						<!-- 题头结束 -->
-						
+
 					</div>
-			 		
+
 					<div>
-						
+
 						<%
 							if(resultList!=null){
 								//行数
 								int rowNums = (voResult.getPageSize()/6) + ((voResult.getPageSize()%6)==0?0:1);
-										
+
 								for(int i=0;i<rowNums;i++){
-						%>			
+						%>
 								<div>
-						<% 			
+						<%
 									for(int j=0;j<6;j++){
 										int indexNum = i*6+j;
 										if(indexNum>=voResult.getResultList().size()) break;
-										TblSysUser user = (TblSysUser)resultList.get(indexNum);									
+										TblSysUser user = (TblSysUser)resultList.get(indexNum);
 										//out.println(request.getAttribute("preRequestURL"));
 										//user.getFullName();
-						%>					
-	
+						%>
+
 						<div id="<%=user.getId() %>" class="shell_user_identity shell_inline_block" tabindex="0" role="link">
 							<img class="shell_user_identity_img" src="<%=request.getContextPath() %>/images/shell_identify_default_img.jpg" />
 							<div class="shell_user_identity_intro">
-								<%=user.getFullName() %>  
+								<%=user.getFullName() %>
 							</div>
 						</div>
-	
+
 						<%			}
 						%>
-							 	</div>		
+							 	</div>
 						<%
 								}
 							}
 						%>
-						
+
 					</div>
-					
+
 					<!-- 翻页 -->
-					<shell_services:pagination totalPages="<%=(voResult==null)?0:voResult.getTotalPages() %>" 
+					<shell_services:pagination totalPages="<%=(voResult==null)?0:voResult.getTotalPages() %>"
 											   currentPageNO="<%=(voResult==null)?0:voResult.getCurrentPage() %>" />
-				
+
 					<div style="height: 10px;"></div>
-					
+
 					<!-- 标签数据显示区 开始 -->
 					<div id="tab-container" style="border: solid 0px; overflow:auto; width:100%; ">
 						<ul id="tab-container-nav"  class="shell_tab_container_nav">
@@ -236,12 +236,12 @@
 					    </ul>
 						<div class="shell_tabs_container">
 						    <div class="tab" id="tab1">
-							    <iframe id="userDetailTabIframe" name="tabIfame" src="<%=request.getContextPath() %>/web/organization/department/departmentInfo.html" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" 
+							    <iframe id="userDetailTabIframe" name="tabIfame" src="<%=request.getContextPath() %>/web/organization/department/departmentInfo.html" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"
 							    		style="border: 0px solid; width: 100%; overflow:inherit;">
 							    </iframe>
 						    </div>
 						    <div class="tab" id="tab2">
-							    <iframe id="userRoleTabIframe" name="tabIfame" src="<%=request.getContextPath() %>/web/organization/department/departmentInfo.html" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" 
+							    <iframe id="userRoleTabIframe" name="tabIfame" src="<%=request.getContextPath() %>/web/organization/department/departmentInfo.html" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"
 							    		style="border: 0px solid; width: 100%; overflow:inherit;">
 							    </iframe>
 						    </div>
@@ -249,10 +249,10 @@
 					</div>
 					<!-- 标签数据显示区 结束 -->
 
-			
+
 				</div>
 				</div>
-				
+
 				<!-- 页脚div 开始 -->
 				<div class="footer">
 					<div class="footerWrap">
@@ -266,10 +266,10 @@
 					</div>
 				</div>
 				<!-- 页脚div 结束 -->
-				
+
 			</div>
-	
-	
+
+
 			<!-- 左侧导航栏 -->
 				<div id="bodyMenu" class="bodyMenu">
 					<div class="toplevelnav">
@@ -282,19 +282,21 @@
 									<div class="navSectionTitle">工号管理</div> </a></li>
 							<li><a href="<%=request.getContextPath() %>/web/organization/position/index.action">
 									<div class="navSectionTitle">岗位管理</div> </a></li>
-							<li><a href="<%=request.getContextPath() %>/web/organization/role/index.action">
+                            <shell_services:authority  authorityID="PAGE.FUN.MENU.SENDSHELL">
+                            <li><a href="<%=request.getContextPath() %>/web/organization/role/index.action">
 									<div class="navSectionTitle">角色管理</div> </a></li>
+                            </shell_services:authority>
 						</ul>
 					</div>
 				</div>
-	
+
 		</div>
 
 
 
 	</div>
 
-<!-- js库要按照顺序提前加载，否则后面的js函数失效 -->	
+<!-- js库要按照顺序提前加载，否则后面的js函数失效 -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/common/shell_globle.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/yetii.js"></script>
@@ -308,13 +310,13 @@
 		document.getElementById("bodyMenu").style.height=(size[1]-102)+"px";
 		document.getElementById("contentWrap").style.height=(size[1]-102)+"px";
 	}
-	
+
 	if(document.addEventListener) {
 		window.addEventListener("resize", _resize, false); //FF
 	} else if(document.attachEvent) {
 		window.attachEvent("onresize", _resize); //IE
 	}
-		
+
 	function GetClientSize(){
 		if(document.documentElement.clientWidth){
 			return [document.documentElement.clientWidth, document.documentElement.clientHeight];
@@ -322,14 +324,14 @@
 			return [document.body.clientWidth, document.body.clientHeight];
 		}
 	}
-	
+
 	_resize();
 
 	//---------------------- tab js ---------------------------------------------------------------------------------------
 	var tabber = new Yetii({
 			id: 'tab-container',
 			callback: preLoadDataFunc
-		}); 
+		});
 	//---------------------- 标签单击函数 ----------------------------------------------------------------------
 	function preLoadDataFunc(tabNumber){
 		if(tabNumber==1){
@@ -344,10 +346,10 @@
 			}
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	//-->
 </SCRIPT>
 
@@ -376,11 +378,11 @@
 					obj=$(obj); //需要重新获取对象
 					userIDs = userIDs + obj.attr("id") + "-";
 				});
-				
+
 				document.getElementById("ids").value = userIDs.substring(0,userIDs.length-1);
 				doSubmit(null,"<%=request.getContextPath() %>/web/organization/user/delete.action","userForm");
 			}
-		} 
+		}
 	}
 	//------------------------ 增加用户 -------------------------------------------------------------------------------
 	function doAddUser(){
@@ -413,11 +415,11 @@
 		var userDetailFrame = document.getElementById("userDetailTabIframe");
 		userDetailFrame.src = "<%=request.getContextPath() %>/web/organization/user/show.action?id=" + document.getElementById("currentUserID").value;
 	}
-	
-	
-	
-</script>	
-	
+
+
+
+</script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		//---------------------------选择用户面板----------------------------------------------------------------------
@@ -435,25 +437,25 @@
 					document.getElementById("currentUserID").value="";
 				}
 			})
-		});		
-		
+		});
+
 		//-------------------------------已选择对象个数变化函数----------------------------------------------------------
 		var rescumeCount = function(obj){
 			if (obj.hasClass("shell_item_selected")) {
 			//	$("#shell_view_selected_count").text(parseInt($("#shell_view_selected_count").text(), 10) - 1);
 				document.getElementById("shell_view_selected_count").innerHTML = parseInt($("#shell_view_selected_count").text(), 10) - 1;
-				
+
 			} else {  //选择对象个数递增
 				//$("#shell_view_selected_count").text(parseInt($("#shell_view_selected_count").text(), 10) + 1);
 				document.getElementById("shell_view_selected_count").innerHTML = parseInt($("#shell_view_selected_count").text(), 10) + 1;
 			}
 		};
-			
-			
+
+
 	});
 
-</script>	
-		
+</script>
+
 </body>
 </html>
 

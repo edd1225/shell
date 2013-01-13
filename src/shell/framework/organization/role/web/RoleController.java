@@ -8,9 +8,7 @@
  */
 package shell.framework.organization.role.web;
 
-import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -105,9 +103,9 @@ public class RoleController {
 	
 	/**
 	 * 更新角色
-	 * @param request
-	 * @param sysRoleVO
-	 * @return
+	 * @param request  http请求
+	 * @param sysRoleVO 系统角色值对象
+	 * @return  视图模型
 	 */
 	@RequestMapping(value="update")
 	public ModelAndView update(HttpServletRequest request , TblSysRoleVO sysRoleVO){
@@ -119,10 +117,10 @@ public class RoleController {
 	
 	
 	/**
-	 * 索引指定角色拥有的全部功能
-	 * @param request
-	 * @param sysRoleVO 
-	 * @return
+	 * 索引指定角色拥有的全部功能权限
+	 * @param request request请求
+	 * @param sysRoleVO 系统角色值对象
+	 * @return 视图模型
 	 */
 	@RequestMapping(value="functionIndex")
 	public ModelAndView functionIndex(HttpServletRequest request , TblSysRoleVO sysRoleVO){
@@ -131,13 +129,47 @@ public class RoleController {
 		request.setAttribute("funcOfRoleList", resultMap.get("funcOfRoleList"));
 		return new ModelAndView("web/organization/role/functionIndex","treeList",resultMap.get("funcAllList"));
 	}
-	
-	
+
+
+    /**
+     * 索引指定角色的所有url权限
+     * @param request request请求
+     * @param sysRoleVO 角色值对象
+     * @return 视图模型
+     */
+    @RequestMapping(value="urlAuthorityIndex")
+    public ModelAndView urlAuthorityIndex(HttpServletRequest request,@RequestParam(required=false) Integer currentPage,TblSysRoleVO sysRoleVO){
+        TblSysRoleService tblSysRoleService = (TblSysRoleService)DefaultBeanFactory.getBean("tblSysRoleService");
+        if(currentPage==null || currentPage<=0){
+            currentPage = 1;
+        }
+        VOResult voResult = tblSysRoleService.findURLAuthorityByPagination(currentPage,SystemParam.PAGE_SIZE,sysRoleVO);
+        return new ModelAndView("web/organization/role/urlAuthorityIndex","voResult",voResult);
+    }
+
+
+    /**
+     * 索引所有未分配给指定角色的url权限
+     * @param request  http请求
+     * @param currentPage   当前页码
+     * @param sysRoleVO    系统角色值对象
+     * @return    视图模型
+     */
+    @RequestMapping(value="unAssignURLAuthorityIndex")
+    public ModelAndView unAssignURLAuthorityIndex(HttpServletRequest request,@RequestParam(required=false) Integer currentPage,TblSysRoleVO sysRoleVO){
+        TblSysRoleService tblSysRoleService = (TblSysRoleService)DefaultBeanFactory.getBean("tblSysRoleService");
+        if(currentPage==null || currentPage<=0){
+            currentPage = 1;
+        }
+        VOResult voResult = tblSysRoleService.findUnAssignURLAuthorityByPagination(currentPage,SystemParam.PAGE_SIZE,sysRoleVO);
+        return new ModelAndView("web/organization/role/urlAuthorityAdd","voResult",voResult);
+    }
+
 	/**
-	 * 保存指定角色的系统功能
-	 * @param request
-	 * @param sysRoleVO
-	 * @return
+	 * 保存指定角色的功能权限
+	 * @param request request请求
+	 * @param sysRoleVO 角色值对象
+	 * @return 视图模型
 	 */
 	@RequestMapping(value="saveFunctionsOfRole")
 	public ModelAndView saveFunctionsOfRole(HttpServletRequest request , TblSysRoleVO sysRoleVO){
@@ -145,10 +177,33 @@ public class RoleController {
 		int updateNum = tblSysRoleService.saveFunctionsOfRole(sysRoleVO);
 		return new ModelAndView("common/ok");
 	}
-	
-	
-	
-	
+
+    /**
+     * 分配url权限给指定角色
+     * @param request request请求
+     * @param sysRoleVO 系统角色值对象
+     * @return 视图模型
+     */
+    @RequestMapping(value="assignURLAuthority")
+	public ModelAndView assignURLAuthority(HttpServletRequest request,TblSysRoleVO sysRoleVO){
+        TblSysRoleService tblSysRoleService = (TblSysRoleService)DefaultBeanFactory.getBean("tblSysRoleService");
+        int updateNum = tblSysRoleService.assignURLAuthority(sysRoleVO);
+        return new ModelAndView("common/ok");
+    }
+
+    /**
+     * 回收指定角色的url权限资源
+     * @param request   http请求
+     * @param sysRoleVO   系统角色值对象
+     * @return  视图模型
+     */
+    @RequestMapping(value = "unAssignURLAuthority")
+    public ModelAndView unAssignURLAuthority(HttpServletRequest request,TblSysRoleVO sysRoleVO){
+        TblSysRoleService tblSysRoleService = (TblSysRoleService)DefaultBeanFactory.getBean("tblSysRoleService");
+        int updateNum = tblSysRoleService.unAssignURLAuthority(sysRoleVO);
+        return new ModelAndView("redirect:/web/organization/role/urlAuthorityIndex.action?role.id="+sysRoleVO.getRole().getId());
+    }
+
 }
 
 

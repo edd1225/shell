@@ -8,6 +8,7 @@
  */
 package shell.framework.cache.test;
 
+import shell.framework.cache.SystemCacheInitializer;
 import shell.framework.cache.support.CacheUtil;
 import shell.framework.dao.test.SpringContextBaseTestCase;
 
@@ -20,7 +21,8 @@ import shell.framework.dao.test.SpringContextBaseTestCase;
 public class CacheTestCase extends SpringContextBaseTestCase {
 
 	private CacheUtil cacheUtil =  null;
-	
+	private SystemCacheInitializer systemCacheInitializer = null;
+
 	/* (non-Javadoc)
 	 * @see org.springframework.test.AbstractTransactionalSpringContextTests#onSetUpInTransaction()
 	 */
@@ -28,6 +30,7 @@ public class CacheTestCase extends SpringContextBaseTestCase {
 	@Override
 	protected void onSetUpInTransaction() throws Exception {
 		cacheUtil = (CacheUtil)this.getApplicationContext().getBean("cacheUtil");
+        systemCacheInitializer = (SystemCacheInitializer)this.getApplicationContext().getBean("sys.cacheInitializer");
 	}
 	
 	public void testPutValue(){
@@ -59,8 +62,11 @@ public class CacheTestCase extends SpringContextBaseTestCase {
 		for(String name : namess){
 			System.out.println("....." + name);
 		}
-		
-		
-		
 	}
+
+
+    public void testSysCacheInitializer(){
+         systemCacheInitializer.userRoleInitial();
+    }
+
 }

@@ -24,10 +24,8 @@ import shell.framework.dao.IJdbcBaseDao;
 import shell.framework.dao.support.VOResult;
 import shell.framework.model.TblSysFunction;
 import shell.framework.model.TblSysRole;
-import shell.framework.organization.function.vo.TblSysFunctionVO;
 import shell.framework.organization.role.service.TblSysRoleService;
 import shell.framework.organization.role.vo.TblSysRoleVO;
-import shell.framework.taglib.support.TreeViewObject;
 import shell.framework.util.MPTTTreeUtil;
 import shell.framework.util.PopulateUtil;
 import shell.framework.util.UUIDGenerator;
@@ -177,7 +175,8 @@ public class TblSysRoleService4JdbcImpl implements TblSysRoleService {
 			e.printStackTrace();
 		}
 		
-		String sql = "select ID,FUNCTION_NAME from TBL_SYS_FUNCTION , TBL_SYS_AUTHORITY where ID=FUNCTION_ID and ROLE_ID ='" + sysRoleVO.getRole().getId() + "'";
+		String sql = "select ID,FUNCTION_NAME from TBL_SYS_FUNCTION , TBL_SYS_AUTHORITY where ID=FUNCTION_ID and ROLE_ID ='" +
+                      sysRoleVO.getRole().getId() + "'";
 		List<?> funcList = jdbcBaseDao.query(sql);
 		List funcOfRoleList = new ArrayList();
 		for(Object funcMap : funcList){
@@ -207,11 +206,11 @@ public class TblSysRoleService4JdbcImpl implements TblSysRoleService {
 		//先删掉角色的所有权限点
 		int delNum = jdbcBaseDao.update(delSQL, new Object[]{sysRoleVO.getRole().getId()});
 
-		String[] functionIDs = sysRoleVO.getFunction().getId().split("-");
 		if(sysRoleVO.getFunction().getId()==null || "".equals(sysRoleVO.getFunction().getId()) ){
-			return 0;
-		}
-		final List<String> functionIdList = Arrays.asList(functionIDs);
+            return 0;
+        }
+        String[] functionIDs = sysRoleVO.getFunction().getId().split("-");
+        final List<String> functionIdList = Arrays.asList(functionIDs);
 
 		int[] updateNumbers = jdbcBaseDao.batchUpdate(sql, functionIdList, new BatchPreparedStatementSetter() {
 			
@@ -238,6 +237,98 @@ public class TblSysRoleService4JdbcImpl implements TblSysRoleService {
 		
 		return updateNumbers.length;
 	}
-	
 
+
+    @Override
+    public VOResult findURLAuthorityByPagination(int currentPage,int pageSize,TblSysRoleVO sysRoleVO) {
+        String sql = "select func.ID,func.FUNCTION_NAME,func.FUNCTION_URL from TBL_SYS_FUNCTION func , TBL_SYS_AUTHORITY auth " +
+                     "where func.ID=auth.FUNCTION_ID and auth.ROLE_ID='" + sysRoleVO.getRole().getId() + "' and func.FUNCTION_TYPE='" + SystemParam.AUTHORITY_TYPE_URL + "'";
+        return jdbcBaseDao.query(sql,new RowMapper<Object>() {
+
+            @Override
+            public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+                TblSysFunction function = new TblSysFunction();
+                Map<String,String> propertiesMap = new HashMap<String,String>();
+                propertiesMap.put("functionName","FUNCTION_NAME");
+                propertiesMap.put("functionURL","FUNCTION_URL");
+                PopulateUtil.populate(function,rs,propertiesMap);
+                return function;
+            }
+
+        },currentPage,pageSize);
+    }
+
+
+    @Override
+    public VOResult findUnAssignURLAuthorityByPagination(int currentPage,int pageSize,TblSysRoleVO sysRoleVO) {
+        String sql = "select ID,FUNCTION_NAME,FUNCTION_URL,FUNCTION_TYPE from TBL_SYS_FUNCTION where id not in (select FUNCTION_ID from TBL_SYS_AUTHORITY where ROLE_ID=?) " +
+                "and FUNCTION_TYPE='" + SystemParam.AUTHORITY_TYPE_URL + "'";
+
+        return jdbcBaseDao.query(sql,new Object[]{sysRoleVO.getRole().getId()},new RowMapper<Object>() {
+                    @Override
+                    public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        TblSysFunction function = new TblSysFunction();
+                        Map<String,String> propertiesMap = new HashMap<String,String>();
+                        propertiesMap.put("functionName","FUNCTION_NAME");
+                        propertiesMap.put("functionURL","FUNCTION_URL");
+                        propertiesMap.put("functionType","FUNCTION_TYPE");
+                        PopulateUtil.populate(function,rs,propertiesMap);
+                        return function;
+                    }
+                },currentPage,pageSize);
+    }
+
+
+    @Override
+    public int assignURLAuthority(final TblSysRoleVO sysRoleVO) {
+        String sql = "insert into TBL_SYS_AUTHORITY values (?,?,?,?) ";
+        if(sysRoleVO.getFunction().getId()==null || "".equals(sysRoleVO.getFunction().getId()) ){
+            return 0;
+        }
+        String[] functionIDs = sysRoleVO.getFunction().getId().split("-");
+        final List<String> functionIdList = Arrays.asList(functionIDs);
+
+        int[] updateNum = jdbcBaseDao.batchUpdate(sql,functionIdList,new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int index) throws SQLException {
+                String funID = functionIdList.get(index);
+                ps.setString(1,sysRoleVO.getRole().getId());
+                ps.setString(2,funID);
+                ps.setString(3,SystemParam.AUTHORITY_TYPE_URL);
+                ps.setInt(4, SystemParam.AUTHORITY_OPER_READ_ONLY); //权限点默认操作值，暂不起作用 0-读取
+            }
+
+            @Override
+            public int getBatchSize() {
+                return functionIdList.size();
+            }
+        });
+        return updateNum.length;
+    }
+
+
+    @Override
+    public int unAssignURLAuthority(final TblSysRoleVO sysRoleVO) {
+        String sql = "delete from TBL_SYS_AUTHORITY where ROLE_ID=? and FUNCTION_ID=?";
+        if(sysRoleVO.getFunction().getId()==null || "".equals(sysRoleVO.getFunction().getId()) ){
+            return 0;
+        }
+        String[] functionIDs = sysRoleVO.getFunction().getId().split("-");
+        final List<String> functionIdList = Arrays.asList(functionIDs);
+
+        int[] updateNum = jdbcBaseDao.batchUpdate(sql,functionIdList,new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int index) throws SQLException {
+                String funID = functionIdList.get(index);
+                ps.setString(1,sysRoleVO.getRole().getId());
+                ps.setString(2,funID);
+            }
+
+            @Override
+            public int getBatchSize() {
+                return functionIdList.size();
+            }
+        });
+        return updateNum.length;
+    }
 }
