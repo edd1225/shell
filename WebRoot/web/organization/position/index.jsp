@@ -28,9 +28,9 @@
 			resultList = voResult.getResultList();
 			totalPages = voResult.getTotalPages();
 			totalRaws = voResult.getTotalRows();
-			//out.println("size=" + resultList.size());			
+			//out.println("size=" + resultList.size());
 		}else{
-			out.println("obj=NULL" );
+			//out.println("obj=NULL" );
 		}
 		
 	%>

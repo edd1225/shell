@@ -12,7 +12,8 @@
     									  shell.framework.organization.department.web,
     									  shell.framework.organization.agentcode.web,
     									  shell.framework.organization.role.web,
-    									  shell.framework.organization.position.web" />
+    									  shell.framework.organization.position.web,
+                                          shell.framework.organization.authority.web" />
     
     <mvc:annotation-driven />
     

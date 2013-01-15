@@ -52,14 +52,14 @@
                         </tr>
                         <tr>
                             <td width="20%" style="text-align: right;">
-		           	 <span>
-		            	全部权限(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>)
-		             </span>
+                             <span>
+                                全部权限(<font color="red"><%=(voResult==null)?0:voResult.getTotalRows() %></font>)
+                             </span>
                             </td>
                             <td width="10%" style="text-align: right;">
-		           	 <span>
-		            	 已选择(<span id="shell_view_departmentuser_selected_count">0</span>)
-		             </span>
+                             <span>
+                                 已选择(<span id="shell_view_departmentuser_selected_count">0</span>)
+                             </span>
                             </td>
                             <td width="10%" style="text-align: center;">
                             </td>
@@ -70,6 +70,7 @@
                                         <input type="hidden" id="currentPage" name="currentPage" value="1" />
                                         <input type="hidden" id="ids" name="function.id" value="" />
                                         <input type="hidden" id="currentRoleID" name="role.id" value="<%=request.getParameter("role.id") %>" />
+                                         <%--
                                         <div class="uiTypeahead" id="u362713_2">
                                             <div class="wrap">
                                                 <div class="innerWrap">
@@ -77,12 +78,13 @@
                                                     <span>
                                                      <input	type="text" class="inputtext DOMControl_placeholder"
                                                                name="user.fullName"  title="键入搜索条件" />
-                                                        <button type="button" title="Search for documentation" onclick="javascript:doDepartmentUnbindUserSearch();"></button>
+                                                        <button type="button" title="Search for documentation" onclick="doDepartmentUnbindUserSearch();"></button>
                                                     </span>
                                                 </span>
                                                 </div>
                                             </div>
                                         </div>
+                                        --%>
                                     </form>
                                 </div>
                                 <!-- 搜索div结束 -->

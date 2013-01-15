@@ -1,5 +1,7 @@
-<%@page import="shell.framework.model.TblSysRole"%>
-<%@page import="shell.framework.dao.support.VOResult"%>
+<%@ page import="shell.framework.model.TblSysRole"%>
+<%@ page import="shell.framework.core.SystemParam" %>
+<%@ page import="shell.framework.dao.support.VOResult"%>
+<%@ page import="shell.framework.authorization.vo.LoginInfo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="shell_services" uri="http://taglib.shell/shell-services.tld" %>
 
@@ -29,7 +31,7 @@
 			totalRaws = voResult.getTotalRows();
 			//out.println("size=" + resultList.size());			
 		}else{
-			out.println("obj=NULL" );
+			//out.println("obj=NULL");
 		}
 		
 	%>
@@ -57,7 +59,7 @@
 					<!-- 登录个人信息 -->
 					<div align="right" style="float:right; padding-top: 7px;padding-right: 5px;font-size: 12px; ">
 						<span style="padding-left: 5px;">
-							<%=request.getSession().getAttribute("userCode")!=null ? request.getSession().getAttribute("userCode") : "游客" %>	
+                            <%=request.getSession().getAttribute(SystemParam.SESSIOIN_ID_LOGIN_INFO)!=null ? ((LoginInfo)request.getSession().getAttribute(SystemParam.SESSIOIN_ID_LOGIN_INFO)).getUser().getFullName() : "游客" %>
 						</span>
 						<span style="padding-left: 5px;">
 							设置

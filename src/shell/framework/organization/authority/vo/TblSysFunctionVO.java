@@ -6,10 +6,10 @@
  * This software is the proprietary information of IKermi, Inc.
  * Use is subject to license terms.
  */
-package shell.framework.organization.function.vo;
+package shell.framework.organization.authority.vo;
 
 /**
- * <p> 系统功能值对象 </p>
+ * <p> 系统权限值对象 </p>
  *
  * @author ChangMing.Yang
  * @version 1.0 $LastChangedDate: 2012-10-23 下午4:24:06 $
@@ -19,6 +19,7 @@ public class TblSysFunctionVO {
 	private String id;
 	private String functionName;
 	private String functionURL;
+    private String functionType;
 	private String isMenu;
 	private String parentFunctionID;
 	private int orderNO;
@@ -28,6 +29,8 @@ public class TblSysFunctionVO {
 	private String creator;
 	private int lft;
 	private int rgt;
+
+
 	/**
 	 * @return the id
 	 */
@@ -52,7 +55,16 @@ public class TblSysFunctionVO {
 	public void setFunctionName(String functionName) {
 		this.functionName = functionName;
 	}
-	/**
+
+    public String getFunctionType() {
+        return functionType;
+    }
+
+    public void setFunctionType(String functionType) {
+        this.functionType = functionType;
+    }
+
+    /**
 	 * @return the functionURL
 	 */
 	public String getFunctionURL() {

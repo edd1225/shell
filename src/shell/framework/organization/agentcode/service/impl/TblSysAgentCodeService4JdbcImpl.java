@@ -57,8 +57,7 @@ public class TblSysAgentCodeService4JdbcImpl implements TblSysAgentCodeService {
 	/* (non-Javadoc)
 	 * @see shell.framework.organization.agentcode.service.TblSysAgentCodeService#findByPagination(int, int, shell.framework.organization.agentcode.vo.TblSysAgentCodeVO)
 	 */
-	public VOResult findByPagination(int currentPage, int pageSize,
-			TblSysAgentCodeVO agentCodeVO) {
+	public VOResult findByPagination(int currentPage, int pageSize, TblSysAgentCodeVO agentCodeVO) {
 		StringBuffer sql = new StringBuffer("select * from TBL_SYS_AGENTCODE agentcode");
 		sql.append(" where agentcode.IS_VALID='" + SystemParam.IS_VALID +"'");
 		//系统工号 模糊查询
