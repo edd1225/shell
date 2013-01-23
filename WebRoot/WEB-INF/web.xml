@@ -14,8 +14,12 @@
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:applicationContext.xml</param-value>
   </context-param>
-  
-  <servlet>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/shell/framework/mapper/TestMapper.xml</param-value>
+    </context-param>
+
+    <servlet>
   	<description>springMVC配置</description>
   	<servlet-name>dispatcher</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -25,12 +29,25 @@
   	</init-param>
   	<load-on-startup>1</load-on-startup>
   </servlet>
-  <servlet-mapping>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
   	<servlet-name>dispatcher</servlet-name>
   	<url-pattern>*.action</url-pattern>
   </servlet-mapping>
-  
-  <listener>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.faces</url-pattern>
+    </servlet-mapping>
+
+    <listener>
   	<description>servlet容器启动加载此监听器，该监听器负责启动spring</description>
   	<listener-class>shell.framework.core.ContextLoaderListener</listener-class>
   </listener>

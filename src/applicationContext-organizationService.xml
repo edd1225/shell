@@ -9,17 +9,11 @@
 	<bean id="tblSysUserInterceptor" class="shell.framework.organization.user.service.TblSysUserInterceptor" />
 	<!-- 系统用户服务 -->
 	<bean id="tblSysUserService" class="org.springframework.aop.framework.ProxyFactoryBean" >
-		<property name="proxyInterfaces">
-			<value>shell.framework.organization.user.service.TblSysUserService</value>
-		</property>
-		<property name="interceptorNames">
-			<value>tblSysUserInterceptor</value>
-		</property>
+		<property name="proxyInterfaces" value="shell.framework.organization.user.service.TblSysUserService"/>
+		<property name="interceptorNames" value="tblSysUserInterceptor"/>
 		<property name="target">
 			<bean class="shell.framework.organization.user.service.impl.TblSysUserService4JdbcImpl">
-				<property name="jdbcBaseDao">
-					<ref bean="baseDaoTemplate.Jdbc"/>
-				</property>
+				<property name="jdbcBaseDao" ref="baseDaoTemplate.Jdbc" />
 			</bean>
 		</property>
 	</bean>
