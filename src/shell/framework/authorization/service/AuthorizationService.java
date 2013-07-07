@@ -10,6 +10,8 @@ package shell.framework.authorization.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.omg.CORBA.portable.StreamableValue;
 import shell.framework.dao.IJdbcBaseDao;
@@ -134,7 +136,7 @@ public class AuthorizationService {
 	 * @return true-拥有 false-没有
 	 */
 	public boolean hasAuthority(String userCode,String funcValue){
-		return true;
+        return true;
 	}
 	
 }
